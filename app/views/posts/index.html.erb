@@ -4,7 +4,11 @@
       <% @posts.each do |post| %>
       <div class="span9">
 
-        <h3><%= post.title %></h3>
+        <% if post.title.present? %>
+          <h3><%= post.title %></h3>
+        <% else %>
+          <span>&nbsp;</span>
+        <% end %>
         <pre class="highlight"><%= post.content %></pre>
 
         <div class="span3 pull-right">
