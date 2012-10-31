@@ -16,3 +16,6 @@
 
 // Loads all Bootstrap javascripts
 //= require bootstrap
+
+//= require jquery.syntaxhighlighter.min
+$.SyntaxHighlighter.init();
