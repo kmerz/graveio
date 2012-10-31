@@ -1,9 +1,15 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
-
 one:
-  title: MyString
-  content: MyText
-
+  title: bla.rb
+  content: |
+      puts "#{File.expand_path(File.dirname(__FILE__))}"
 two:
-  title: MyString
-  content: MyText
+  title: blub
+  content: |
+    Entry.delete_all
+
+    @d = DateTime.new(2012,1,1)
+
+    Entry.create :description => "Paint fence", :note => "Note #1", :priority => 1, :created_at => @d, :due => @d + 7.days, :scheduled_for => @d + 3.days, :completed_at => nil
+    Entry.create :description => "Plant tree", :note => "Note #2", :priority => 3, :created_at => @d, :due => @d + 14.days, :scheduled_for => @d + 10.days, :completed_at => nil
+    Entry.create :description => "Repair mower", :note => "Note #3", :priority => 2, :created_at => @d, :due => @d + 3.days, :scheduled_for => @d + 1.days, :completed_at => nil
+

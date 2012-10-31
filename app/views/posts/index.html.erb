@@ -1,25 +1,26 @@
-<h1>Listing posts</h1>
-
-<table>
-  <tr>
-    <th>Title</th>
-    <th>Content</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @posts.each do |post| %>
-  <tr>
-    <td><%= post.title %></td>
-    <td><%= post.content %></td>
-    <td><%= link_to 'Show', post %></td>
-    <td><%= link_to 'Edit', edit_post_path(post) %></td>
-    <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
-</table>
-
-<br />
-
-<%= link_to 'New Post', new_post_path %>
+<div class="row">
+  <div class="span9">
+    <div class="row">
+      <% @posts.each do |post| %>
+        <div class="span6">
+          <div><%= post.title %></div>
+          <pre><%= post.content %></pre>
+        </div>
+        <div class="span3">
+          <div class="btn-group">
+            <%= link_to post, :class => "btn btn-small" do %>
+              <i class="icon-eye-open"></i>
+            <% end %>
+            <%= link_to edit_post_path(post), :class => "btn btn-small"  do %>
+              <i class="icon-edit"></i>
+              <% end %>
+            <%= link_to post, method: :delete,
+             data: { confirm: 'Are you sure?' }, :class => "btn btn-small" do %>
+              <i class="icon-trash"></i>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
