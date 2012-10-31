@@ -2,10 +2,9 @@
   <div class="span9">
     <div class="row">
       <% @posts.each do |post| %>
-        <div class="span6">
+        <div class="span9">
           <div><%= post.title %></div>
-          <pre><%= post.content %></pre>
-        </div>
+          <pre class="highlight"><%= post.content %></pre>
         <div class="span3">
           <div class="btn-group">
             <%= link_to post, :class => "btn btn-small" do %>
@@ -18,6 +17,7 @@
              data: { confirm: 'Are you sure?' }, :class => "btn btn-small" do %>
               <i class="icon-trash"></i>
             <% end %>
+          </div>
           </div>
         </div>
       <% end %>
