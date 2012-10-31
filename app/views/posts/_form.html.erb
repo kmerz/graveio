@@ -1,8 +1,8 @@
-<%= form_for(@post) do |f| %>
+<%= form_for @post, :class => "form-horizontal" do |f| %>
   <% if @post.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
-
+    <div class="alert alert-error" id="error_explanation">
+      <h2><%= pluralize(@post.errors.count, "error") %>
+        prohibited this post from being saved:</h2>
       <ul>
       <% @post.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
@@ -11,15 +11,23 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :title %><br />
-    <%= f.text_field :title %>
+  <div class="control-group">
+    <label class="control-label" for="inputTitle">
+      <%= f.label :title %>
+    </label>
+    <div class="controls">
+      <%= f.text_field :title, :id => "inputTitle" %>
+    </div>
   </div>
+
   <div class="field">
-    <%= f.label :content %><br />
-    <%= f.text_area :content %>
+    <%= f.label :content %><br /> <%= f.text_area :content,
+      {:class => "input-xxlarge", :rows => 15} %>
   </div>
   <div class="actions">
     <%= f.submit %>
   </div>
 <% end %>
+
+
+  
