@@ -1,14 +1,29 @@
+
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Fox</title>
+  <title>Entries</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
+
 <body>
-
-<%= yield %>
-
+    <!-- Main navigation fixed on top -->
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+            <a class="brand" href="#"> Fox </a>
+            <ul class="nav">
+              <li class="active">
+                <a href="<%= root_url%>">Home</a>
+              </li>
+            </ul>
+            <ul class="nav pull-right">
+            </ul>
+        </div>
+      </div>
+    </div>
+    <%= yield %>
 </body>
 </html>
