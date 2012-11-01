@@ -18,6 +18,4 @@
 //= require bootstrap
 
 //= require jquery.syntaxhighlighter.min
-$.SyntaxHighlighter.init({
-  'lineNumbers': false
-});
+$.SyntaxHighlighter.init();
