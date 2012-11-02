@@ -18,4 +18,6 @@
 //= require bootstrap
 
 //= require jquery.syntaxhighlighter.min
-$.SyntaxHighlighter.init();
+$(document).ready(function(){
+  SyntaxHighlighter.all();
+}):
