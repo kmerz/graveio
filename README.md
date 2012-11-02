@@ -1,6 +1,6 @@
-# fox - yet another paste bin
+# graveio - where your code stays alive
 
-fox is a attemp to provide a simple, easy to use and install paste bin
+graveio is a attemp to provide a simple, easy to use and install paste bin
 solution for inhouse use.
 
 It was developed with *ruby 1.9.3p0* and *rails 3.2*.
@@ -15,3 +15,7 @@ Lunch:
 -  `rails s production`
 
 At this state of developement take a look for a help at rails guides site.
+
+THX to:
+flowm
+dloss
