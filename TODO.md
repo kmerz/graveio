@@ -1,0 +1,12 @@
+TODO:
+-  add bury (a script to send stuff from console)
+-  help page
+-  bring url to buffer
+-  highlighter # pygments.rb
+-  reverse sorting
+-  tags
+-  next page
+-  search
+-  additional info
+-  diff of edit posts
+-  raw post anzeigen
