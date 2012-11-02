@@ -2,7 +2,7 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.all
+    @posts = Post.find_each(:start => 5; :batch_size => 25)
 
     respond_to do |format|
       format.html # index.html.erb

@@ -46,4 +46,13 @@ class PostsControllerTest < ActionController::TestCase
 
     assert_redirected_to posts_path
   end
+
+  test "should deliver posts batch wise" do
+    get :index, :start => 5, :batch_size => 25
+
+    assert_not_nil assigns(:posts)
+    assert_equal 25, assigns(:posts).size
+
+  end
+
 end
