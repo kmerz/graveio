@@ -6,7 +6,6 @@ TODO:
 -  search
 -  additional info
 -  diff of edit posts
--  raw post anzeigen
 -  fork via github
 -  download of bury
 -  validation of title

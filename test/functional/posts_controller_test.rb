@@ -50,6 +50,11 @@ class PostsControllerTest < ActionController::TestCase
     assert_template(:show)
   end
 
+  test "should show raw post content" do
+    get :show, id: @post, :format => :text
+    assert_response :success
+  end
+
   test "should get edit" do
     get :edit, id: @post
     assert_response :success

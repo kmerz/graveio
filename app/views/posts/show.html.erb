@@ -7,6 +7,10 @@
       <%= link_to edit_post_path(@post), :class => "btn btn-small"  do %>
         <i class="icon-edit"></i>
       <% end %>
+      <%= link_to post_path(@post, :format => :text),
+        :class => "btn btn-small"  do %>
+        <i class="icon-download"></i>
+      <% end %>
       <%= link_to posts_path, :class => "btn btn-small" do %>
         <i class="icon-align-justify"></i>
       <% end %>
