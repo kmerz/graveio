@@ -2,5 +2,9 @@
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @post %> |
-<%= link_to 'Back', posts_path %>
+<%= link_to @post, :class => "btn btn-small" do %>
+  <i class="icon-eye-open"></i>
+<% end %>
+<%= link_to posts_path, :class => "btn btn-small" do %>
+  <i class="icon-align-justify"></i>
+<% end %>
