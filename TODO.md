@@ -3,10 +3,13 @@ TODO:
 -  help page
 -  bring url to buffer
 -  highlighter # pygments.rb
--  reverse sorting
 -  tags
 -  next page
 -  search
 -  additional info
 -  diff of edit posts
 -  raw post anzeigen
+-  fork via github
+-  download of bury
+-  validation of title
+-  validation of length of content: 104875
