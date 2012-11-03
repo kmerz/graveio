@@ -2,11 +2,12 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.all(:order => "created_at DESC")
-
+    last = params[:last].blank? ? Time.now + 1.second :
+      Time.parse(params[:last])
+    @posts = Post.feed(last)
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @posts }
+      format.js
     end
   end
 

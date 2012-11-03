@@ -18,5 +18,4 @@
 //= require bootstrap
 
 $(document).ready(function(){
-  SyntaxHighlighter.all();
-}):
+});

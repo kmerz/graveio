@@ -9,11 +9,31 @@ class PostsControllerTest < ActionController::TestCase
     get :index
     assert_response :success
     assert_not_nil assigns(:posts)
+    assert_template(:index)
+  end
+
+  test "should get index for js batch wise" do
+    get :index, :format => "js"
+    assert_response :success
+    assert_not_nil assigns(:posts)
+    assert_template(:index)
+
+    first_batch = assigns(:posts)
+    assert_equal 20, first_batch.size
+    date = first_batch.to_a.last.created_at.to_s
+
+    get :index, :format => "js", :last => date
+    assert_response :success
+    assert_not_nil assigns(:posts)
+    second_batch = assigns(:posts)
+    assert_not_equal first_batch, second_batch
+    assert_template(:index)
   end
 
   test "should get new" do
     get :new
     assert_response :success
+    assert_template(:new)
   end
 
   test "should create post" do
@@ -27,6 +47,7 @@ class PostsControllerTest < ActionController::TestCase
   test "should show post" do
     get :show, id: @post
     assert_response :success
+    assert_template(:show)
   end
 
   test "should get edit" do
@@ -45,14 +66,6 @@ class PostsControllerTest < ActionController::TestCase
     end
 
     assert_redirected_to posts_path
-  end
-
-  test "should deliver posts batch wise" do
-    get :index, :start => 5, :batch_size => 25
-
-    assert_not_nil assigns(:posts)
-    assert_equal 25, assigns(:posts).size
-
   end
 
 end

@@ -17,4 +17,5 @@ two:
 post_<%= number %>:
   title: asdf_<%= number %>
   content: asdf asdf_<%= number %>
+  created_at: <%= Time.now - number %>
 <% end %>

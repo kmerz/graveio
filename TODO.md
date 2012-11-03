@@ -3,7 +3,6 @@ TODO:
 -  help page
 -  highlighter # pygments.rb
 -  tags
--  next page
 -  search
 -  additional info
 -  diff of edit posts
