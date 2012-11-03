@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>graveio</title>
+  <title>grave.io</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
@@ -13,14 +13,18 @@
     <div class="navbar navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container">
-            <a class="brand" href="<%= root_url%>"> graveio </a>
+            <a class="brand" href="<%= root_url%>"> grave.io </a>
             <ul class="nav">
-              <li class="active">
-              </li>
+              <li class="inactive"> <a>where your code stays alive</a> </li>
             </ul>
             <ul class="nav pull-right">
               <li>
                 <%= link_to 'new snippet', new_post_path %>
+              </li>
+            </ul>
+            <ul class="nav pull-right">
+              <li>
+                <%= link_to 'help', help_path %>
               </li>
             </ul>
         </div>

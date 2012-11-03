@@ -73,4 +73,10 @@ class PostsControllerTest < ActionController::TestCase
     assert_redirected_to posts_path
   end
 
+  test "should delviver the help page" do
+    get :help
+    assert_response :success
+    assert_template(:help)
+  end
+
 end

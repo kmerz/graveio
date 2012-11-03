@@ -85,4 +85,11 @@ class PostsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  # GET /help
+  def help
+    respond_to do |format|
+      format.html {  render :help }
+    end
+  end
 end
