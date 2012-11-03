@@ -8,5 +8,3 @@ TODO:
 -  diff of edit posts
 -  fork via github
 -  download of bury
--  validation of title
--  validation of length of content: 104875
