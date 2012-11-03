@@ -1,7 +1,5 @@
 TODO:
 -  add bury (a script to send stuff from console)
--  help page
--  highlighter # pygments.rb
 -  tags
 -  search
 -  additional info
