@@ -1,7 +1,7 @@
 require 'test_helper'
 
 class PostTest < ActiveSupport::TestCase
-  test "creation of post" do
+  test "should create a post" do
     assert p = Post.new
     assert_equal false, p.valid?, "should not be valid"
     p.content = "asdf"
@@ -9,7 +9,7 @@ class PostTest < ActiveSupport::TestCase
     assert_nothing_raised {p.save!}
   end
 
-  test "feed" do
+  test "should return a feed" do
     date = Time.now + 1
     assert_nothing_raised{ Post.feed(date) }
     first_posts = Post.feed(date)
@@ -17,5 +17,19 @@ class PostTest < ActiveSupport::TestCase
     date = first_posts.to_a.last.created_at
     second_posts = Post.feed(date)
     assert_not_equal first_posts, second_posts
+  end
+
+  test "should serach in posts content and title" do
+    assert_nothing_raised { Post.search("asdf") }
+    assert result = Post.search("asdf"), "should return any results"
+    assert_equal 99, result.size
+    assert result = Post.search("asdf asdf_5"), "should return any results"
+    assert_equal 11, result.size
+    assert result = Post.search("asdf asdf_55"), "should return any results"
+    assert_equal 1, result.size
+    assert_equal "asdf asdf_55", result.first.content
+    assert result = Post.search("bla.rb"), "should return any results"
+    assert_equal 1, result.size
+    assert_equal "bla.rb", result.first.title
   end
 end
