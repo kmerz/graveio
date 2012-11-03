@@ -1,7 +1,7 @@
 Fox::Application.routes.draw do
 
   resources :posts
-  match 'p/:id' => 'posts#show'
+  match 'p/:id' => 'posts#show', :as => :p
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
