@@ -3,5 +3,6 @@ Fox::Application.routes.draw do
 
   match 'p/:id' => 'posts#show', :as => :p
   match '/help' => 'posts#help', :as => :help
+  match '/search' => 'posts#search', :as => :search
   root :to => 'posts#index'
 end

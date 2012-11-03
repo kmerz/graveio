@@ -1,0 +1,5 @@
+<% unless @posts.blank?%>
+  <div class="row">
+    <%=render :partial => "post", :collection => @posts%>
+  </div>
+<% end %>

@@ -79,4 +79,11 @@ class PostsControllerTest < ActionController::TestCase
     assert_template(:help)
   end
 
+  test "should search for posts" do
+    get :search, :query => "bla.rb"
+    assert_response :success
+    assert_not_nil assigns(:posts)
+    assert_template(:search)
+  end
+
 end

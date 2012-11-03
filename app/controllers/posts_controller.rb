@@ -89,7 +89,15 @@ class PostsController < ApplicationController
   # GET /help
   def help
     respond_to do |format|
-      format.html {  render :help }
+      format.html { render :help }
+    end
+  end
+
+  # GET /search
+  def search
+    @posts = Post.search(params[:query])
+    respond_to do |format|
+      format.html { render :search }
     end
   end
 end
