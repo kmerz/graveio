@@ -14,6 +14,9 @@ For install:
 Lunch:
 -  `rails s production`
 
+For easier posting of content to graveio, you can use bury, a ruby command line
+tool which also integrates to vim. You can find it in bin/bury.
+
 At this state of developement take a look for a help at rails guides site.
 
 THX to:
