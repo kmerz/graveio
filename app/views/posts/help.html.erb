@@ -16,8 +16,18 @@ paste bin implementation aimed for inhouse use. </p>
   <li>Bury</li>
   For easier posting of content to graveio, you can use bury, a ruby command
   line tool which also integrates to vim.
+  <br \>
   To integrate it in vim simply add this line to your .vimrc:
   <pre>map <F2> :w !bury -t %<CR></pre>
+  The default host and port for the tool can be configured via a rc file
+  located at "~/.buryrc"
+  <br \>
+  Example configuration:
+  <pre>
+default:
+  :host: 172.30.200.153
+  :port: 3000 
+  </pre>
 </ul>
 
 <blockquote>
