@@ -98,7 +98,7 @@ class Bury
         log.level = Logger::DEBUG
       end
       opts.on("-v", "--verbose", "Enable verbose output") do
-        attrs[:verbose] = true
+        log.level = Logger::INFO
       end
       opts.on("-h", "--help", "Show this help") do
         puts options
@@ -111,7 +111,7 @@ class Bury
     # Default configuration
     # Host and port fall-back currently disabled
     #@@cfg[:host] = "172.30.200.153" unless @@cfg[:host]
-    #@@cfg[:port] = "3000" unless @@cfg[:port]
+    @@cfg[:port] = "80" unless @@cfg[:port]
     @@cfg[:agent] = "User-Agent: bury" unless @@cfg[:agent]
 
     # Determine Title
