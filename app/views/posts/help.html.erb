@@ -2,32 +2,30 @@
 <p> <a class="brand" href="<%= root_url%>"> grave.io </a> is just another
 paste bin implementation aimed for inhouse use. </p>
 
-<h3>How to use:</h3>
+<h3>How to use</h3>
 <ul>
-  <li>New snippet:</li>
+  <li><b>New snippet</b></li>
   Create a new snippet that needs to be published. Fill out title
   and content and press to create. You will be redirected to your new
   entry, where you easy get a short url to this snippet.
-  <li>Destroy snippet:</li>
+  <li><b>Destroy snippet</b></li>
   Click on the trash icon below of a snippet and confirm it.
 </ul>
-<h3>Command line interface:</h3>
+<h3>Command line interface</h3>
 <ul>
-  <li>Bury</li>
   For easier posting of content to graveio, you can use bury, a ruby command
   line tool which also integrates to vim.
   <br \>
   To integrate it in vim simply add this line to your .vimrc:
-  <pre>map <F2> :w !bury -t %<CR></pre>
+  <pre class="help">map &lt;F2&gt; :w !bury -t %&lt;CR&gt;</pre>
   The default host and port for the tool can be configured via a rc file
   located at "~/.buryrc"
   <br \>
   Example configuration:
-  <pre>
+  <pre class="help">
 default:
   :host: 172.30.200.153
-  :port: 3000 
-  </pre>
+  :port: 3000</pre>
 </ul>
 
 <blockquote>
