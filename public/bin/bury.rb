@@ -106,6 +106,9 @@ class Bury
       end
     end
     options.parse!
+    
+    # make sure configf["default"] exists
+    configf["default"] ||= {}
     @@cfg = configf["default"].merge(attrs)
 
     # Default configuration
