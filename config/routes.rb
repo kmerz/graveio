@@ -1,7 +1,6 @@
 Fox::Application.routes.draw do
-  resources :posts
+  resources :posts, :as => :p
 
-  match 'p/:id' => 'posts#show', :as => :p
   match '/help' => 'posts#help', :as => :help
   match '/search' => 'posts#search', :as => :search
   root :to => 'posts#index'
