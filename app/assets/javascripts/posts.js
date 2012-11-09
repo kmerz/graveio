@@ -8,7 +8,7 @@ $(document).ready(function(){
     callback: function(){
       var last = $("div.list").attr('last');
       $.ajax({
-        url: '/posts',
+        url: '/',
           data: {
             last: last
           },
