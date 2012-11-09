@@ -15,6 +15,7 @@ class Post < ActiveRecord::Base
     return [] if search_string.blank?
     post_arel_table = Post.arel_table
     self.where(post_arel_table[:content].matches("%#{search_string}%").or(
-      post_arel_table[:title].matches("%#{search_string}%")))
+      post_arel_table[:title].matches("%#{search_string}%"))).
+        order('created_at desc')
   end
 end
