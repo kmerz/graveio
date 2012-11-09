@@ -32,4 +32,13 @@ class PostTest < ActiveSupport::TestCase
     assert_equal 1, result.size
     assert_equal "bla.rb", result.first.title
   end
+
+  test "should delete comments when destroying post" do
+    assert_not_nil p = Post.find(1)
+    assert_not_equal 0, p.comments.size
+    comment_id = p.comments.first.id
+    assert_not_nil Comment.find_by_id(comment_id)
+    assert_nothing_raised { p.destroy }
+    assert_nil Comment.find_by_id(comment_id)
+  end
 end

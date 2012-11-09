@@ -2,8 +2,10 @@ one:
   title: bla.rb
   content: |
       puts "#{File.expand_path(File.dirname(__FILE__))}"
+  id: 1
 two:
   title: blub
+  id: 2
   content: |
     Entry.delete_all
 
