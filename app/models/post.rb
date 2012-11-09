@@ -5,6 +5,8 @@ class Post < ActiveRecord::Base
   validates_length_of :title, :maximum => 255
   attr_accessible :content, :title
 
+  has_many :comments
+
   def self.feed(last)
     self.where("created_at < ? ", last).order('created_at desc').limit(20)
   end
