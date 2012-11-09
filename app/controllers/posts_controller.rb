@@ -88,6 +88,8 @@ class PostsController < ApplicationController
 
   # GET /help
   def help
+    @server_ip = request.remote_addr || "172.16.0.255"
+    @server_port = request.port || "80"
     respond_to do |format|
       format.html { render :help }
     end

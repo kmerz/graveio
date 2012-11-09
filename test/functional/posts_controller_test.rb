@@ -76,6 +76,8 @@ class PostsControllerTest < ActionController::TestCase
   test "should delviver the help page" do
     get :help
     assert_response :success
+    assert_not_nil assigns(:server_ip)
+    assert_not_nil assigns(:server_port)
     assert_template(:help)
   end
 

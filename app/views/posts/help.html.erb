@@ -21,11 +21,11 @@ paste bin implementation aimed for inhouse use. </p>
   The default host and port for the tool can be configured via a rc file
   located at "~/.buryrc"
   <br \>
-  Example configuration:
+  Example configuration for this server could be:
   <pre class="help">
 default:
-  :host: 172.30.200.153
-  :port: 3000</pre>
+  :host: <%= @server_ip %>
+  :port: <%= @server_port%></pre>
   Get bury here: <%= link_to "bury", "bin/bury.rb"
 %>
 </ul>
