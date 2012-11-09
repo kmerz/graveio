@@ -1,7 +1,7 @@
 class CreateComments < ActiveRecord::Migration
   def change
     create_table :comments do |t|
-      t.string :commenter
+      t.string :commenter, :default => "Anonymus"
       t.text :body
       t.references :post
 
