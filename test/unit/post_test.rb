@@ -41,4 +41,12 @@ class PostTest < ActiveSupport::TestCase
     assert_nothing_raised { p.destroy }
     assert_nil Comment.find_by_id(comment_id)
   end
+
+  test "should can has an author" do
+    assert_not_nil p = Post.find(1)
+    assert_nothing_raised { p.author }
+    assert_nil p.author
+    p.author = "Karl"
+    assert_nothing_raised { p.save! }
+  end
 end
