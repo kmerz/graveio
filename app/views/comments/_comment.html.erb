@@ -1,0 +1,21 @@
+<legend>Comments</legend>
+<% @post.comments.each do |comment| %>
+  <blockquote>
+    <%= comment.body %>
+    <small><%= comment.commenter %></small>
+  </blockquote>
+<% end %>
+
+<%= form_for([@post, @post.comments.build],
+  :class => "form-horizontal") do |f| %>
+  <div class="control-group">
+    <div class="controls">
+      <%= f.text_field :commenter, :placeholder=>"Author" %>
+    </div>
+    <div class="controls">
+      <%= f.text_area :body, :placeholder => "leave a comment...",
+        :rows => 4 %>
+    </div>
+    <%= f.submit :class => "btn" %>
+  </div>
+<% end %>
