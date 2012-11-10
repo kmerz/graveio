@@ -16,7 +16,7 @@ class Post < ActiveRecord::Base
   def self.search(search_string)
     return [] if search_string.blank?
     post_arel_table = Post.arel_table
-    self.includes(:comments).where(
+    self.where(
       post_arel_table[:content].matches("%#{search_string}%").or(
       post_arel_table[:title].matches("%#{search_string}%")).or(
       post_arel_table[:author].matches("%#{search_string}%"))).
