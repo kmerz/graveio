@@ -33,6 +33,11 @@ class PostTest < ActiveSupport::TestCase
     assert_equal "bla.rb", result.first.title
   end
 
+  test "should search for author" do
+    assert_not_nil result = Post.search("Franz"), "should return any results"
+    assert_equal "Franz Ferdinand", result.first.author
+  end
+
   test "should delete comments when destroying post" do
     assert_not_nil p = Post.find(1)
     assert_not_equal 0, p.comments.size
