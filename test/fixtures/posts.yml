@@ -3,6 +3,7 @@ one:
   content: |
       puts "#{File.expand_path(File.dirname(__FILE__))}"
   id: 1
+  author: Franz Ferdinand
 two:
   title: blub
   id: 2

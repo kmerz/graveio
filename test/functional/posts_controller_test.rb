@@ -44,6 +44,20 @@ class PostsControllerTest < ActionController::TestCase
     assert_redirected_to post_path(assigns(:post))
   end
 
+  test "should create post with author" do
+    assert_difference('Post.count') do
+      post :create, post: {
+        content: @post.content,
+        title: @post.title,
+        author: @post.author
+      }
+    end
+
+    assert_redirected_to post_path(assigns(:post))
+  end
+
+
+
   test "should show post" do
     get :show, id: @post
     assert_response :success

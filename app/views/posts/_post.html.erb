@@ -4,6 +4,9 @@
   <span>&nbsp;</span>
 <% end %>
 <pre><code><%= post.content %></code></pre>
+<% if post.author.present? %>
+  <small class="author">-&nbsp;<%= post.author %>&nbsp;</small>
+<% end %>
 <% if post.comments.present? %>
   <span class="comments_count">&nbsp;<%= post.comments.size %>&nbsp;
     <i class="icon-comment"></i></span>

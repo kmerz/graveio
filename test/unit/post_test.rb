@@ -43,7 +43,7 @@ class PostTest < ActiveSupport::TestCase
   end
 
   test "should can has an author" do
-    assert_not_nil p = Post.find(1)
+    assert_not_nil p = Post.find(2)
     assert_nothing_raised { p.author }
     assert_nil p.author
     p.author = "Karl"

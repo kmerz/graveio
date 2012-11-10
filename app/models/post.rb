@@ -3,7 +3,8 @@ class Post < ActiveRecord::Base
   # not more content then 1MB
   validates_length_of :content, :maximum => 104875
   validates_length_of :title, :maximum => 255
-  attr_accessible :content, :title
+  validates_length_of :author, :maximum => 255
+  attr_accessible :content, :title, :author
 
   has_many :comments, :dependent => :destroy
 

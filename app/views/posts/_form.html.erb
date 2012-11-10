@@ -18,14 +18,21 @@
     <div class="controls">
       <%= f.text_field :title, :id => "inputTitle" %>
     </div>
-  </div>
 
-  <div class="field">
-    <%= f.label :content %><br /> <%= f.text_area :content,
-      {:class => "input-xxlarge", :rows => 15} %>
+    <label class="control-label" for="inputContent">
+      <%= f.label :content %>
+    </label>
+    <div class="controls">
+      <%= f.text_area :content, {:class => "input-xxlarge", :rows => 15,
+        :id => "inputContent"} %>
+    </div>
+    <label class="control-label" for="inputAuthor">
+      <%= f.label :author %>
+    </label>
+    <div class="controls">
+      <%= f.text_field :author, :id => "inputAuthor",
+        :placeholder => "Anonymus" %>
+    </div>
   </div>
   <%= f.submit :class => "btn" %>
 <% end %>
-
-
-  
