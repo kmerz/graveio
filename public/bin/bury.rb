@@ -23,7 +23,7 @@ class Bury
   def self.run()
     parseopts
     # GET the form
-    reshtml, path, cookie = get("/posts/new")
+    reshtml, path, cookie = get("/p/new")
 
     # Extract the authenticity_token
     match = reshtml.match('"authenticity_token" type="hidden" value="(.{43}=)"')
@@ -37,12 +37,13 @@ class Bury
       ["utf8", "%E2%9C%93"],
       ["authenticity_token", authtoken],
       ["post[title]", @@cfg[:title]],
+      ["post[author]", @@cfg[:author]],
       ["post[content]", @@cfg[:content]],
       ["commit", "Create Post"]
     ])
 
     # POST the Content
-    reshtml, path, cookie = post("/posts" , cookie, data)
+    reshtml, path, cookie = post("/p" , cookie, data)
 
     if reshtml.match('Post was successfully created')
       $log.info "Post was successfully created"
@@ -86,6 +87,12 @@ class Bury
         "alternativley STDIN will be used") do |content|
         attrs[:content] = content
       end
+      opts.on("-a [AUTHOR]", "--author [AUTHOR]",
+        "Specify the author for this posted",
+        "Without this option, the value in config will be used") do |author|
+        attrs[:author] = author
+      end
+
       opts.on("-s [HOST]", "--server [HOST]", "Specify the grave server",
         "Without this flag, the value in config will be used") do |host|
         attrs[:host] = host
@@ -106,7 +113,7 @@ class Bury
       end
     end
     options.parse!
-    
+
     # make sure configf["default"] exists
     configf["default"] ||= {}
     @@cfg = configf["default"].merge(attrs)
