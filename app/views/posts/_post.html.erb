@@ -4,7 +4,10 @@
   <span>&nbsp;</span>
 <% end %>
 <pre><code><%= post.content %></code></pre>
-<span>&nbsp;<%= post.comments.size %>&nbsp;<i class="icon-comment"></i></span>
+<% if post.comments.present? %>
+  <span class="comments_count">&nbsp;<%= post.comments.size %>&nbsp;
+    <i class="icon-comment"></i></span>
+<% end %>
 <div class="pull-right">
   <div class="btn-group">
     <%= link_to post, :class => "btn btn-small" do %>
