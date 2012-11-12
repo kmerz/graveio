@@ -2,7 +2,11 @@
 <% @post.comments.each do |comment| %>
   <blockquote>
     <%= comment.body %>
-    <small><%= comment.commenter %></small>
+    <% if comment.commenter.present? %>
+      <small><%= comment.commenter %></small>
+    <% else %>
+      <small>Anonymus</small>
+    <% end %>
   </blockquote>
 <% end %>
 
