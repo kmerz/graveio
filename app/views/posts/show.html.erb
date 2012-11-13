@@ -3,7 +3,7 @@
   <h3><%= @post.title %></h3>
   <pre><code><%= @post.content %></code></pre>
   <% if @post.author.present? %>
-    <p class="author">-&nbsp;<%= @post.author %>&nbsp;</p>
+    <p class="author">- <%= @post.author %></p>
   <% end %>
   <div class="pull-right">
     <div class="btn-group">
