@@ -1,5 +1,5 @@
 <% if post.title.present? %>
-  <h3><%= post.title %></h3>
+  <h3><%= link_to post.title, post %></h3>
 <% else %>
   <span>&nbsp;</span>
 <% end %>
