@@ -5,11 +5,13 @@
 <% end %>
 <pre><code><%= post.content %></code></pre>
 <% if post.author.present? %>
-  <small class="author">-&nbsp;<%= post.author %>&nbsp;</small>
+  <small class="author">- <%= post.author %></small>
 <% end %>
 <% if post.comments.present? %>
-  <span class="comments_count">&nbsp;<%= post.comments.size %>&nbsp;
-    <i class="icon-comment"></i></span>
+  <span class="comments_count">
+    <%= post.comments.size %>
+    <i class="icon-comment"></i>
+  </span>
 <% end %>
 <div class="pull-right">
   <div class="btn-group">
