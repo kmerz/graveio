@@ -7,8 +7,9 @@ It was developed with *ruby 1.9.3p0* and *rails 3.2*.
 
 For install:
 -  clone this repository
--  install 'ruby 1.9', 'nodejs' and a database of choice (eg. postgresql, sqlite3)
--  adjust Gemfile for you database (eg. gem "pg" for postgresql)
+-  install 'ruby 1.9', 'nodejs' and a database of your choice (e.g. postgresql, sqlite3)
+-  install Bundler: `gem install bundler`
+-  adjust Gemfile for your database (e.g. gem "pg" for postgresql)
 -  call `bundle install` inside of repository
 -  call `rake db:create && rake db:migrate`
 -  to ensure that everything works, you can call: `rake test`
