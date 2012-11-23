@@ -1,0 +1,31 @@
+<div class="navbar navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container">
+        <a class="brand" href="<%= root_url%>"> grave.io </a>
+        <ul class="nav">
+          <li class="inactive"> <a>where your code stays alive</a> </li>
+        </ul>
+        <ul class="nav pull-right">
+          <li>
+            <%= link_to new_post_path do %>
+              <i class="icon-plus"></i>
+            <% end %>
+          </li>
+        </ul>
+        <ul class="nav pull-right">
+          <li>
+            <%= link_to help_path do %>
+              <i class="icon-question-sign"></i>
+            <% end %>
+          </li>
+        </ul>
+        <%= form_tag("/search", :method => "get",
+          :class =>"navbar-search pull-right") do %>
+          <div class="input-append">
+            <%= text_field_tag :query, nil, :class => "span2 search-query",
+              :placeholder => "search" %>
+          </div>
+        <% end %>
+    </div>
+  </div>
+</div>
