@@ -1,5 +1,5 @@
 <legend>Comments</legend>
-<% @post.comments.each do |comment| %>
+<% @post.all_comments.each do |comment| %>
   <blockquote>
     <%= comment.body %>
     <% if comment.commenter.present? %>

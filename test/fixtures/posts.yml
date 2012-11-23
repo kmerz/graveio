@@ -16,9 +16,20 @@ two:
     Entry.create :description => "Plant tree", :note => "Note #2", :priority => 3, :created_at => @d, :due => @d + 14.days, :scheduled_for => @d + 10.days, :completed_at => nil
     Entry.create :description => "Repair mower", :note => "Note #3", :priority => 2, :created_at => @d, :due => @d + 3.days, :scheduled_for => @d + 1.days, :completed_at => nil
 
-<% (2..100).each do |number| %>
+<% (3..100).each do |number| %>
 post_<%= number %>:
   title: asdf_<%= number %>
   content: asdf asdf_<%= number %>
   created_at: <%= Time.now - number %>
+  id: <%= number %>
+<% end %>
+
+<% (101..106).each do |number| %>
+post_<%= number %>:
+  title: parent_child
+  content: number_<%= number %>
+  created_at: <%= Time.now - number %>
+  id: <%= number %>
+  parent_id: <%= number == 101 ? nil : number - 1 %>
+  newest: <%= number == 101 ? true : false %>
 <% end %>

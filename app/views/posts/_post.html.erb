@@ -10,9 +10,9 @@
 <% if post.author.present? %>
   <small class="author">- <%= post.author %></small>
 <% end %>
-<% if post.comments.present? %>
+<% if post.all_comments.present? %>
   <span class="comments_count">
-    <%= post.comments.size %>
+    <%= post.all_comments.size %>
     <i class="icon-comment"></i>
   </span>
 <% end %>

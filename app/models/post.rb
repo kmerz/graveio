@@ -7,10 +7,37 @@ class Post < ActiveRecord::Base
   attr_accessible :content, :title, :author
 
   has_many :comments, :dependent => :destroy
+  has_one :child, :class_name => "Post",
+    :foreign_key => :parent_id, :dependent => :destroy
+  belongs_to :parent, :class_name => "Post", :dependent => :destroy
 
   def self.feed(last)
     self.includes(:comments)
       .where("created_at < ? ", last).order('created_at desc').limit(2)
+  end
+
+  def collect_parent_ids
+    if parent.nil?
+      return []
+    else
+      return [ parent_id ] +  parent.collect_parent_ids
+    end
+  end
+
+  def all_comments
+    Comment.where(:post_id => self.collect_parent_ids).order('created_at desc')
+  end
+
+  def create_version(params)
+    child = self.class.new(params)
+    child.parent_id = self.id
+    self.newest = false
+    self.save
+    return child
+  end
+
+  def errors=(errors)
+    @errors = errors
   end
 
   def self.search(search_string)

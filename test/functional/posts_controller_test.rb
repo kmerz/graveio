@@ -55,8 +55,6 @@ class PostsControllerTest < ActionController::TestCase
     assert_redirected_to post_path(assigns(:post))
   end
 
-
-
   test "should show post" do
     get :show, id: @post
     assert_response :success
@@ -73,9 +71,14 @@ class PostsControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "should update post" do
+  test "should update post with a new post and old post as parent" do
     put :update, id: @post, post: { content: @post.content, title: @post.title }
     assert_redirected_to post_path(assigns(:post))
+    assert_not_equal assigns(:post).id, @post.id
+    assert_equal assigns(:post).parent_id, @post.id
+    @post.reload
+    assert_equal false, @post.newest
+    assert_equal true, assigns(:post).newest
   end
 
   test "should destroy post" do

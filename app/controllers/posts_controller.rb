@@ -59,15 +59,18 @@ class PostsController < ApplicationController
   # PUT /posts/1
   # PUT /posts/1.json
   def update
-    @post = Post.find(params[:id])
+    old_post = Post.find(params[:id])
+    @post = old_post.create_version(params[:post])
 
     respond_to do |format|
-      if @post.update_attributes(params[:post])
+      if @post.save
         format.html {
-          redirect_to @post, notice: 'Post was successfully updated.'
+          redirect_to @post, notice: 'New version of snippet was created.'
         }
         format.json { head :no_content }
       else
+        old_post.errors = @post.errors
+        @post = old_post
         format.html { render action: "edit" }
         format.json { render json: @post.errors, status: :unprocessable_entity }
       end

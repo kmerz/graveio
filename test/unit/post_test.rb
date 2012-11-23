@@ -21,7 +21,7 @@ class PostTest < ActiveSupport::TestCase
   test "should serach in posts content and title" do
     assert_nothing_raised { Post.search("asdf") }
     assert result = Post.search("asdf"), "should return any results"
-    assert_equal 99, result.size
+    assert_equal 98, result.size
     assert result = Post.search("asdf asdf_5"), "should return any results"
     assert_equal 11, result.size
     assert result = Post.search("asdf asdf_55"), "should return any results"
@@ -52,5 +52,34 @@ class PostTest < ActiveSupport::TestCase
     assert_nil p.author
     p.author = "Karl"
     assert_nothing_raised { p.save! }
+  end
+
+  test "should can have a parent post" do
+    assert_not_nil parent = Post.find(2)
+    child = Post.new
+    assert_nothing_raised { child.parent }
+    assert_nothing_raised { child.parent = parent }
+    assert_not_nil child.parent
+    assert_equal parent, child.parent
+  end
+
+  test "should make new version of post" do
+    assert_not_nil parent = Post.find(1)
+    assert_not_nil child = parent.create_version({
+      :content => "far out"})
+    assert_not_equal child, parent
+    assert child.save
+    assert_equal parent.id, child.parent_id
+    assert_not_equal true, parent.newest
+    assert_equal true, child.newest
+  end
+
+  test "collect all parent ids" do
+    assert_not_equal [], Post.find(106).collect_parent_ids
+  end
+
+  test "collect all comments of the parents" do
+    assert_not_nil comments = Post.find(106).all_comments
+    assert_equal 5, comments.size
   end
 end
