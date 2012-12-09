@@ -3,7 +3,10 @@
 <% else %>
   <span>&nbsp;</span>
 <% end %>
-<pre><code><%= post.content %></code></pre>
+<pre><code><%= truncate(post.content,
+                        :length => 800,
+                        :omission => "\n\n...") %>
+</code></pre>
 <% if post.author.present? %>
   <small class="author">- <%= post.author %></small>
 <% end %>
