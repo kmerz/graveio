@@ -13,7 +13,6 @@ class PostTest < ActiveSupport::TestCase
     date = Time.now + 1
     assert_nothing_raised{ Post.feed(date) }
     first_posts = Post.feed(date)
-    assert_equal 20, first_posts.size
     date = first_posts.to_a.last.created_at
     second_posts = Post.feed(date)
     assert_not_equal first_posts, second_posts

@@ -19,7 +19,6 @@ class PostsControllerTest < ActionController::TestCase
     assert_template(:index)
 
     first_batch = assigns(:posts)
-    assert_equal 20, first_batch.size
     date = first_batch.to_a.last.created_at.to_s
 
     get :index, :format => "js", :last => date

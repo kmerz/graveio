@@ -10,7 +10,7 @@ class Post < ActiveRecord::Base
 
   def self.feed(last)
     self.includes(:comments)
-      .where("created_at < ? ", last).order('created_at desc').limit(20)
+      .where("created_at < ? ", last).order('created_at desc').limit(2)
   end
 
   def self.search(search_string)
