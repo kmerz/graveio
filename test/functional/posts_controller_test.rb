@@ -105,4 +105,11 @@ class PostsControllerTest < ActionController::TestCase
     assert_template(:search)
   end
 
+  test "should show diff for post with parent" do
+    get :diff, :id => 106
+    assert_response :success
+    assert_not_nil(:post)
+    assert_template(:diff)
+  end
+
 end

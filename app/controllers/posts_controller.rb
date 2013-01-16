@@ -105,4 +105,11 @@ class PostsController < ApplicationController
       format.html { render :search }
     end
   end
+
+  def diff
+    @post = Post.find(params[:id])
+    respond_to do |format|
+      format.html { render :diff }
+    end
+  end
 end

@@ -83,4 +83,10 @@ class PostTest < ActiveSupport::TestCase
     assert_not_nil comments = Post.find(106).all_comments
     assert_equal 5, comments.size
   end
+
+  test "should diff between child and parent" do
+    assert_not_nil parent = Post.find(1)
+    assert_not_nil child = parent.create_version({:content => "far out"})
+    assert_not_nil diff = child.diff_to_parent
+  end
 end
