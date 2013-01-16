@@ -1,7 +1,7 @@
 <div class="row">
   <p id="notice"><%= notice %></p>
   <h3><%= @post.title %></h3>
-  <pre><code><%= @post.content %></code></pre>
+  <%= @post.diff_to_parent.html_safe %>
   <% if @post.author.present? %>
     <p class="author">- <%= @post.author %></p>
   <% end %>
@@ -10,11 +10,8 @@
       <%= link_to edit_post_path(@post), :class => "btn btn-small"  do %>
         <i class="icon-edit"></i>
       <% end %>
-      <% if @post.parent.present? %>
-        <%= link_to diff_post_path(@post), :class => "btn btn-small"  do %>
-          <i class="icon-plus"></i>
-          <i class="icon-minus"></i>
-        <% end %>
+      <%= link_to @post, :class => "btn btn-small" do %>
+        <i class="icon-eye-open"></i>
       <% end %>
       <%= link_to post_path(@post, :format => :text),
         :class => "btn btn-small"  do %>
