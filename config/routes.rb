@@ -3,6 +3,9 @@ Fox::Application.routes.draw do
   # for legibility purposes
   resources :posts, :path => :p do
     resources :comments
+    member do
+      get :diff
+    end
   end
   resources :posts, :as => :p
 

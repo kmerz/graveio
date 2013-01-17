@@ -50,4 +50,14 @@ class Post < ActiveRecord::Base
       post_arel_table[:author].matches("%#{search_string}%"))).
       order('created_at desc')
   end
+
+  def diff_to_parent(parent_id = nil)
+    post_to_diff = Post.find_by_id(parent_id) || self.parent
+    if post_to_diff
+      Diffy::Diff.new(post_to_diff.content, self.content,
+        :include_plus_and_minus_in_html => true).to_s(:html)
+    else
+      ""
+    end
+  end
 end
