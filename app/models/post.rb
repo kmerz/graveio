@@ -14,7 +14,7 @@ class Post < ActiveRecord::Base
   def self.feed(last)
     self.includes(:comments)
       .where("created_at < ? ", last).where(:newest => true)
-      .order('created_at desc').limit(2)
+      .order('created_at desc').limit(20)
   end
 
   def collect_parent_ids
