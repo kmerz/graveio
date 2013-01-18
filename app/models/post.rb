@@ -19,9 +19,9 @@ class Post < ActiveRecord::Base
 
   def collect_parent_ids
     if parent.nil?
-      return []
+      return [ self.id ]
     else
-      return [ parent_id ] +  parent.collect_parent_ids
+      return [ parent_id, self.id ] +  parent.collect_parent_ids
     end
   end
 

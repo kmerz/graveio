@@ -10,5 +10,9 @@ class CommentsControllerTest < ActionController::TestCase
 
     assert_not_nil(assigns(:comment))
     assert_redirected_to post_path(assigns(:post))
+    assert_not_equal [], @post.comments
+    assert @post.comments.any? do |c|
+      c.commenter == "Franz" && c.body == "A welcome comment"
+    end
   end
 end

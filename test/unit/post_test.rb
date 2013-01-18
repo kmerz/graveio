@@ -81,7 +81,7 @@ class PostTest < ActiveSupport::TestCase
 
   test "collect all comments of the parents" do
     assert_not_nil comments = Post.find(106).all_comments
-    assert_equal 5, comments.size
+    assert_equal 6, comments.size
   end
 
   test "should diff between child and parent" do
