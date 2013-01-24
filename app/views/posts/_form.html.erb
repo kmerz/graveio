@@ -37,7 +37,8 @@
       <%= f.label :content_type %>
     </label>
     <div class="controls">
-       <%= f.select(:content_type, Post.content_types, :id => "inputContentType")%>
+       <%= f.select(:content_type, Post.content_types,
+         :id => "inputContentType")%>
     </div>
 
   </div>

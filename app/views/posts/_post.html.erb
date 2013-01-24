@@ -5,8 +5,12 @@
 <% end %>
   <%=
     options = { options: {encoding: 'utf-8'} }
-    options.merge!(lexer: post.content_type.downcase) if Pygments::Lexer.find(post.content_type)
-    Pygments.highlight(truncate(post.content, :length => 800, :omission => "\n\n..."), options).html_safe %>
+    if Pygments::Lexer.find(post.content_type)
+      options.merge!(lexer: post.content_type.downcase)
+    end
+    Pygments.highlight(
+      truncate(post.content, :length => 800, :omission => "\n\n..."),
+      options).html_safe %>
 <% if post.author.present? %>
   <small class="author">- <%= post.author %></small>
 <% else %>
