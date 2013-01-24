@@ -26,7 +26,6 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
-gem 'highlight_js-rails'
 gem 'diffy'
 
 gem 'jquery-rails'
