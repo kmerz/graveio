@@ -1,6 +1,6 @@
 class AddContentType < ActiveRecord::Migration
   def up
-    add_column :posts, :content_type, :string
+    add_column :posts, :content_type, :string, :default => 'None'
   end
 
   def down

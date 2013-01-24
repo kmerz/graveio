@@ -13,6 +13,10 @@ class Post < ActiveRecord::Base
     :foreign_key => :parent_id, :dependent => :destroy
   belongs_to :parent, :class_name => "Post", :dependent => :destroy
 
+  def self.content_types
+    ['None', 'Ruby', 'C#', 'C', 'Shell', 'Perl', 'Diff']
+  end
+
   def self.feed(last)
     self.includes(:comments)
       .where("created_at < ? ", last).where(:newest => true)

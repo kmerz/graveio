@@ -33,11 +33,11 @@
       <%= f.text_field :author, :id => "inputAuthor",
         :placeholder => "Anonymous" %>
     </div>
-    <label class="control-label" for="inputAuthor">
+    <label class="control-label" for="inputContentType">
       <%= f.label :content_type %>
     </label>
     <div class="controls">
-       <%= f.select(:content_type, options_for_select(Linguist::Language.all.map { |i| i.to_s })) %>
+       <%= f.select(:content_type, Post.content_types, :id => "inputContentType")%>
     </div>
 
   </div>
