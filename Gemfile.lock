@@ -1,9 +1,9 @@
 GIT
-  remote: https://github.com/gitlabhq/pygments.rb.git
-  revision: db1da0343adf86b49bdc3add04d02d2e80438d38
+  remote: https://github.com/tmm1/pygments.rb
+  revision: 257c870b0cbd60d65e201f875abd01c4eaa4029a
   branch: master
   specs:
-    pygments.rb (0.3.2)
+    pygments.rb (0.3.7)
       posix-spawn (~> 0.3.6)
       yajl-ruby (~> 1.1.0)
 
@@ -58,8 +58,6 @@ GEM
       escape_utils (~> 0.2.3)
       mime-types (~> 1.19)
       pygments.rb (>= 0.2.13)
-    highlight_js-rails (7.1.0)
-      rails (>= 3.1.1)
     hike (1.2.1)
     i18n (0.6.1)
     journey (1.0.4)
@@ -130,7 +128,6 @@ DEPENDENCIES
   coffee-rails (~> 3.2.1)
   diffy
   github-linguist (~> 2.3.4)
-  highlight_js-rails
   jquery-rails
   pygments.rb!
   rails (= 3.2.11)

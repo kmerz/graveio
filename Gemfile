@@ -8,7 +8,7 @@ gem 'rails', '3.2.11'
 gem 'sqlite3'
 
 # Syntax highlighter
-gem "pygments.rb",  git: "https://github.com/gitlabhq/pygments.rb.git", branch: "master"
+gem "pygments.rb",  git: "https://github.com/tmm1/pygments.rb", branch: "master"
 
 # Language detection
 gem "github-linguist", "~> 2.3.4" , require: "linguist"
