@@ -14,7 +14,7 @@ class Post < ActiveRecord::Base
   belongs_to :parent, :class_name => "Post", :dependent => :destroy
 
   def self.content_types
-    ['None', 'Ruby', 'C#', 'C', 'Shell', 'Perl', 'Diff']
+    ['None', 'Ruby', 'C#', 'C', 'Shell', 'Perl', 'Diff', 'Java', 'JavaScript']
   end
 
   def self.feed(last)
