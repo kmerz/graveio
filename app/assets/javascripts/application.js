@@ -17,9 +17,3 @@
 // Loads all Bootstrap javascripts
 //= require bootstrap
 //
-//= require highlight_js/highlight
-//= require highlight_js/languages/ruby
-
-$(document).ready(function(){
-  hljs.initHighlightingOnLoad();
-});

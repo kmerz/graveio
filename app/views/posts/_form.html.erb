@@ -33,6 +33,10 @@
       <%= f.text_field :author, :id => "inputAuthor",
         :placeholder => "Anonymous" %>
     </div>
+    <div class="controls">
+       <%= f.select(:content_type, options_for_select(Linguist::Language.all.map { |i| i.to_s })) %>
+    </div>
+
   </div>
   <%= f.submit :class => "btn" %>
 <% end %>

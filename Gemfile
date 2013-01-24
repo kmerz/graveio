@@ -7,6 +7,11 @@ gem 'rails', '3.2.11'
 
 gem 'sqlite3'
 
+# Syntax highlighter
+gem "pygments.rb",  git: "https://github.com/gitlabhq/pygments.rb.git", branch: "master"
+
+# Language detection
+gem "github-linguist", "~> 2.3.4" , require: "linguist"
 
 # Gems used only for assets and not required
 # in production environments by default.
