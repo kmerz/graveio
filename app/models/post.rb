@@ -1,15 +1,21 @@
 class Post < ActiveRecord::Base
+
   validates_presence_of :content
+  validates_presence_of :content_type
   # not more content then 1MB
   validates_length_of :content, :maximum => 104875
   validates_length_of :title, :maximum => 255
   validates_length_of :author, :maximum => 255
-  attr_accessible :content, :title, :author
+  attr_accessible :content, :title, :author, :content_type
 
   has_many :comments, :dependent => :destroy
   has_one :child, :class_name => "Post",
     :foreign_key => :parent_id, :dependent => :destroy
   belongs_to :parent, :class_name => "Post", :dependent => :destroy
+
+  def self.content_types
+    ['None', 'Ruby', 'C#', 'C', 'Shell', 'Perl', 'Diff', 'Java', 'JavaScript']
+  end
 
   def self.feed(last)
     self.includes(:comments)

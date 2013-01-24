@@ -1,7 +1,12 @@
 <div class="row">
   <p id="notice"><%= notice %></p>
   <h3><%= @post.title %></h3>
-  <pre><code><%= @post.content %></code></pre>
+  <%=
+    options = { options: {encoding: 'utf-8'} }
+    if Pygments::Lexer.find(@post.content_type)
+      options.merge!(lexer: @post.content_type.downcase)
+    end
+    Pygments.highlight(@post.content, options).html_safe %>
   <% if @post.author.present? %>
     <p class="author">- <%= @post.author %></p>
   <% end %>
