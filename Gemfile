@@ -10,9 +10,6 @@ gem 'sqlite3'
 # Syntax highlighter
 gem "pygments.rb",  git: "https://github.com/tmm1/pygments.rb", branch: "master"
 
-# Language detection
-gem "github-linguist", "~> 2.3.4" , require: "linguist"
-
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
