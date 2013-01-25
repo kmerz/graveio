@@ -11,14 +11,17 @@
     </div>
   <% end %>
 
+  <div id="filenames" data-filenames='
+    <%= Post.file_extensions.to_json.html_safe %>'>
+  </div>
+
   <div class="control-group">
     <label class="control-label" for="inputTitle">
       <%= f.label :title %>
     </label>
     <div class="controls">
-      <%= f.text_field :title, :id => "inputTitle" %>
+      <%= f.text_field :title, :id => "inputTitle", :class => "check4contenttype" %>
     </div>
-
     <label class="control-label" for="inputContent">
       <%= f.label :content %>
     </label>
@@ -37,7 +40,7 @@
       <%= f.label :content_type %>
     </label>
     <div class="controls">
-       <%= f.select(:content_type, Post.content_types,
+       <%= f.select(:content_type, Post.file_extensions.values.uniq,
          :id => "inputContentType")%>
     </div>
 
