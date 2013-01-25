@@ -1,9 +1,15 @@
 class Post < ActiveRecord::Base
+  require 'tempfile'
 
+  def self.MaxUploadSize
+    102400 # 100kb
+  end
+
+  validate :valid_upload_size
   validates_presence_of :content
   validates_presence_of :content_type
   # not more content then 1MB
-  validates_length_of :content, :maximum => 104875
+  validates_length_of :content, :maximum => Post.MaxUploadSize
   validates_length_of :title, :maximum => 255
   validates_length_of :author, :maximum => 255
   attr_accessible :content, :title, :author, :content_type
@@ -13,6 +19,8 @@ class Post < ActiveRecord::Base
   has_one :child, :class_name => "Post",
     :foreign_key => :parent_id, :dependent => :destroy
   belongs_to :parent, :class_name => "Post", :dependent => :destroy
+
+  attr_accessor :uploaded_file
 
   def self.file_extensions
     { '' => 'Text',
@@ -53,6 +61,41 @@ class Post < ActiveRecord::Base
     self.newest = false
     self.save
     return child
+  end
+
+  def self.new_from_file(params, data)
+    new_post = self.new
+    new_post.title = params[:post][:title] || data.original_filename
+    file_content = data.read.force_encoding("UTF-8")
+    new_post.content = params[:post][:content]
+    new_post.content << file_content
+    new_post.content_type = get_content_type(data)
+    return new_post
+  end
+
+  def valid_upload_size
+    if self.content.size > Post.MaxUploadSize
+      self.errors.add(:upload_file, "file too large:" +
+                       " #{self.content.size / 1024} kb" +
+                       " only #{Post.MaxUploadSize} allowd")
+    end
+  end
+
+  def self.get_content_type(data)
+    content_type = 'None'
+    content = data.read.force_encoding("UTF-8")
+
+    Tempfile.open(['uploaded', data.original_filename.downcase],
+                  Rails.root.join('tmp')) do |f|
+      # set executable bits so Linguist will check for shebangs
+      f.chmod(0755)
+      f.print(content)
+      f.flush
+      unless Linguist::FileBlob.new(f.path).language.nil?
+        content_type = Linguist::FileBlob.new(f.path).language.name
+      end
+                  end
+    return content_type
   end
 
   def errors=(errors)

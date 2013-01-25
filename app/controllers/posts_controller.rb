@@ -44,7 +44,17 @@ class PostsController < ApplicationController
     if params[:post][:author].blank? && user_signed_in?
       params[:post][:author] = current_user.email
     end
-    @post = Post.new(params[:post])
+
+    if params[:post][:upload_file]
+      data = params[:post].delete(:upload_file)
+      @post = Post.new_from_file(params, data)
+      unless @post.content.valid_encoding?
+        invalid_encoding_render
+        return
+      end
+    else
+      @post = Post.new(params[:post])
+    end
 
     respond_to do |format|
       if @post.save
@@ -74,7 +84,7 @@ class PostsController < ApplicationController
         @post = old_post
       end
     end
- 
+
     respond_to do |format|
       if save_success
         format.html {
@@ -171,7 +181,7 @@ class PostsController < ApplicationController
       end
     end
   end
-  
+
   def dislike
     @post = Post.find(params[:id])
     if user_signed_in?
@@ -203,6 +213,17 @@ class PostsController < ApplicationController
           :errors => "You have to be logged in." }
         }
       end
+    end
+  end
+
+  private
+
+  def invalid_encoding_render
+    @post.errors.add(:upload_file, "invalid encoding")
+    @post.content = ""
+    respond_to do |format|
+      format.html {render action: "new" }
+      format.json {render json: @post.errors, status: :unprocessable_entity}
     end
   end
 end

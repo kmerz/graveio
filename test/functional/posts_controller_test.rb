@@ -121,4 +121,19 @@ class PostsControllerTest < ActionController::TestCase
     assert_template(:diff)
   end
 
+  test "should upload file from form" do
+    test_image = "test/fixtures/test.txt"
+    file = Rack::Test::UploadedFile.new(test_image, "text/plain")
+
+    assert_difference('Post.count') do
+      post :create, post: {
+        content: @post.content,
+        title: @post.title,
+        author: @post.author,
+        upload_file: file
+      }
+    end
+
+  end
+
 end
