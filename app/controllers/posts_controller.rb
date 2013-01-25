@@ -1,4 +1,6 @@
 class PostsController < ApplicationController
+  require 'tempfile'
+
   # GET /posts
   # GET /posts.json
   def index
@@ -41,6 +43,47 @@ class PostsController < ApplicationController
   # POST /posts
   # POST /posts.json
   def create
+    if params[:post][:upload_file]
+      @post = Post.new
+      data = params[:post].delete(:upload_file)
+
+      if data.content_type != "text/plain" 
+        @post.errors.add(:upload_file,
+          "invalid content type: #{data.content_type}")
+      end
+      if data.size > 102400 # 100kb
+        @post.errors.add(:upload_file,
+          "file too large: #{data.size}")
+      end
+      if @post.errors.any?
+        respond_to do |format|
+          format.html { render action: "new" }
+          format.json { render json: @post.errors, status: :unprocessable_entity }
+        end
+        return
+      end
+
+      content_type = 'None'
+      content = data.read.force_encoding("UTF-8")
+      Tempfile.open(['uploaded', data.original_filename.downcase],
+        Rails.root.join('tmp')) do |f|
+        f.print(content)
+        f.flush
+        unless Linguist::FileBlob.new(f.path).language.nil?
+          content_type = Linguist::FileBlob.new(f.path).language.name
+        end
+      end
+      params[:post][:content_type] = content_type
+      unless params[:post][:content].empty?
+        params[:post][:content] << "\n\n"
+      end
+      params[:post][:content] << content
+      
+      if params[:post][:title].empty?
+        params[:post][:title] = data.original_filename
+      end
+    end
+
     @post = Post.new(params[:post])
 
     respond_to do |format|

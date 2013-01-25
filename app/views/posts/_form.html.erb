@@ -41,6 +41,15 @@
          :id => "inputContentType")%>
     </div>
 
+    <h2>Or Upload a sourcefile<h2>
+    <small>(Max-Size: 100kb)</small>
+    <label class="control-label" for="inputUploadFile">
+      <%= f.label :upload_file %>
+    </label>
+    <div class="controls">
+      <%= f.file_field :upload_file,  :id => "inputUploadFile"%>
+    </div>
+
   </div>
   <%= f.submit :class => "btn" %>
 <% end %>
