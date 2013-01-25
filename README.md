@@ -24,7 +24,16 @@ tool which also integrates to vim. You can find it in `public/bin/bury.rb`.
 
 At this state of developement take a look for a help at rails guides site.
 
+## Contribution
+
+If you would like to contribute to graveio please clone this code from
+[https://github.com/kmerz/graveio](github.com/kmerz/graveio).
+
+Please add tested code and add tests for new code. If you want to contribute new
+code please accept my maximal width of 80 Characters per line in source files.
+
 Thanks to the contributors:
 -  [flowm](https://github.com/flowm)
 -  [dloss](https://github.com/dloss)
 -  [vitorbal](https://github.com/vitorbal)
+-  [darinkes](https://github.com/darinkes)
