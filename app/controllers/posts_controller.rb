@@ -44,6 +44,40 @@ class PostsController < ApplicationController
     if params[:post][:author].blank? && user_signed_in?
       params[:post][:author] = current_user.email
     end
+    if params[:post][:upload_file]
+      @post = Post.new
+      data = params[:post].delete(:upload_file)
+
+      if data.size > Post.MaxUploadSize
+        @post.errors.add(:upload_file, "file too large: #{data.size / 1024} kb")
+      end
+
+      content = data.read.force_encoding("UTF-8")
+      unless content.valid_encoding?
+        @post.errors.add(:upload_file, "invalid encoding: #{content.encoding}")
+      end
+
+      if @post.errors.any?
+        respond_to do |format|
+          format.html { render action: "new" }
+          format.json { render json: @post.errors,
+                             status: :unprocessable_entity }
+        end
+        return
+      end
+
+      params[:post][:content_type] = get_content_type(data)
+
+      unless params[:post][:content].empty?
+        params[:post][:content] << "\n\n"
+      end
+      params[:post][:content] << content
+      
+      if params[:post][:title].empty?
+        params[:post][:title] = data.original_filename
+      end
+    end
+
     @post = Post.new(params[:post])
 
     respond_to do |format|

@@ -1,9 +1,13 @@
 class Post < ActiveRecord::Base
 
+  def self.MaxUploadSize
+    102400 # 100kb
+  end
+
   validates_presence_of :content
   validates_presence_of :content_type
   # not more content then 1MB
-  validates_length_of :content, :maximum => 104875
+  validates_length_of :content, :maximum => Post.MaxUploadSize
   validates_length_of :title, :maximum => 255
   validates_length_of :author, :maximum => 255
   attr_accessible :content, :title, :author, :content_type
