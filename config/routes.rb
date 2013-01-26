@@ -1,4 +1,6 @@
 Fox::Application.routes.draw do
+  devise_for :users
+
   # note that the helper methods are still called with 'posts' instead of 'p'
   # for legibility purposes
   resources :posts, :path => :p do
