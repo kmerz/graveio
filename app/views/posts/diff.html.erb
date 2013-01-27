@@ -1,5 +1,4 @@
 <div class="row">
-  <p id="notice"><%= notice %></p>
   <h3><%= @post.title %></h3>
   <%= @post.diff_to_parent.html_safe %>
   <% if @post.author.present? %>
@@ -19,6 +18,14 @@
       <% end %>
       <%= link_to posts_path, :class => "btn btn-small" do %>
         <i class="icon-align-justify"></i>
+      <% end %>
+      <%= link_to like_post_path(@post), :class => "btn btn-small" do %>
+        <i class="icon-thumbs-up"></i>
+        <%= @post.likedislikes.find_all_by_liked(true).size %>
+      <% end %>
+      <%= link_to dislike_post_path(@post), :class => "btn btn-small"  do %>
+        <i class="icon-thumbs-down"></i>
+        <%= @post.likedislikes.find_all_by_liked(false).size %>
       <% end %>
     </div>
   </div>

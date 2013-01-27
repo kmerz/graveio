@@ -7,6 +7,8 @@ Fox::Application.routes.draw do
     resources :comments
     member do
       get :diff
+      get :like
+      get :dislike
     end
   end
   resources :posts, :as => :p

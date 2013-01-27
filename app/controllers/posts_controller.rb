@@ -41,6 +41,9 @@ class PostsController < ApplicationController
   # POST /posts
   # POST /posts.json
   def create
+    if params[:post][:author].empty? and user_signed_in?
+      params[:post][:author] = current_user.email
+    end
     @post = Post.new(params[:post])
 
     respond_to do |format|
@@ -64,6 +67,7 @@ class PostsController < ApplicationController
 
     respond_to do |format|
       if @post.save
+        old_post.likedislikes.all.each { |l| l.post_id = @post.id; l.save}
         format.html {
           redirect_to @post, notice: 'New version of snippet was created.'
         }
@@ -112,4 +116,49 @@ class PostsController < ApplicationController
       format.html { render :diff }
     end
   end
+
+  def like
+    @post = Post.find(params[:id])
+    if user_signed_in?
+      @like = @post.likedislikes.find_by_liker(current_user.id)
+      if @like.nil?
+        @like = @post.likedislikes.new()
+        @like.liker = current_user.id
+      end
+      @like.liked = true
+      if @like.save
+        redirect_to post_path(@post),
+          :flash => { :notice => 'Liked Snippet' }
+      else
+        redirect_to post_path(@post),
+          :flash => { :alert => 'Error' }
+      end
+    else
+        redirect_to post_path(@post),
+          :flash => { :alert => 'You need to be logged in' }
+    end
+  end
+  
+  def dislike
+    @post = Post.find(params[:id])
+    if user_signed_in?
+      @like = @post.likedislikes.find_by_liker(current_user.id)
+      if @like.nil?
+        @like = @post.likedislikes.new()
+        @like.liker = current_user.id
+      end
+      @like.liked = false
+      if @like.save
+        redirect_to post_path(@post),
+          :flash => { :notice => 'Disliked Snippet' }
+      else
+        redirect_to post_path(@post),
+          :flash => { :alert => 'Error' }
+      end
+    else
+        redirect_to post_path(@post),
+          :flash => { :alert => 'You need to be logged in' }
+    end
+  end
+
 end

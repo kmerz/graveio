@@ -39,6 +39,14 @@
      data: { confirm: 'Are you sure?' }, :class => "btn btn-small" do %>
       <i class="icon-trash"></i>
     <% end %>
+    <%= link_to like_post_path(post), :class => "btn btn-small" do %>
+      <i class="icon-thumbs-up"></i>
+      <%= post.likedislikes.find_all_by_liked(true).size %>
+    <% end %>
+    <%= link_to dislike_post_path(post), :class => "btn btn-small"  do %>
+      <i class="icon-thumbs-down"></i>
+      <%= post.likedislikes.find_all_by_liked(false).size %>
+    <% end %>
   </div>
 </div>
 <br />

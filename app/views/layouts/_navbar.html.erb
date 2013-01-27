@@ -11,14 +11,24 @@
               <i class="icon-plus"></i>
             <% end %>
           </li>
-        </ul>
-        <ul class="nav pull-right">
           <li>
             <%= link_to help_path do %>
               <i class="icon-question-sign"></i>
             <% end %>
           </li>
+          <li>
+            <% if user_signed_in? %>
+              <%= link_to destroy_user_session_path, :method => :delete do %>
+                <i class="icon-off"></i> <%= current_user.email %>
+              <% end %>
+            <% else %>
+              <%= link_to new_user_session_path do %>
+                <i class="icon-user"></i>
+              <% end %>
+            <% end %>
+          </li>
         </ul>
+
         <%= form_tag("/search", :method => "get",
           :class =>"navbar-search pull-right") do %>
           <div class="input-append">

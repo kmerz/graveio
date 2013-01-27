@@ -31,7 +31,7 @@
     </label>
     <div class="controls">
       <%= f.text_field :author, :id => "inputAuthor",
-        :placeholder => "Anonymous" %>
+        :placeholder => user_signed_in? ? current_user.email : "Anonymous" %>
     </div>
     <label class="control-label" for="inputContentType">
       <%= f.label :content_type %>
