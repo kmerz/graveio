@@ -4,31 +4,9 @@
   <% if @post.author.present? %>
     <p class="author">- <%= @post.author %></p>
   <% end %>
-  <div class="pull-right">
-    <div class="btn-group">
-      <%= link_to edit_post_path(@post), :class => "btn btn-small"  do %>
-        <i class="icon-edit"></i>
-      <% end %>
-      <%= link_to @post, :class => "btn btn-small" do %>
-        <i class="icon-eye-open"></i>
-      <% end %>
-      <%= link_to post_path(@post, :format => :text),
-        :class => "btn btn-small"  do %>
-        <i class="icon-download"></i>
-      <% end %>
-      <%= link_to posts_path, :class => "btn btn-small" do %>
-        <i class="icon-align-justify"></i>
-      <% end %>
-      <%= link_to like_post_path(@post), :class => "btn btn-small" do %>
-        <i class="icon-thumbs-up"></i>
-        <%= @post.likedislikes.find_all_by_liked(true).size %>
-      <% end %>
-      <%= link_to dislike_post_path(@post), :class => "btn btn-small"  do %>
-        <i class="icon-thumbs-down"></i>
-        <%= @post.likedislikes.find_all_by_liked(false).size %>
-      <% end %>
-    </div>
-  </div>
+
+  <%= render 'options' %>
+
   <input id="post_url" class="input-xlarge uneditable-input" type="text"
     value="<%= post_url(@post) %>"></input>
 
