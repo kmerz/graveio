@@ -23,3 +23,20 @@ $(document).ready(function(){
     $(this).addClass('none');
   });
 });
+
+$(document).ready(
+  function(){
+  $("a#like_trigger").bind("ajax:success",
+    function(evt, data, status, xhr){
+      if (data.errors) {
+        $("p#alert").html(data.errors);
+      } else {
+        $("div#likesize").html("<i class=\"icon-thumbs-up\"></i> "
+          + data.likes);
+        $("div#dislikesize").html("<i class=\"icon-thumbs-down\"></i> "
+          + data.dislikes);
+        $("div#liker").html(data.liker);
+        $("div#disliker").html(data.disliker);
+      }
+    });
+});

@@ -1,5 +1,4 @@
 <div class="row">
-  <p id="notice"><%= notice %></p>
   <h3><%= @post.title %></h3>
   <%=
     options = { options: {encoding: 'utf-8'} }
@@ -10,28 +9,13 @@
   <% if @post.author.present? %>
     <p class="author">- <%= @post.author %></p>
   <% end %>
-  <div class="pull-right">
-    <div class="btn-group">
-      <%= link_to edit_post_path(@post), :class => "btn btn-small"  do %>
-        <i class="icon-edit"></i>
-      <% end %>
-      <% if @post.parent.present? %>
-        <%= link_to diff_post_path(@post), :class => "btn btn-small"  do %>
-          <i class="icon-plus"></i>
-          <i class="icon-minus"></i>
-        <% end %>
-      <% end %>
-      <%= link_to post_path(@post, :format => :text),
-        :class => "btn btn-small"  do %>
-        <i class="icon-download"></i>
-      <% end %>
-      <%= link_to posts_path, :class => "btn btn-small" do %>
-        <i class="icon-align-justify"></i>
-      <% end %>
-    </div>
-  </div>
+ 
+  <%= render 'options' %>
+
   <input id="post_url" class="input-xlarge uneditable-input" type="text"
     value="<%= post_url(@post) %>"></input>
 
+  <br/><br/>
+  <%= render 'like_dislike' %>
   <%= render 'comments/comment' %>
 </div>

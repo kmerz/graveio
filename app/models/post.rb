@@ -9,6 +9,7 @@ class Post < ActiveRecord::Base
   attr_accessible :content, :title, :author, :content_type
 
   has_many :comments, :dependent => :destroy
+  has_many :likedislikes, :dependent => :destroy
   has_one :child, :class_name => "Post",
     :foreign_key => :parent_id, :dependent => :destroy
   belongs_to :parent, :class_name => "Post", :dependent => :destroy

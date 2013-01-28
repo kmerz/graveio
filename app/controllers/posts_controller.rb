@@ -41,6 +41,9 @@ class PostsController < ApplicationController
   # POST /posts
   # POST /posts.json
   def create
+    if params[:post][:author].empty? and user_signed_in?
+      params[:post][:author] = current_user.email
+    end
     @post = Post.new(params[:post])
 
     respond_to do |format|
@@ -64,6 +67,7 @@ class PostsController < ApplicationController
 
     respond_to do |format|
       if @post.save
+        old_post.likedislikes.all.each { |l| l.post_id = @post.id; l.save}
         format.html {
           redirect_to @post, notice: 'New version of snippet was created.'
         }
@@ -110,6 +114,87 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     respond_to do |format|
       format.html { render :diff }
+    end
+  end
+
+  def like_json(post)
+   likes = post.likedislikes.find_all_by_liked(true)
+   dislikes = post.likedislikes.find_all_by_liked(false)
+   liker = likes.collect { |l| User.find(l.liker).email }.join(", ")
+   disliker = dislikes.collect { |l| User.find(l.liker).email }.join(", ")
+   return { 
+     :likes => likes.size,
+     :dislikes => dislikes.size,
+     :liker => liker,
+     :disliker => disliker
+   }
+  end
+
+  def like
+    @post = Post.find(params[:id])
+    if user_signed_in?
+      @like = @post.likedislikes.find_by_liker(current_user.id)
+      if @like.nil?
+        @like = @post.likedislikes.new()
+        @like.liker = current_user.id
+      elsif @like.liked == true
+        @like.destroy
+        respond_to do |format|
+          format.json { render :json => like_json(@post) }
+        end
+        return
+      end
+      @like.liked = true
+      if @like.save
+        respond_to do |format|
+          format.json { render :json => like_json(@post) }
+        end
+      else
+        respond_to do |format|
+          format.json { render json: @post.errors,
+            status: :unprocessable_entity }
+        end
+      end
+    else
+      respond_to do |format|
+        format.json { render :json => {
+          :errors => "You have to be logged in." }
+        }
+      end
+    end
+  end
+  
+  def dislike
+    @post = Post.find(params[:id])
+    if user_signed_in?
+      @like = @post.likedislikes.find_by_liker(current_user.id)
+      if @like.nil?
+        @like = @post.likedislikes.new()
+        @like.liker = current_user.id
+      elsif @like.liked == false
+        @like.destroy
+        respond_to do |format|
+          format.json { render :json => like_json(@post) }
+        end
+        return
+      end
+      @like.liked = false
+      if @like.save
+        respond_to do |format|
+          format.json { render :json => like_json(@post) }
+        end
+      else
+        respond_to do |format|
+          format.json { render json: @post.errors,
+            status: :unprocessable_entity }
+        end
+      end
+    else
+      respond_to do |format|
+        format.json { render :json => {
+          :errors => "You have to be logged in." }
+        }
+      end
     end
   end
 end

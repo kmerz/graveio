@@ -1,27 +1,12 @@
 <div class="row">
-  <p id="notice"><%= notice %></p>
   <h3><%= @post.title %></h3>
   <%= @post.diff_to_parent.html_safe %>
   <% if @post.author.present? %>
     <p class="author">- <%= @post.author %></p>
   <% end %>
-  <div class="pull-right">
-    <div class="btn-group">
-      <%= link_to edit_post_path(@post), :class => "btn btn-small"  do %>
-        <i class="icon-edit"></i>
-      <% end %>
-      <%= link_to @post, :class => "btn btn-small" do %>
-        <i class="icon-eye-open"></i>
-      <% end %>
-      <%= link_to post_path(@post, :format => :text),
-        :class => "btn btn-small"  do %>
-        <i class="icon-download"></i>
-      <% end %>
-      <%= link_to posts_path, :class => "btn btn-small" do %>
-        <i class="icon-align-justify"></i>
-      <% end %>
-    </div>
-  </div>
+
+  <%= render 'options' %>
+
   <input id="post_url" class="input-xlarge uneditable-input" type="text"
     value="<%= post_url(@post) %>"></input>
 
