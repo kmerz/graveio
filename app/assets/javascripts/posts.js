@@ -28,13 +28,15 @@ $(document).ready(
   function(){
   $("a#like_trigger").bind("ajax:success",
     function(evt, data, status, xhr){
-      $("div#likesize").html("<i class=\"icon-thumbs-up\"></i> " + data.likes);
-      $("div#dislikesize").html("<i class=\"icon-thumbs-down\"></i> "
-        + data.dislikes);
-      $("div#liker").html(data.liker);
-      $("div#disliker").html(data.disliker);
-    }).bind("ajax:error", function(evt, data, status, xhr){
-      // XXX: do something with the error here
-      // $("div#errors p").text(data);
+      if (data.errors) {
+        $("p#alert").html(data.errors);
+      } else {
+        $("div#likesize").html("<i class=\"icon-thumbs-up\"></i> "
+          + data.likes);
+        $("div#dislikesize").html("<i class=\"icon-thumbs-down\"></i> "
+          + data.dislikes);
+        $("div#liker").html(data.liker);
+        $("div#disliker").html(data.disliker);
+      }
     });
 });

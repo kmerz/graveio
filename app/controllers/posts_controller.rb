@@ -151,12 +151,15 @@ class PostsController < ApplicationController
         end
       else
         respond_to do |format|
-          format.json { render :json => like_json(@post) }
+          format.json { render json: @post.errors,
+            status: :unprocessable_entity }
         end
       end
     else
       respond_to do |format|
-        format.json { render :json => like_json(@post) }
+        format.json { render :json => {
+          :errors => "You have to be logged in." }
+        }
       end
     end
   end
@@ -182,12 +185,15 @@ class PostsController < ApplicationController
         end
       else
         respond_to do |format|
-          format.json { render :json => like_json(@post) }
+          format.json { render json: @post.errors,
+            status: :unprocessable_entity }
         end
       end
     else
       respond_to do |format|
-        format.json { render :json => like_json(@post) }
+        format.json { render :json => {
+          :errors => "You have to be logged in." }
+        }
       end
     end
   end
