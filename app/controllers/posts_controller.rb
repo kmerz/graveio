@@ -117,6 +117,12 @@ class PostsController < ApplicationController
     end
   end
 
+  def like_json(post)
+   likes = post.likedislikes.find_all_by_liked(true).size
+   dislikes = post.likedislikes.find_all_by_liked(false).size
+   return { :likes => likes, :dislikes => dislikes }
+  end
+
   def like
     @post = Post.find(params[:id])
     if user_signed_in?
@@ -124,18 +130,27 @@ class PostsController < ApplicationController
       if @like.nil?
         @like = @post.likedislikes.new()
         @like.liker = current_user.id
+      elsif @like.liked == true
+        @like.destroy
+        respond_to do |format|
+          format.json { render :json => like_json(@post) }
+        end
+        return
       end
       @like.liked = true
       if @like.save
-        redirect_to post_path(@post),
-          :flash => { :notice => 'Liked Snippet' }
+        respond_to do |format|
+          format.json { render :json => like_json(@post) }
+        end
       else
-        redirect_to post_path(@post),
-          :flash => { :alert => 'Error' }
+        respond_to do |format|
+          format.json { render :json => like_json(@post) }
+        end
       end
     else
-        redirect_to post_path(@post),
-          :flash => { :alert => 'You need to be logged in' }
+      respond_to do |format|
+        format.json { render :json => like_json(@post) }
+      end
     end
   end
   
@@ -146,19 +161,27 @@ class PostsController < ApplicationController
       if @like.nil?
         @like = @post.likedislikes.new()
         @like.liker = current_user.id
+      elsif @like.liked == false
+        @like.destroy
+        respond_to do |format|
+          format.json { render :json => like_json(@post) }
+        end
+        return
       end
       @like.liked = false
       if @like.save
-        redirect_to post_path(@post),
-          :flash => { :notice => 'Disliked Snippet' }
+        respond_to do |format|
+          format.json { render :json => like_json(@post) }
+        end
       else
-        redirect_to post_path(@post),
-          :flash => { :alert => 'Error' }
+        respond_to do |format|
+          format.json { render :json => like_json(@post) }
+        end
       end
     else
-        redirect_to post_path(@post),
-          :flash => { :alert => 'You need to be logged in' }
+      respond_to do |format|
+        format.json { render :json => like_json(@post) }
+      end
     end
   end
-
 end

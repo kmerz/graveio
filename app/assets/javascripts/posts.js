@@ -23,3 +23,16 @@ $(document).ready(function(){
     $(this).addClass('none');
   });
 });
+
+$(document).ready(
+  function(){
+  $("a#like_trigger").bind("ajax:success",
+    function(evt, data, status, xhr){
+      $("div#likesize").html("<i class=\"icon-thumbs-up\"></i> " + data.likes);
+      $("div#dislikesize").html("<i class=\"icon-thumbs-down\"></i> "
+        + data.dislikes);
+    }).bind("ajax:error", function(evt, data, status, xhr){
+      // XXX: do something with the error here
+      // $("div#errors p").text(data);
+    });
+});
