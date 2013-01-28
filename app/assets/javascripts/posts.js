@@ -31,6 +31,8 @@ $(document).ready(
       $("div#likesize").html("<i class=\"icon-thumbs-up\"></i> " + data.likes);
       $("div#dislikesize").html("<i class=\"icon-thumbs-down\"></i> "
         + data.dislikes);
+      $("div#liker").html(data.liker);
+      $("div#disliker").html(data.disliker);
     }).bind("ajax:error", function(evt, data, status, xhr){
       // XXX: do something with the error here
       // $("div#errors p").text(data);

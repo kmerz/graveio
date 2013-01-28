@@ -1,0 +1,17 @@
+<% likes = @post.likedislikes.find_all_by_liked(true) %>
+<h4><i class="icon-thumbs-up"></i> Liked by</h4>
+<div id="liker">
+  <small>
+  <%= likes.collect { |l| User.find(l.liker).email }.join(", ") %>
+  </small>
+</div>
+
+<br/>
+
+<% dislikes = @post.likedislikes.find_all_by_liked(false) %>
+<h4><i class="icon-thumbs-down"></i> Disliked by</h4>
+<div id="disliker">
+  <small>
+  <%= dislikes.collect { |l| User.find(l.liker).email }.join(", ") %>
+  </small>
+</div>

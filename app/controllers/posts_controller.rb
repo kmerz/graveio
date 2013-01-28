@@ -118,9 +118,16 @@ class PostsController < ApplicationController
   end
 
   def like_json(post)
-   likes = post.likedislikes.find_all_by_liked(true).size
-   dislikes = post.likedislikes.find_all_by_liked(false).size
-   return { :likes => likes, :dislikes => dislikes }
+   likes = post.likedislikes.find_all_by_liked(true)
+   dislikes = post.likedislikes.find_all_by_liked(false)
+   liker = likes.collect { |l| User.find(l.liker).email }.join(", ")
+   disliker = dislikes.collect { |l| User.find(l.liker).email }.join(", ")
+   return { 
+     :likes => likes.size,
+     :dislikes => dislikes.size,
+     :liker => liker,
+     :disliker => disliker
+   }
   end
 
   def like
