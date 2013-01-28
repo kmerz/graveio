@@ -3,7 +3,5 @@
     last="<%=@posts.to_a.last.created_at%>">
     <%=render :partial => "post", :collection => @posts%>
     <div id="infinite-scroll"></div>
-    <div class="center"><%=image_tag "loading.gif",
-      :class => 'loading none'%></div>
   </div>
 <% end %>
