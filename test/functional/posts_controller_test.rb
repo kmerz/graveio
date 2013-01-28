@@ -73,8 +73,16 @@ class PostsControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "should update post with a new post and old post as parent" do
+  test "should just update the post" do
     put :update, id: @post, post: { content: @post.content, title: @post.title }
+    assert_redirected_to post_path(assigns(:post))
+    assert_equal assigns(:post).id, @post.id
+    assert_nil assigns(:post).parent_id
+  end
+
+  test "should update post with a new post and old post as parent" do
+    put :update, id: @post, post: { content: @post.content + "new",
+      title: @post.title }
     assert_redirected_to post_path(assigns(:post))
     assert_not_equal assigns(:post).id, @post.id
     assert_equal assigns(:post).parent_id, @post.id
