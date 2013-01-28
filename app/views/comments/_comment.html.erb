@@ -14,7 +14,8 @@
   :class => "form-horizontal") do |f| %>
   <div class="control-group">
     <div class="controls">
-      <%= f.text_field :commenter, :placeholder=>"Author" %>
+      <%= f.text_field :commenter, 
+        :placeholder => user_signed_in? ? current_user.email : "Anonymous" %>
     </div>
     <div class="controls">
       <%= f.text_area :body, :placeholder => "leave a comment...",

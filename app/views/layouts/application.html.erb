@@ -12,7 +12,11 @@
 <body>
    <%= render :partial => 'layouts/navbar' %>
    <div class="container">
-      <%= yield %>
-    </div>
+     <p id="notice"><%= notice %></p>
+     <p id="alert"><%= alert %></p>
+     <%= yield %>
+     <div class="center"><%=image_tag "loading.gif",
+       :class => 'loading none'%></div>
+   </div>
 </body>
 </html>
