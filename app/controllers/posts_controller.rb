@@ -41,7 +41,7 @@ class PostsController < ApplicationController
   # POST /posts
   # POST /posts.json
   def create
-    if params[:post][:author].empty? and user_signed_in?
+    if params[:post][:author].blank? && user_signed_in?
       params[:post][:author] = current_user.email
     end
     @post = Post.new(params[:post])

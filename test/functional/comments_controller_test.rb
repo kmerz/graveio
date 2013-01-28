@@ -1,6 +1,10 @@
 require 'test_helper'
 
 class CommentsControllerTest < ActionController::TestCase
+  setup do
+    sign_in users(:kmerz)
+  end
+
   test "should create Comment" do
     @post = Post.first
     assert_difference('Comment.count') do
