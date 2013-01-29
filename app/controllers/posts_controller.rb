@@ -63,18 +63,25 @@ class PostsController < ApplicationController
   # PUT /posts/1.json
   def update
     old_post = Post.find(params[:id])
-    @post = old_post.create_version(params[:post])
-
+    if old_post.content == params[:post][:content]
+      save_success = old_post.update_attributes(params[:post])
+      @post = old_post
+    else
+      @post = old_post.create_version(params[:post])
+      save_success = @post.save
+      unless save_success
+        old_post.errors = @post.errors
+        @post = old_post
+      end
+    end
+ 
     respond_to do |format|
-      if @post.save
-        old_post.likedislikes.all.each { |l| l.post_id = @post.id; l.save}
+      if save_success
         format.html {
           redirect_to @post, notice: 'New version of snippet was created.'
         }
         format.json { head :no_content }
       else
-        old_post.errors = @post.errors
-        @post = old_post
         format.html { render action: "edit" }
         format.json { render json: @post.errors, status: :unprocessable_entity }
       end
