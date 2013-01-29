@@ -31,10 +31,10 @@ $(document).ready(
       if (data.errors) {
         $("p#alert").html(data.errors);
       } else {
-        $("div#likesize").html("<i class=\"icon-thumbs-up\"></i> "
-          + data.likes);
-        $("div#dislikesize").html("<i class=\"icon-thumbs-down\"></i> "
-          + data.dislikes);
+        $("div#likesize"+data.postid).html(
+          "<i class=\"icon-thumbs-up\"></i> " + data.likes);
+        $("div#dislikesize"+data.postid).html(
+          "<i class=\"icon-thumbs-down\"></i> " + data.dislikes);
         $("div#liker").html(data.liker);
         $("div#disliker").html(data.disliker);
       }

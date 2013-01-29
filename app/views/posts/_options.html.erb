@@ -22,7 +22,7 @@
     <%= link_to like_post_path(@post), :class => "btn btn-small like",
         :remote => true, "data-type" => :json, :id => "like_trigger",
         :title => "Like" do %>
-      <div id="likesize">
+      <div id="likesize<%=@post.id%>">
         <i class="icon-thumbs-up"></i>
         <%= @post.likedislikes.find_all_by_liked(true).size %>
       </div>
@@ -30,7 +30,7 @@
     <%= link_to dislike_post_path(@post), :class => "btn btn-small like",
         :remote => true, "data-type" => :json, :id => "like_trigger",
         :title => "Dislike" do %>
-      <div id="dislikesize">
+      <div id="dislikesize<%=@post.id%>">
         <i class="icon-thumbs-down"></i>
         <%= @post.likedislikes.find_all_by_liked(false).size %>
       </div>
