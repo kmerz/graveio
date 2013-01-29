@@ -22,13 +22,6 @@
     <div class="controls">
       <%= f.text_field :title, :id => "inputTitle", :class => "check4contenttype" %>
     </div>
-    <label class="control-label" for="inputContent">
-      <%= f.label :content %>
-    </label>
-    <div class="controls">
-      <%= f.text_area :content, {:class => "input-xxlarge", :rows => 15,
-        :id => "inputContent"} %>
-    </div>
     <label class="control-label" for="inputAuthor">
       <%= f.label :author %>
     </label>
@@ -36,12 +29,31 @@
       <%= f.text_field :author, :id => "inputAuthor",
         :placeholder => user_signed_in? ? current_user.email : "Anonymous" %>
     </div>
+
     <label class="control-label" for="inputContentType">
       <%= f.label :content_type %>
     </label>
     <div class="controls">
        <%= f.select(:content_type, Post.file_extensions.values.uniq,
          :id => "inputContentType")%>
+    </div>
+
+    <h3>Enter your Content here</h3>
+    <label class="control-label" for="inputContent">
+      <%= f.label :content %>
+    </label>
+    <div class="controls">
+      <%= f.text_area :content, {:class => "input-xxlarge", :rows => 15,
+        :id => "inputContent"} %>
+    </div>
+
+    <h3>And/Or Upload a File</h3>
+    <span class="label label-inverse">
+      Max-Size: <%= Post.MaxUploadSize / 1024 %> kb
+    </span>
+    <div class="controls">
+      <%= f.file_field :upload_file, { :id => "inputUploadFile",
+        :class => "input-xxlarge" } %>
     </div>
 
   </div>
