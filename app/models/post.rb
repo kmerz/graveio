@@ -14,8 +14,19 @@ class Post < ActiveRecord::Base
     :foreign_key => :parent_id, :dependent => :destroy
   belongs_to :parent, :class_name => "Post", :dependent => :destroy
 
-  def self.content_types
-    ['None', 'Ruby', 'C#', 'C', 'Shell', 'Perl', 'Diff', 'Java', 'JavaScript']
+  def self.file_extensions
+    { '' => 'None',
+      'rb' => 'Ruby',
+      'cs' => 'C#',
+      'c' => 'C',
+      'h' => 'C',
+      'sh' => 'Shell',
+      'pl' => 'Perl',
+      'diff' => 'Diff',
+      'patch' => 'Diff',
+      'java' => 'Java',
+      'js' => 'JavaScript'
+    }
   end
 
   def self.feed(last)

@@ -22,6 +22,22 @@ $(document).ready(function(){
   }).ajaxComplete(function(){
     $(this).addClass('none');
   });
+  
+  $(".check4contenttype").keyup(function(){
+    var cur_val = $(this).val(),
+        regex = /.+\.(.+)/,
+        filenames = $('#filenames').data('filenames'),
+        element = $('#post_content_type');
+    if (regex.test(cur_val)) {
+      if (typeof filenames[RegExp.$1] == 'undefined') {
+        element.val(filenames['']);
+      } else {
+        element.val(filenames[RegExp.$1]);
+      }
+    } else {
+      element.val(filenames['']);
+    }
+  });
 });
 
 $(document).ready(
