@@ -130,6 +130,7 @@ class PostsController < ApplicationController
    liker = likes.collect { |l| User.find(l.liker).email }.join(", ")
    disliker = dislikes.collect { |l| User.find(l.liker).email }.join(", ")
    return { 
+     :postid => post.id,
      :likes => likes.size,
      :dislikes => dislikes.size,
      :liker => liker,
