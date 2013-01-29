@@ -15,7 +15,7 @@ class Post < ActiveRecord::Base
   belongs_to :parent, :class_name => "Post", :dependent => :destroy
 
   def self.file_extensions
-    { '' => 'None',
+    { '' => 'Text',
       'rb' => 'Ruby',
       'cs' => 'C#',
       'c' => 'C',
