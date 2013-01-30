@@ -37,6 +37,10 @@ class Post < ActiveRecord::Base
     }
   end
 
+  def self.MaxPreviewLines
+    10
+  end
+
   def self.feed(last)
     self.includes(:comments)
       .where("created_at < ? ", last).where(:newest => true)
