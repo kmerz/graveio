@@ -69,7 +69,8 @@ class Post < ActiveRecord::Base
 
   def self.new_from_file(params, data)
     new_post = self.new
-    new_post.title = params[:post][:title] || data.original_filename
+    new_post.title = params[:post][:title].blank? ?
+      data.original_filename : params[:post][:title]
     file_content = data.read.force_encoding("UTF-8")
     new_post.content = params[:post][:content]
     new_post.content << file_content
@@ -86,7 +87,7 @@ class Post < ActiveRecord::Base
   end
 
   def self.get_content_type(data)
-    content_type = 'None'
+    content_type = 'Text'
     content = data.read.force_encoding("UTF-8")
 
     Tempfile.open(['uploaded', data.original_filename.downcase],
