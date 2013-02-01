@@ -1,0 +1,29 @@
+<table class="lines highlight">
+<% @lines.each_with_index do | l, i | %>
+  <% @line = i + 1 %>
+  <% @comments = @linecomments.select {|e| e[:line] == @line } %>
+    <tr class="line-data" id="<%= @line %>">
+      <td class="line-number new-linecomment" id="<%= @line %>">
+        <span class="line-number"><%= @line %></span>
+      </td>
+      <td class="line-pre new-linecomment" id="<%= @line %>">
+        <pre class="line-pre"><%= l.html_safe %></pre>
+      </td>
+    </tr>
+    <tr>
+      <td class="comment-size<%= @line %>">
+        <span class="comments_count">
+        <% if @comments.size > 0 %>
+          <i class="icon-comment"></i> <%= @comments.size %>
+        <% end %>
+        </span>
+      </td>
+      <td>
+        <table class="linecomments<%= @line %>" id="linecomments">
+          <%= render 'linecomments/line_comment' %>
+        </table>
+        <%=image_tag "loading.gif", :class => "loading#{@line} none"%>
+      </td>
+    </tr>
+<% end %>
+</table>

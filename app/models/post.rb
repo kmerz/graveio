@@ -14,6 +14,7 @@ class Post < ActiveRecord::Base
   validates_length_of :author, :maximum => 255
 
   has_many :comments, :dependent => :destroy
+  has_many :linecomments, :dependent => :destroy
   has_many :likedislikes, :dependent => :destroy
   has_one :child, :class_name => "Post",
     :foreign_key => :parent_id, :dependent => :destroy

@@ -1,0 +1,47 @@
+// Place all the styles related to the linecomments controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.comment-header {
+    padding: 0px 10px 0px 6px;
+    border-bottom: 1px solid rgb(204, 204, 204);
+    background-color: rgb(225, 225, 225);
+    background-repeat: repeat-x;
+    font-size: 12px;
+    background-image: linear-gradient(rgb(248, 248, 248), rgb(225, 225, 225));
+}
+
+table#linecomments {
+  width: 100%;
+}
+
+tr#new-comment {
+}
+
+tr.line-ctrl {
+  background-image: linear-gradient(rgb(248, 248, 248), rgb(225, 225, 225));
+  background-color: rgb(225, 225, 255);
+  background-repeat: repeat-x;
+}
+
+i.collapse-table, i.uncollapse-table {
+  cursor: pointer;
+}
+
+tr[class*='collapsable'] {
+  display:none;
+}
+
+tr.line-comment {
+  margin: 5px 0px !important;
+  border: 1px solid rgb(202, 202, 202);
+}
+
+tr.add-line-comment {
+  border: none;
+}
+
+td[class*='comment-size'] {
+  text-align: center;
+  vertical-align: top;
+}

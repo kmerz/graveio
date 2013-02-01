@@ -1,0 +1,37 @@
+<% if @comments.size > 0 %>
+  <tr class="line-ctrl">
+    <td>
+      <div class="comment-header collapse-ctrl<%= @line %>">
+        <i class="icon-plus pull-right uncollapse-table
+          uncollapse-table<%= @line %>" id="<%= @line %>"></i>
+      </div>
+    </td>
+  </tr>
+<% end %>
+
+<% @comments.each do | c | %>
+  <tr class="line-comment collapsable<%= c.line %>">
+    <td class="line-comment">
+      <div class="comment-header">
+        <i class="icon-user"></i> <%= c.commenter %>
+        <div class="pull-right">
+          <%= I18n.localize(c.updated_at, :format => :short) %>
+        </div>
+      </div>
+      <div class="comment-body">
+        <textarea style="width: 95%; height: auto;" readonly="true">
+          <%= c.body %>
+        </textarea>
+      </div>
+    </td>
+  </tr>
+<% end %>
+
+<% if @comments.size > 0 %>
+  <tr class="add-line-comment collapsable<%= @line %>">
+    <td class="line-comment pull-right">
+      <a href="javascript:void(0)" class="btn addbtn<%= @line %> new-linecomment"
+        id="<%= @line %>">Add Comment</a>
+    </td>
+  </tr>
+<% end %>

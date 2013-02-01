@@ -50,3 +50,40 @@
 .diff ins strong{font-weight:normal;background:#9f9;}
 .diff li.diff-comment { display: none; }
 .diff li.diff-block-info { background: none repeat scroll 0 0 gray; }
+
+pre.line-pre {
+  margin: 0;
+  padding: 0;
+  border: none;
+  background-color: transparent;
+}
+
+span.line-number {
+  padding-right: 2px;
+  font-size: 10px;
+  font-color: #A9A9A9;
+}
+
+td.line-number {
+  background-color: rgb(236, 236, 236);
+  color: rgb(170, 170, 170);
+  padding: 0px 6px;
+  border-right: 1px solid rgb(221, 221, 221);
+  text-align: right;
+  cursor: pointer;
+  width: 5%;
+}
+
+td.line-pre {
+  width: 95%;
+}
+
+table.highlight {
+  border: 1px solid #ccc; // fallback for IE7-8
+  border: 1px solid rgba(0,0,0,.15);
+  width: 100%;
+  margin-top: 4px;
+  margin-bottom: 4px;
+  background: none repeat scroll 0% 0% rgb(255, 255, 255);
+}
+
