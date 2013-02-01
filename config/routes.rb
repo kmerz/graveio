@@ -5,10 +5,12 @@ Fox::Application.routes.draw do
   # for legibility purposes
   resources :posts, :path => :p do
     resources :comments
+    resources :linecomments
     member do
       get :diff
       get :like
       get :dislike
+      get :new_line_comment
     end
   end
   resources :posts, :as => :p

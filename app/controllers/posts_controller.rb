@@ -216,6 +216,12 @@ class PostsController < ApplicationController
     end
   end
 
+  def new_line_comment
+    @post = Post.find(params[:id])
+    @line = params[:line]
+    render :partial => 'linecomments/new_line_comment'
+  end
+
   private
 
   def invalid_encoding_render

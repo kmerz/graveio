@@ -1,7 +1,9 @@
 <div class="row">
   <h3><%= @post.title %></h3>
 
-  <%= colorized_content(@post).html_safe %>
+  <div class="highlight">
+    <%= colorized_content(@post).html_safe %>
+  </div>
 
   <% if @post.author.present? %>
     <p class="author">- <%= @post.author %></p>

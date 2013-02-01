@@ -1,0 +1,12 @@
+<%= form_for([@post, @post.linecomments.build],
+  :html => {:class => "new_linecomment", :id => "new_linecomment" + @line,
+  "data-type" => "json" }, :remote => true) do |f| %>
+  <div class="control-group">
+    <%= f.label :comment %>
+    <%= f.text_area :body, :placeholder => "leave a comment...", :rows => 2 %>
+    <%= f.hidden_field :commenter, { :value => user_signed_in? ? current_user.email : "Anonymous" } %>
+    <%= f.hidden_field :line, { :value => @line } %>
+  </div>
+  <a href="javascript:void(0)" class="btn closeform" id="<%= @line %>">Close Form</a>
+  <%= f.submit :class => "btn" %>
+<% end %>
