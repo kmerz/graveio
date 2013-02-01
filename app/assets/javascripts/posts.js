@@ -38,10 +38,7 @@ $(document).ready(function(){
       element.val(filenames['']);
     }
   });
-});
 
-$(document).ready(
-  function(){
   $("a#like_trigger").bind("ajax:success",
     function(evt, data, status, xhr){
       if (data.errors) {
@@ -53,6 +50,21 @@ $(document).ready(
           "<i class=\"icon-thumbs-down\"></i> " + data.dislikes);
         $("div#liker").html(data.liker);
         $("div#disliker").html(data.disliker);
+      }
+    });
+
+  $("a#delete_trigger").bind("ajax:success",
+    function(evt, data, status, xhr){
+      if (data.errors) {
+        $("p#alert").html(data.errors);
+      } else {
+        $('div#preview_area'+data.postid).fadeOut("slow");
+        $("p#notice").html(data.notice);
+        if (window.location.pathname != "/") {
+          setTimeout(function() {
+            window.location.href = "/";
+          }, 2000);
+        }
       }
     });
 });
