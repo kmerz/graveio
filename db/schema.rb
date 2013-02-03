@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130129094110) do
+ActiveRecord::Schema.define(:version => 20130201164319) do
 
   create_table "comments", :force => true do |t|
     t.string   "commenter"
@@ -30,6 +30,17 @@ ActiveRecord::Schema.define(:version => 20130129094110) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  create_table "linecomments", :force => true do |t|
+    t.string   "commenter",  :default => "Anonymous"
+    t.text     "body"
+    t.integer  "post_id"
+    t.integer  "line"
+    t.datetime "created_at",                          :null => false
+    t.datetime "updated_at",                          :null => false
+  end
+
+  add_index "linecomments", ["post_id"], :name => "index_linecomments_on_post_id"
 
   create_table "posts", :force => true do |t|
     t.string   "title"
