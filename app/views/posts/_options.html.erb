@@ -19,8 +19,9 @@
     <%= link_to posts_path, :class => "btn btn-small", :title => "Posts" do %>
       <i class="icon-align-justify"></i>
     <% end %>
-    <%= link_to @post, method: :delete,
-        data: { confirm: 'Are you sure?' }, :class => "btn btn-small" do %>
+    <%= link_to @post, method: :delete, :remote => true,
+        data: { confirm: 'Are you sure?' }, :class => "btn btn-small",
+        :id => "delete_trigger", :title => "Delete" do %>
       <i class="icon-trash"></i>
     <% end %>
     <%= link_to like_post_path(@post), :class => "btn btn-small like",
