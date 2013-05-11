@@ -79,6 +79,11 @@ class Post < ActiveRecord::Base
   end
 
   def valid_upload_size
+    if self.content.nil?
+      self.errors.add(:upload_file, "no file found")
+      return
+    end
+
     if self.content.size > Post.MaxUploadSize
       self.errors.add(:upload_file, "file too large:" +
                        " #{self.content.size / 1024} kb" +
