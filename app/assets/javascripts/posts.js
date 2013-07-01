@@ -40,7 +40,7 @@ $(document).ready(function(){
   });
 
   $("a#like_trigger").bind("ajax:success",
-    function(evt, data, status, xhr){
+    function(evt, data, state, xhr){
       if (data.errors) {
         $("p#alert").html(data.errors);
       } else {
@@ -54,7 +54,7 @@ $(document).ready(function(){
     });
 
   $("a#delete_trigger").bind("ajax:success",
-    function(evt, data, status, xhr){
+    function(evt, data, state, xhr){
       if (data.errors) {
         $("p#alert").html(data.errors);
       } else {

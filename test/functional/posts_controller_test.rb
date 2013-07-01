@@ -91,12 +91,20 @@ class PostsControllerTest < ActionController::TestCase
     assert_equal true, assigns(:post).newest
   end
 
+  test "should destroy post json" do
+    assert_difference('Post.count', -1) do
+      delete :destroy, id: @post, :format => :json
+    end
+
+    assert_response :success
+  end
+
   test "should destroy post" do
     assert_difference('Post.count', -1) do
       delete :destroy, id: @post
     end
 
-    assert_redirected_to posts_path
+    assert_response :redirect
   end
 
   test "should delviver the help page" do
