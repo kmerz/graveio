@@ -13,7 +13,7 @@ Fox::Application.routes.draw do
   end
   resources :posts, :as => :p
 
-  match '/help' => 'posts#help', :as => :help
-  match '/search' => 'posts#search', :as => :search
+  get '/help' => 'posts#help', :as => :help
+  get '/search' => 'posts#search', :as => :search
   root :to => 'posts#index'
 end

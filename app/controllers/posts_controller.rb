@@ -41,19 +41,19 @@ class PostsController < ApplicationController
   # POST /posts
   # POST /posts.json
   def create
-    if params[:post][:author].blank? && user_signed_in?
-      params[:post][:author] = current_user.email
+    if post_params[:author].blank? && user_signed_in?
+      post_params[:author] = current_user.email
     end
 
-    if params[:post][:upload_file]
-      data = params[:post].delete(:upload_file)
+    if post_params[:upload_file]
+      data = post_params.delete(:upload_file)
       @post = Post.new_from_file(params, data)
       unless @post.content.valid_encoding?
         invalid_encoding_render
         return
       end
     else
-      @post = Post.new(params[:post])
+      @post = Post.new(post_params)
     end
 
     respond_to do |format|
@@ -73,11 +73,11 @@ class PostsController < ApplicationController
   # PUT /posts/1.json
   def update
     old_post = Post.find(params[:id])
-    if old_post.content == params[:post][:content]
-      save_success = old_post.update_attributes(params[:post])
+    if old_post.content == post_params[:content]
+      save_success = old_post.update_attributes(post_params)
       @post = old_post
     else
-      @post = old_post.create_version(params[:post])
+      @post = old_post.create_version(post_params)
       save_success = @post.save
       unless save_success
         old_post.errors = @post.errors
@@ -219,6 +219,10 @@ class PostsController < ApplicationController
   end
 
   private
+
+  def post_params
+    params.require(:post).permit!
+  end
 
   def invalid_encoding_render
     @post.errors.add(:upload_file, "invalid encoding")

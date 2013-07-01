@@ -12,7 +12,6 @@ class Post < ActiveRecord::Base
   validates_length_of :content, :maximum => Post.MaxUploadSize
   validates_length_of :title, :maximum => 255
   validates_length_of :author, :maximum => 255
-  attr_accessible :content, :title, :author, :content_type
 
   has_many :comments, :dependent => :destroy
   has_many :likedislikes, :dependent => :destroy
