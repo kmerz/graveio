@@ -1,4 +1,4 @@
-$(document).ready(function(){
+$(document).ready(function() {
 
   $(document).endlessScroll({
     fireOnce: true,
@@ -118,22 +118,22 @@ $(document).ready(function(){
         "<td></td><td>"+xhr.responseText+"</td></tr>"
       );
     });
+  });
 
   $("a#delete_trigger").bind("ajax:success",
-    function(evt, data, state, xhr){
-      if (data.errors) {
-        $("p#alert").html(data.errors);
-      } else {
-        $('div#preview_area'+data.postid).fadeOut("slow");
-        $("p#notice").html(data.notice);
-        if (window.location.pathname != "/") {
-          setTimeout(function() {
-            window.location.href = "/";
-          }, 2000);
+      function(evt, data, state, xhr){
+        if (data.errors) {
+          $("p#alert").html(data.errors);
+        } else {
+          $(this).closest('div.preview_area').fadeOut();
+          $("p#notice").html(data.notice);
+          if (window.location.pathname != "/") {
+            setTimeout(function() {
+              window.location.href = "/";
+            }, 2000);
+          }
         }
-      }
-    });
-  });
+      });
 
   $(document).on('click', "a.closeform", function() {
     var id = $(this).attr('id');

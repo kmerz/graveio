@@ -18,7 +18,7 @@ class Post < ActiveRecord::Base
   has_many :likedislikes, :dependent => :destroy
   has_one :child, :class_name => "Post",
     :foreign_key => :parent_id, :dependent => :destroy
-  belongs_to :parent, :class_name => "Post", :dependent => :destroy
+  belongs_to :parent, :class_name => "Post"
 
   attr_accessor :uploaded_file
 

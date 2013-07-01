@@ -107,7 +107,7 @@ class PostsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to posts_url }
       format.json do
-        render :json => { :postid => @post.id, :notice => "Snippet deleted" }
+        render :json => { :notice => "Snippet deleted" }
       end
     end
   end
