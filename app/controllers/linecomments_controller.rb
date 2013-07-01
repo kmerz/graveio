@@ -16,7 +16,7 @@ class LinecommentsController < ApplicationController
 
  def create
    @post = Post.find(params[:post_id])
-   @comment = @post.linecomments.create(params[:linecomment])
+   @comment = @post.linecomments.create(params.require(:linecomment).permit!)
 
    respond_to do |format|
      if @comment.errors.any?
@@ -30,5 +30,5 @@ class LinecommentsController < ApplicationController
      end
    end
  end
-  
+
 end

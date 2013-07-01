@@ -22,7 +22,7 @@ $(document).ready(function(){
   }).ajaxComplete(function(){
     $(this).addClass('none');
   });
-  
+
   $(".check4contenttype").keyup(function(){
     var cur_val = $(this).val(),
         regex = /.+\.(.+)/,
@@ -60,7 +60,7 @@ $(document).ready(function(){
     $(this).css("background","");
   });
 
-  $("i.collapse-table").live("click", function() {
+  $(document).on("click", "i.collapse-table", function() {
     var id = $(this).attr('id');
     console.log("collapse-table"+id);
     $(".collapsable"+id).hide();
@@ -73,7 +73,7 @@ $(document).ready(function(){
     )
   });
 
-  $("i.uncollapse-table").live("click", function() {
+  $(document).on("click", "i.uncollapse-table", function() {
     var id = $(this).attr('id');
     console.log("uncollapse-table"+id);
     $(".collapsable"+id).show();
@@ -86,7 +86,7 @@ $(document).ready(function(){
     )
   });
 
-  $(".new-linecomment").live("click", function() {
+  $(document).on("click", ".new-linecomment", function() {
     var linenumber = $(this).closest('tr').attr('id'),
         calledby = $(this);
 
@@ -114,7 +114,7 @@ $(document).ready(function(){
       }
       $("a.addbtn"+linenumber).hide();
       $(".uncollapse-table"+linenumber).trigger("click");
- 
+
       $("img.loading"+linenumber).addClass('none');
       table.after("<tr id=\"new-comment\" class=\"new_comment"+linenumber+"\">"+
         "<td></td><td>"+xhr.responseText+"</td></tr>"
@@ -137,13 +137,13 @@ $(document).ready(function(){
     });
   });
 
-  $("a.closeform").live('click', function() {
+  $(document).on('click', "a.closeform", function() {
     var id = $(this).attr('id');
     $("tr.new_comment"+id).remove();
     $("a.addbtn"+id).show();
   });
 
-  $("form.new_linecomment").live("ajax:success",
+  $(document).on("ajax:success", "form.new_linecomment",
     function(evt, data, status, xhr){
 
       if (data.error) {
@@ -159,7 +159,7 @@ $(document).ready(function(){
 
       if ($(".collapsable"+data.line+":hidden", document.body).length > 0) {
         $(".uncollapse-table"+data.line).trigger("click");
-      } 
+      }
 
       $("td.comment-size"+data.line).html(
         "<span class=\"comments_count\">" +
@@ -172,7 +172,4 @@ $(document).ready(function(){
       $("tr.new_comment"+data.line).remove();
     }
   );
-
-
->>>>>>> f4f94f8... add inline code comments
 });
