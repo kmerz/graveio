@@ -1,4 +1,5 @@
 $(document).ready(function(){
+
   $(document).endlessScroll({
     fireOnce: true,
     fireDelay: 500,
@@ -101,7 +102,7 @@ $(document).ready(function(){
     $("img.loading"+linenumber).removeClass('none');
 
     $.ajax({
-      url: window.location.pathname+"/new_line_comment",
+      url: window.location.pathname+"/linecomments/new",
       data: { line: linenumber },
       cache: false
     }).complete(function(xhr, settings) {

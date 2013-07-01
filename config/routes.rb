@@ -10,7 +10,6 @@ Fox::Application.routes.draw do
       get :diff
       get :like
       get :dislike
-      get :new_line_comment
     end
   end
   resources :posts, :as => :p
