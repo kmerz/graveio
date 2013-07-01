@@ -62,7 +62,6 @@ $(document).ready(function(){
 
   $(document).on("click", "i.collapse-table", function() {
     var id = $(this).attr('id');
-    console.log("collapse-table"+id);
     $(".collapsable"+id).hide();
     $("form#new_linecomment"+id).hide();
     $("tr.new_comment"+id).hide();
@@ -75,7 +74,6 @@ $(document).ready(function(){
 
   $(document).on("click", "i.uncollapse-table", function() {
     var id = $(this).attr('id');
-    console.log("uncollapse-table"+id);
     $(".collapsable"+id).show();
     $("form#new_linecomment"+id).show();
     $("tr.new_comment"+id).show();
@@ -93,7 +91,6 @@ $(document).ready(function(){
     if (typeof linenumber == 'undefined') {
       linenumber = $(this).attr('id');
     }
-    console.log("Line: " + linenumber);
 
     if ($("form#new_linecomment"+linenumber).length > 0) {
       $("tr.new_comment"+linenumber).remove();
