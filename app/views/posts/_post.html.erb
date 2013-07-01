@@ -1,7 +1,7 @@
 <% @post = post %>
 <div id="preview_area<%= @post.id %>">
 <% if @post.title.present? %>
-  <h3><%= link_to @post.title, @post %></h3>
+  <legend><%= @post.title %></legend>
 <% else %>
   <span>&nbsp;</span>
 <% end %>
