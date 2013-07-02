@@ -1,4 +1,3 @@
-
 $(document).ready(function() {
 
   $(document).on("click", "i.collapse-table", function() {
@@ -23,6 +22,10 @@ $(document).ready(function() {
         id + "\" data-line=\"" + id + "\">" +
       "</i></div>"
     )
+  });
+
+  $(document).on("click", "a.show-comments", function() {
+    $(".linecomment-line").toggle();
   });
 
   $(document).on("click", ".new-linecomment", function() {
