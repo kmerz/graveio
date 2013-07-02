@@ -56,35 +56,35 @@ $(document).ready(function() {
   );
 
   $(document).on("click", "i.collapse-table", function() {
-    var id = $(this).attr('id');
+    var id = $(this).data('line');
     $(".collapsable"+id).hide();
     $("form#new_linecomment"+id).hide();
     $("tr.new_comment"+id).hide();
     $("div.collapse-ctrl"+id).html(
       "<i class=\"icon-plus pull-right uncollapse-table uncollapse-table" +
-        id + "\" id=\"" + id + "\">" +
+        id + "\" data-line=\"" + id + "\">" +
       "</i></div>"
     )
   });
 
   $(document).on("click", "i.uncollapse-table", function() {
-    var id = $(this).attr('id');
+    var id = $(this).data('line');
     $(".collapsable"+id).show();
     $("form#new_linecomment"+id).show();
     $("tr.new_comment"+id).show();
     $("div.collapse-ctrl"+id).html(
       "<i class=\"icon-minus pull-right collapse-table collapse-table" +
-        id + "\" id=\"" + id + "\">" +
+        id + "\" data-line=\"" + id + "\">" +
       "</i></div>"
     )
   });
 
   $(document).on("click", ".new-linecomment", function() {
-    var linenumber = $(this).closest('tr').attr('id'),
+    var linenumber = $(this).closest('tr').data('line'),
         calledby = $(this);
 
     if (typeof linenumber == 'undefined') {
-      linenumber = $(this).attr('id');
+      linenumber = $(this).data('line');
     }
 
     if ($("form#new_linecomment"+linenumber).length > 0) {
@@ -130,7 +130,7 @@ $(document).ready(function() {
       });
 
   $(document).on('click', "a.closeform", function() {
-    var id = $(this).attr('id');
+    var id = $(this).data('line');
     $("tr.new_comment"+id).remove();
     $("a.addbtn"+id).show();
   });

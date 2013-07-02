@@ -2,11 +2,11 @@
 <% @lines.each_with_index do | l, i | %>
   <% @line = i + 1 %>
   <% @comments = @linecomments.select {|e| e[:line] == @line } %>
-    <tr class="line-data" id="<%= @line %>">
-      <td class="line-number new-linecomment" id="<%= @line %>">
+    <tr class="line-data" data-line="<%= @line %>">
+      <td class="line-number new-linecomment" data-line="<%= @line %>">
         <span class="line-number"><%= @line %></span>
       </td>
-      <td class="line-pre new-linecomment" id="<%= @line %>">
+      <td class="line-pre new-linecomment" data-line="<%= @line %>">
         <pre class="line-pre"><%= l.html_safe %></pre>
       </td>
     </tr>
