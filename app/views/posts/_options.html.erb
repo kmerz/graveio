@@ -1,30 +1,48 @@
 <div class="pull-right">
   <div class="btn-group">
-    <%= link_to @post, :class => "btn btn-small", :title => "View" do %>
-      <i class="icon-eye-open"></i>
+
+    <% unless current_page?(post_path(@post)) %>
+      <%= link_to post_path(@post), :class => "btn btn-small",
+        :title => "View" do %>
+        <i class="icon-eye-open"></i>
+      <% end %>
     <% end %>
-    <%= link_to edit_post_path(@post), :class => "btn btn-small", :title => "Edit" do %>
-      <i class="icon-edit"></i>
+
+    <% unless current_page?(edit_post_path(@post)) %>
+      <%= link_to edit_post_path(@post), :class => "btn btn-small",
+        :title => "Edit" do %>
+        <i class="icon-edit"></i>
+      <% end %>
     <% end %>
-    <% if @post.parent.present? %>
-      <%= link_to diff_post_path(@post), :class => "btn btn-small", :title => "Diff" do %>
+
+    <% if @post.parent.present? &&
+      !current_page?(diff_post_path(@post)) &&
+      !current_page?(root_url) && !current_page?(posts_path) %>
+      <%= link_to diff_post_path(@post), :class => "btn btn-small",
+        :title => "Diff" do %>
         <i class="icon-plus"></i>
         <i class="icon-minus"></i>
       <% end %>
     <% end %>
+
     <%= link_to post_path(@post, :format => :text),
       :class => "btn btn-small", :title => "Text" do %>
       <i class="icon-download"></i>
     <% end %>
-    <%= link_to posts_path, :class => "btn btn-small", :title => "Posts" do %>
-      <i class="icon-align-justify"></i>
+
+    <% unless current_page?(root_url) || current_page?(posts_path) %>
+      <%= link_to posts_path, :class => "btn btn-small", :title => "Posts" do %>
+        <i class="icon-align-justify"></i>
+      <% end %>
     <% end %>
+
     <%= link_to post_path(@post, :format => :json),
         :method => :delete, :remote => true,
         data: { confirm: 'Are you sure?' }, :class => "btn btn-small",
         :id => "delete_trigger", :title => "Delete" do %>
       <i class="icon-trash"></i>
     <% end %>
+
     <%= link_to like_post_path(@post), :class => "btn btn-small like",
         :remote => true, "data-type" => :json, :id => "like_trigger",
         :title => "Like" do %>
@@ -33,6 +51,7 @@
         <%= @post.likedislikes.count(:liked => true) %>
       </div>
     <% end %>
+
     <%= link_to dislike_post_path(@post), :class => "btn btn-small like",
         :remote => true, "data-type" => :json, :id => "like_trigger",
         :title => "Dislike" do %>

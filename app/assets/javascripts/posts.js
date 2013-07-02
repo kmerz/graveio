@@ -55,12 +55,6 @@ $(document).ready(function() {
     }
   );
 
-  $("td.line-pre").hover(function () {
-    $(this).css("background","#ffd700");
-  }, function () {
-    $(this).css("background","");
-  });
-
   $(document).on("click", "i.collapse-table", function() {
     var id = $(this).attr('id');
     $(".collapsable"+id).hide();
