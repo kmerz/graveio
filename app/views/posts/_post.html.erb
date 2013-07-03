@@ -14,13 +14,6 @@
   <small class="author">- Anonymous</small>
 <% end %>
 <small class="content_type"> (<%= @post.content_type %>)</small>
-<% if @post.all_comments.present? %>
-  <span class="comments_count">
-    <%= @post.all_comments.size %>
-    <i class="icon-comment"></i>
-  </span>
-<% end %>
-
 <%= render 'options' %>
 
 <br />

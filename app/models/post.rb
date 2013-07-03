@@ -13,9 +13,11 @@ class Post < ActiveRecord::Base
   validates_length_of :title, :maximum => 255
   validates_length_of :author, :maximum => 255
 
+  has_many :likedislikes, :dependent => :destroy
+  has_many :likes, -> {where liked: true}, :class_name => "Likedislike"
+  has_many :dislikes, -> {where liked: false},:class_name => "Likedislike"
   has_many :comments, :dependent => :destroy
   has_many :linecomments, :dependent => :destroy
-  has_many :likedislikes, :dependent => :destroy
   has_one :child, :class_name => "Post",
     :foreign_key => :parent_id, :dependent => :destroy
   belongs_to :parent, :class_name => "Post"
@@ -42,7 +44,7 @@ class Post < ActiveRecord::Base
   end
 
   def self.feed(last)
-    self.includes(:comments)
+    self.includes(:comments, :likes, :dislikes)
       .where("created_at < ? ", last).where(:newest => true)
       .order('created_at desc').limit(20)
   end
@@ -119,7 +121,7 @@ class Post < ActiveRecord::Base
       post_arel_table[:content].matches("%#{search_string}%").or(
       post_arel_table[:title].matches("%#{search_string}%")).or(
       post_arel_table[:author].matches("%#{search_string}%"))).
-      order('created_at desc')
+      order('created_at desc').includes(:likes, :dislikes, :comments)
   end
 
   def diff_to_parent(parent_id = nil)
