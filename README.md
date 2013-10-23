@@ -1,36 +1,36 @@
 # graveio - where your code stays alive
 
-graveio is a attempt to provide a simple, easy to use and install paste bin
-solution for inhouse use.
+graveio provides an easy-to-use and install Pastebin-Solution
+intended for inhouse Use.
 
 It was developed with *ruby 1.9.3p0* and *rails 3.2*.
 
-For install:
+Installing:
 -  clone this repository
 -  install 'ruby 1.9', 'nodejs' and a database of your choice (e.g. postgresql, sqlite3)
 -  install Bundler: `gem install bundler`
--  adjust Gemfile for your database (e.g. gem "pg" for postgresql)
+-  adjust Gemfile to match your database (e.g. gem "pg" for postgresql)
 -  call `bundle install` inside of repository
 -  call `rake db:create && rake db:migrate`
--  to ensure that everything works, you can call: `rake test`
+-  call `rake test` to ensure that everything works
 
-Launch:
+Launching:
 -  `rails s`
 
-This will run rails in development mode on port 3000.
+This will run Rails in development mode on port 3000.
 
-For easier posting of content to graveio, you can use bury, a ruby command line
-tool which also integrates to vim. You can find it in `public/bin/bury.rb`.
+For easier posting of content to graveio, you can use bury, a Ruby command line
+tool which also integrates with Vim. You can find it in `public/bin/bury.rb`.
 
-At this state of developement take a look for a help at rails guides site.
+At this state of development take a look for a help at Rails Guides site.
 
-## Contribution
+## Contributing to graveio
 
-If you would like to contribute to graveio please clone this code from
-[https://github.com/kmerz/graveio](github.com/kmerz/graveio).
+If you would like to contribute to graveio clone it from
+[https://github.com/kmerz/graveio](https://github.com/kmerz/graveio.git).
 
-Please add tested code and add tests for new code. If you want to contribute new
-code please accept my maximal width of 80 Characters per line in source files.
+Please add tests along with new code. If you want to contribute new
+code please accept the maximum width of 80 characters per line in source files.
 
 Thanks to the contributors:
 -  [flowm](https://github.com/flowm)
