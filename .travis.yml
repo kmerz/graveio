@@ -1,3 +1,15 @@
 language: ruby
 rvm:
   - 1.9.3
+
+before_install:
+  - sudo apt-get update -qq
+  - sudo apt-get install python-software-properties python g++ make
+  - echo 'yes' | sudo add-apt-repository ppa:chris-lea/node.js
+  - sudo apt-get update -qq
+  - sudo apt-get install nodejs sqlite3
+  - sudo apt-get install libicu-dev build-essential
+
+script:
+  - rake db:create && rake db:migrate
+  - rake test

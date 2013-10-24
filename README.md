@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/kmerz/graveio.png)](https://travis-ci.org/kmerz/graveio)
+
 # graveio - where your code stays alive
 
 graveio provides an easy-to-use and install Pastebin-Solution
