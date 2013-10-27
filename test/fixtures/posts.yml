@@ -1,5 +1,5 @@
 one:
-  title: bla.rb
+  title: Michael
   content: |
       puts "#{File.expand_path(File.dirname(__FILE__))}"
   id: 1

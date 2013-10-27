@@ -19,7 +19,7 @@ class PostTest < ActiveSupport::TestCase
     assert_not_equal first_posts, second_posts
   end
 
-  test "should serach in posts content and title" do
+  test "should search in posts content and title" do
     assert_nothing_raised { Post.search("asdf") }
     assert result = Post.search("asdf"), "should return any results"
     assert_equal 98, result.size
@@ -28,9 +28,9 @@ class PostTest < ActiveSupport::TestCase
     assert result = Post.search("asdf asdf_55"), "should return any results"
     assert_equal 1, result.size
     assert_equal "asdf asdf_55", result.first.content
-    assert result = Post.search("bla.rb"), "should return any results"
+    assert result = Post.search("Michael"), "should return any results"
     assert_equal 1, result.size
-    assert_equal "bla.rb", result.first.title
+    assert_equal "Michael", result.first.title
   end
 
   test "should search for author" do
