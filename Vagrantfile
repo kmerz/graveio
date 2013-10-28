@@ -15,8 +15,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.ssh.forward_agent = true
 
   config.vm.provision "chef_solo" do |chef|
+    chef.add_recipe "proxy"
     chef.add_recipe "apt"
     chef.add_recipe "etc"
+    chef.add_recipe "graveio"
   end
 
 end
