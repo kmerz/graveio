@@ -3,7 +3,6 @@ rvm:
   - 1.9.3
 
 before_install:
-  - git submodule update --init --recursive
   - sudo apt-get update -qq
   - sudo apt-get install python-software-properties python g++ make
   - echo 'yes' | sudo add-apt-repository ppa:chris-lea/node.js
