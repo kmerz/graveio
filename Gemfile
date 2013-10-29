@@ -20,4 +20,4 @@ gem "github-linguist", "~> 2.3.4" , require: "linguist"
 gem "pygments.rb",  git: "https://github.com/tmm1/pygments.rb", branch: "master"
 gem 'diffy'
 gem 'jquery-rails'
-gem 'devise', :github => 'plataformatec/devise', :branch => 'rails4'
+gem 'devise', '3.0.0.rc'
