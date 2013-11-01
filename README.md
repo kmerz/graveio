@@ -1,6 +1,5 @@
-[![Build Status](https://travis-ci.org/kmerz/graveio.png)](https://travis-ci.org/kmerz/graveio)
-
 # graveio - where your code stays alive
+[![Build Status](https://travis-ci.org/kmerz/graveio.png)](https://travis-ci.org/kmerz/graveio)
 
 graveio provides an easy-to-use and install Pastebin-Solution
 intended for inhouse Use.
@@ -34,7 +33,8 @@ If you would like to contribute to graveio clone it from
 Please add tests along with new code. If you want to contribute new
 code please accept the maximum width of 80 characters per line in source files.
 
-Travis is now supported.
+We are now running all of our tests on
+[Travis-CI](https://travis-ci.org/kmerz/graveio).
 
 Thanks to the contributors:
 -  [flowm](https://github.com/flowm)
