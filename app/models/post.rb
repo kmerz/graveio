@@ -122,7 +122,7 @@ class Post < ActiveRecord::Base
       post_arel_table[:title].matches("%#{search_string}%")).or(
       post_arel_table[:author].matches("%#{search_string}%"))).
       order("#{table_name}.created_at desc").includes(:likes, :dislikes,
-	:comments)
+        :comments)
   end
 
   def diff_to_parent(parent_id = nil)
