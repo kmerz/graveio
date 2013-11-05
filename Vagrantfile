@@ -10,6 +10,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.vm.provider "virtualbox" do |v|
     v.name = "graveio-dev"
+    v.customize["modifyvm", :id, "--natdnshostresolver1", "on"]
   end
 
   config.ssh.forward_agent = true
