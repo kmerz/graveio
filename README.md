@@ -65,7 +65,7 @@ rake test
 rails s
 ```
 
-Then, open your favorite browser and point it to http://localhost:3000
+Then, open your favorite browser and point it to http://192.168.10.10:3000
 
 ## Contributing to graveio
 
