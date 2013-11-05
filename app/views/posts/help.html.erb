@@ -1,40 +1,41 @@
 <h2>Help</h2>
 <p> <a class="brand" href="<%= root_url%>"> grave.io </a> is just another
-paste bin implementation aimed for inhouse use. </p>
+Pastebin-Implementation intended for inhouse Use. </p>
 
 <h3>How to use</h3>
 <ul>
   <li><b>New snippet</b>&nbsp;<i class="icon-plus"></i></li>
-  Create a new snippet that needs to be published. Fill out title
-  and content and press to create. You will be redirected to your new
-  entry, where you easy get a short url to this snippet.
+  Creates a new snippet that you want to be published. Fill out title
+  and content and click create. You will be redirected to the new
+  entry, where you can also retrieve a short URL to the snippet.
   <li><b>Show snippet</b>&nbsp;<i class="icon-eye-open"></i></li>
-  To show the snippet alone and all its comments, click on the open
-  eye just below of a snippet.
+  Shows the snippet and all its comments. Click on the open eye
+  just below the snippet in question.
   <li><b>Destroy snippet</b>&nbsp;<i class="icon-trash"></i></li>
-  Click on the trash icon below of a snippet and confirm it.
+  Destroys an already published snippet and all its comments. Click
+  on the trash icon below the snippet and confirm.
   <li><b>Edit snippet</b>&nbsp;<i class="icon-edit"></i></li>
-  Click on the pencil icon below of a snippet and change the conent or
-  title of the snippet.
+  Edits an existing snippet. Click on the pencil icon below the snippet
+  to change the content or title.
   <li><b>Download raw snippet</b>&nbsp;<i class="icon-download"></i></li>
-  Click on the the downward arrow just below of a snippet to get
-  the actuall content as a text file.
+  Downloads the raw content of the snippet. Click on the downward arrow
+  below the snippet to get the actual content as plain text file.
   <li><b>Search for snippets</b></li>
-  In the header of the site you will find the search. Type in the
-  query in and press enter to retrive the results of your search.
+  The search bar is located in the header. Type in your query and press
+  enter to retrieve the results.
 
 </ul>
 <h3>Command line interface</h3>
 <ul>
-  For easier posting of content to graveio, you can use bury, a ruby command
-  line tool which also integrates to vim.
+  For easier posting of content to graveio, you can use bury, a Ruby command line
+  tool which also integrates with Vim.
   <br \>
-  To integrate it in vim simply add this line to your .vimrc:
+  Enable bury with Vim by adding the following line to your .vimrc:
   <pre class="help">map &lt;F2&gt; :w !bury -t %&lt;CR&gt;</pre>
   The default host and port for the tool can be configured via a rc file
   located at "~/.buryrc"
   <br \>
-  Example configuration for this server could be:
+  An example configuration of using bury with graveio:
   <pre class="help">
 default:
   :host: <%= @server_ip %>
