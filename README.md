@@ -48,6 +48,10 @@ vagrant up
 This sets up a virtual development machine host __graveio-dev__ based on
 Ubuntu 12.04. providing ruby 1.9.3 via rvm(1), the latest nodejs stable
 release and sqlite3 as database.
+The IP address assigned to the host is 192.168.10.10 which can be changed
+by adapting the parameter "config.vm.network" in
+[Vagrantfile](https://github.com/kmerz/graveio/blob/master/Vagrantfile)
+accordingly.
 The setup takes a couple of minutes. After the installation has finished
 you can login to the machine by running: `vagrant ssh`
 
