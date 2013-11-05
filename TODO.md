@@ -7,5 +7,4 @@ TODO:
   - a script tag for "to graveio"
 
 - Vagrant
-  - Move "cookbooks" to "chef/cookbooks"
   - Update to "ruby-1.9.3-p448"
