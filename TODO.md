@@ -5,6 +5,3 @@ TODO:
 -  test and add documentation for a production mode (on ubuntu?)
 -  data:text/html, \<html contenteditable\>
   - a script tag for "to graveio"
-
-- Vagrant
-  - Update to "ruby-1.9.3-p448"

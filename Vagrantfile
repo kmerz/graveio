@@ -22,15 +22,15 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     chef.add_recipe "apt"
     chef.add_recipe "etc"
     chef.add_recipe "graveio"
+    chef.add_recipe "rvm::system"
+    chef.add_recipe "rvm::vagrant"
 
     chef.json = {
-      "rvm" => {
-        "version" => "1.17.10",
+      :rvm => {
+        :rubies => ["ruby-1.9.3-head"],
+        :default_ruby => "ruby-1.9.3-head",
       }
     }
-
-    chef.add_recipe "rvm::vagrant"
-    chef.add_recipe "rvm::system"
 
   end
 

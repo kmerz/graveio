@@ -63,7 +63,7 @@ Machine:
 ```
 vagrant ssh
 cd /vagrant
-rvmsudo -E bundle install
+bundle install
 rake db:create && rake db:migrate
 rake test
 rails s
