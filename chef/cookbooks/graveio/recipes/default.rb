@@ -2,12 +2,13 @@ Chef::Log.info("[Installing: graveio package dependencies]")
 [
   'build-essential',
   'g++',
+  'libicu-dev',
   'make',
+  'nodejs',
   'python',
   'python-software-properties',
   'sqlite3',
-  'libicu-dev',
-  'nodejs',
+  'vim',
 ].each do |p|
   package p
 end

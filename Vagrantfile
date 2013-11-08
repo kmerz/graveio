@@ -7,9 +7,11 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.vm.hostname = "graveio-dev"
   config.vm.network :forwarded_port, guest: 3000, host: 3000
+  config.vm.network :private_network, ip: "192.168.10.10"
 
   config.vm.provider "virtualbox" do |v|
     v.name = "graveio-dev"
+    v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
   end
 
   config.ssh.forward_agent = true
@@ -20,15 +22,15 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     chef.add_recipe "apt"
     chef.add_recipe "etc"
     chef.add_recipe "graveio"
+    chef.add_recipe "rvm::system"
+    chef.add_recipe "rvm::vagrant"
 
     chef.json = {
-      "rvm" => {
-        "version" => "1.17.10",
+      :rvm => {
+        :rubies => ["ruby-1.9.3-head"],
+        :default_ruby => "ruby-1.9.3-head",
       }
     }
-
-    chef.add_recipe "rvm::vagrant"
-    chef.add_recipe "rvm::system"
 
   end
 
