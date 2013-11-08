@@ -1,3 +1,4 @@
+<%= render 'form' %>
 <% unless @posts.blank?%>
   <div class="list row endless_scroll_inner_wrap"
     last="<%=@posts.to_a.last.created_at%>">
