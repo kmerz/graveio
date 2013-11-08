@@ -75,7 +75,7 @@ class Bury
     # Parse the commandline-options
     attrs = {}
     options = OptionParser.new do |opts|
-      opts.banner = "Usage: #{0} [OPTION]... [FILE]..."
+      opts.banner = "Usage: #{$0} [OPTION]... [FILE]..."
       opts.separator "A script for easy pasting/posting of content to grave.io"
       opts.separator "Options:"
       opts.on("-t [TITLE]", "--title [TITLE]",
