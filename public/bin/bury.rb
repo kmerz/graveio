@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
-# bury.rb - a script for easy pasting/posting of content to grave.io
+# bury.rb - a script for easy pasting/posting of content to graveio
 #
 # Example Configuration file (~/.buryrc):
 # default:
@@ -22,6 +22,13 @@ $log.level = Logger::WARN
 class Bury
   def self.run()
     parseopts
+
+    if @@cfg[:postid]
+      restext, path, cookie = get("/p/#{@@cfg[:postid]}.text")
+      puts restext
+      exit 0
+    end
+
     # GET the form
     reshtml, path, cookie = get("/p/new")
 
@@ -75,8 +82,8 @@ class Bury
     # Parse the commandline-options
     attrs = {}
     options = OptionParser.new do |opts|
-      opts.banner = "Usage: #{0} [OPTION]... [FILE]..."
-      opts.separator "A script for easy pasting/posting of content to grave.io"
+      opts.banner = "Usage: #{$0} [OPTION]... [FILE]..."
+      opts.separator "A script for posting and getting of content to graveio"
       opts.separator "Options:"
       opts.on("-t [TITLE]", "--title [TITLE]",
         "Specify the title of the post") do |title|
@@ -102,10 +109,13 @@ class Bury
         attrs[:port] = port
       end
       opts.on("-d", "--debug", "Enable debug output") do
-        log.level = Logger::DEBUG
+        $log.level = Logger::DEBUG
       end
       opts.on("-v", "--verbose", "Enable verbose output") do
-        log.level = Logger::INFO
+        $log.level = Logger::INFO
+      end
+      opts.on("-g [POSTID]", "--get [POSTID]", "Retrive post as text") do |pid|
+        attrs[:postid] = pid
       end
       opts.on("-h", "--help", "Show this help") do
         puts options
@@ -124,18 +134,20 @@ class Bury
     @@cfg[:port] = "80" unless @@cfg[:port]
     @@cfg[:agent] = "User-Agent: bury" unless @@cfg[:agent]
 
-    # Determine Title
-    unless @@cfg[:title]
-      @@cfg[:title] = ARGF.filename unless ARGF.filename == "-"
-    end
+    unless @@cfg[:postid]
+      # Determine Title
+      unless @@cfg[:title]
+        @@cfg[:title] = ARGF.filename unless ARGF.filename == "-"
+      end
 
-    # Determine Content
-    unless @@cfg[:content]
-      if !ARGF.eof?
-        @@cfg[:content] = ARGF.read
-      else
-        puts options unless @@cfg[:content]
-        exit 1
+      # Determine Content
+      unless @@cfg[:content]
+        if !ARGF.eof?
+          @@cfg[:content] = ARGF.read
+        else
+          puts options unless @@cfg[:content]
+          exit 1
+        end
       end
     end
   end
