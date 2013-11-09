@@ -4,4 +4,5 @@ template "/etc/apt/apt.conf.d/01proxy" do
   mode "0644"
   owner "root"
   group "root"
+  action :create_if_missing
 end
