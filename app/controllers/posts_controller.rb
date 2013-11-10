@@ -2,6 +2,8 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
+    @post = Post.new
+
     last = params[:last].blank? ? Time.now + 1.second :
       Time.parse(params[:last])
     @posts = Post.feed(last)

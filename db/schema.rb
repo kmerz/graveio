@@ -17,8 +17,8 @@ ActiveRecord::Schema.define(version: 20130201164319) do
     t.string   "commenter"
     t.text     "body"
     t.integer  "post_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "comments", ["post_id"], name: "index_comments_on_post_id"
@@ -27,8 +27,8 @@ ActiveRecord::Schema.define(version: 20130201164319) do
     t.integer  "liker"
     t.integer  "post_id"
     t.boolean  "liked"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "linecomments", force: true do |t|
@@ -45,8 +45,8 @@ ActiveRecord::Schema.define(version: 20130201164319) do
   create_table "posts", force: true do |t|
     t.string   "title"
     t.text     "content"
-    t.datetime "created_at",                    null: false
-    t.datetime "updated_at",                    null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.string   "author"
     t.boolean  "newest",       default: true
     t.integer  "parent_id"
@@ -64,8 +64,8 @@ ActiveRecord::Schema.define(version: 20130201164319) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
