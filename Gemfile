@@ -13,6 +13,8 @@ gem 'coffee-rails'
 gem 'bootstrap-sass'
 gem 'uglifier'
 
+gem 'thin'
+
 # Language detection
 gem "github-linguist", "~> 2.3.4" , require: "linguist"
 
