@@ -10,7 +10,7 @@ gem 'sqlite3'
 gem 'sass-rails'
 gem 'railties'
 gem 'coffee-rails'
-gem 'bootstrap-sass'
+gem 'bootstrap-sass', "2.3.2.0"
 gem 'uglifier'
 
 gem 'thin'
