@@ -12,11 +12,17 @@
  *= require_tree .
  */
 
-@import "bootstrap";
-
 /* compensate the overlap caused by bootstrap top navigation, min. 40px at the top! */
 body { padding: 60px 10px 10px 20px; }
 
 .navbar-search .input-append {
   margin-bottom: 0;
 }
+
+/* fix bootstrap icons with assets */
+// Set the correct sprite paths
+$iconSpritePath: asset-path('glyphicons-halflings.png');
+$iconWhiteSpritePath: asset-path("glyphicons-halflings-white.png");
+
+@import "bootstrap";
+@import "bootstrap-responsive";
