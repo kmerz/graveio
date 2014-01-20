@@ -11,5 +11,5 @@ before_install:
   - sudo apt-get install libicu-dev
 
 script:
-  - rake db:create && rake db:migrate
+  - rake db:create && bundle exec rake db:migrate
   - rake test
