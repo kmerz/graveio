@@ -27,6 +27,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
     chef.json = {
       :rvm => {
+        :version => "1.17.10",
         :rubies => ["ruby-1.9.3-head"],
         :default_ruby => "ruby-1.9.3-head",
       }
