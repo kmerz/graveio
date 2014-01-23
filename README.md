@@ -64,6 +64,7 @@ Machine:
 vagrant ssh
 cd /vagrant
 sudo -E bundle install
+bundle install
 rake db:create && rake db:migrate
 rake test
 rails s
