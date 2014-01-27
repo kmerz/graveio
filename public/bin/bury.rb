@@ -91,7 +91,7 @@ class Bury
       end
       opts.on("-c [CONTENT]", "--content [CONTENT]",
         "Specify the content source",
-        "alternativley STDIN will be used") do |content|
+        "alternatively STDIN will be used") do |content|
         attrs[:content] = content
       end
       opts.on("-a [AUTHOR]", "--author [AUTHOR]",
@@ -114,7 +114,7 @@ class Bury
       opts.on("-v", "--verbose", "Enable verbose output") do
         $log.level = Logger::INFO
       end
-      opts.on("-g [POSTID]", "--get [POSTID]", "Retrive post as text") do |pid|
+      opts.on("-g [POSTID]", "--get [POSTID]", "Retrieve post as text") do |pid|
         attrs[:postid] = pid
       end
       opts.on("-h", "--help", "Show this help") do
@@ -177,7 +177,7 @@ class Bury
       when Net::HTTPRedirection then 
         get(URI.parse(response['location']).path, cookie)
     else
-      warn "Recived unexpected response #{response}"
+      warn "Received unexpected response #{response}"
       exit 1
     end
   end
@@ -208,7 +208,7 @@ class Bury
       when Net::HTTPRedirection then
         get(URI.parse(response['location']).path, cookie)
     else
-      warn "Recived unexpected response #{response}"
+      warn "Received unexpected response #{response}"
       exit 1
     end
   end
