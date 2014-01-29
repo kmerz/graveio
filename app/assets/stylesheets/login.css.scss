@@ -12,9 +12,44 @@
   h2 {
     text-align: center;
     color: #555;
-  }
-
-  #login-button {
+    margin-bottom: 25px;
   }
 }
 
+.login-param {
+  display: block;
+  margin-left: 30px;
+
+  label {
+    display: inline-block;
+    width: 100px;
+  }
+
+  input {
+    margin-top: 8px;
+  }
+}
+
+#login-button-remember {
+  display: inline-block;
+  margin-top: 20px;
+}
+
+#remember-me {
+  margin-left: 30px;
+  display: inline-block;
+  width: 250px;
+
+  label {
+    display: inline-block;
+  }
+
+  input {
+    margin-top: -3px;
+  }
+}
+
+#login-links {
+  margin-left: 30px;
+  margin-bottom: 20px;
+}
