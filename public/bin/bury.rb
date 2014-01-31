@@ -108,11 +108,11 @@ class Bury
         "Without this flag, the value in config will be used") do |port|
         attrs[:port] = port
       end
-      opts.on("-d", "--debug", "Enable debug output") do
-        $log.level = Logger::DEBUG
-      end
       opts.on("-v", "--verbose", "Enable verbose output") do
         $log.level = Logger::INFO
+      end
+      opts.on("-d", "--debug", "Enable debug output") do
+        $log.level = Logger::DEBUG
       end
       opts.on("-g [POSTID]", "--get [POSTID]", "Retrieve post as text") do |pid|
         attrs[:postid] = pid
