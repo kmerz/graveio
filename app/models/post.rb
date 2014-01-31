@@ -35,7 +35,8 @@ class Post < ActiveRecord::Base
       'diff' => 'Diff',
       'patch' => 'Diff',
       'java' => 'Java',
-      'js' => 'JavaScript'
+      'js' => 'JavaScript',
+      'py' => 'Python'
     }
   end
 
