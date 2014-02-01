@@ -24,7 +24,7 @@ class Post < ActiveRecord::Base
     :foreign_key => :parent_id, :dependent => :destroy
   belongs_to :parent, :class_name => "Post"
 
-  attr_accessor :uploaded_file
+  attr_accessor :uploaded_file, :inputtags
 
   def self.file_extensions
     { '' => 'Text',
