@@ -49,6 +49,7 @@ class PostsController < ApplicationController
   # GET /posts/1/edit
   def edit
     @post = Post.find(params[:id])
+    @post.inputtags = @post.tags.pluck(:name).join(' ')
   end
 
   # POST /posts
@@ -103,6 +104,23 @@ class PostsController < ApplicationController
 
     respond_to do |format|
       if save_success
+        old_tags = old_post.tags.pluck(:name)
+        new_tags = @post.inputtags.split(' ')
+
+        # look for tags to be deleted
+        tag_diff = old_tags - new_tags
+	tag_diff.each do |tag|
+          PostTag.find_by(
+            :post_id => old_post.id,
+            :tag_id => Tag.find_by_name(tag).id
+          ).destroy
+        end
+
+        # create new tags
+        new_tags.each do |tag|
+          @post.link_tag(tag)
+        end
+
         format.html {
           redirect_to @post, notice: 'New version of snippet was created.'
         }
