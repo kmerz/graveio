@@ -90,3 +90,4 @@ Thanks to the contributors:
 -  [vitorbal](https://github.com/vitorbal)
 -  [darinkes](https://github.com/darinkes)
 -  [h5b](https://github.com/h5b)
+-  [basti1508](https://github.com/basti1508)
