@@ -64,6 +64,13 @@ class Post < ActiveRecord::Base
     Comment.where(:post_id => self.collect_parent_ids).order('created_at desc')
   end
 
+  def link_tag(name)
+    tag = Tag.find_or_create_by(:name => name)
+    post_tag = self.post_tags.find_or_create_by(
+      :post_id => self.id,
+      :tag_id => tag.id)
+  end
+
   def create_version(params)
     child = self.class.new(params)
     child.parent_id = self.id
