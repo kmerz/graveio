@@ -4,7 +4,7 @@
 graveio provides an easy-to-use and install Pastebin-Solution
 intended for inhouse Use.
 
-![Screenshot](https://github.com/kmerz/graveio/blob/screenshot/screenshot.png)
+![Screenshot](https://raw.github.com/kmerz/graveio/screenshot/screenshot.png)
 
 It was developed with *ruby 1.9.3p0* and *rails 3.2*.
 
