@@ -71,6 +71,9 @@ class PostsController < ApplicationController
 
     respond_to do |format|
       if @post.save
+        @post.inputtags.split(' ').each do |t|
+          @post.link_tag(t)
+        end
         format.html {
           redirect_to @post, notice: 'Post was successfully created.'
         }
