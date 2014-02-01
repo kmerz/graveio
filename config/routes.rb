@@ -1,5 +1,5 @@
 Fox::Application.routes.draw do
-  devise_for :users
+  devise_for :users , :controllers => { registrations: 'users/registrations' }
 
   # note that the helper methods are still called with 'posts' instead of 'p'
   # for legibility purposes
