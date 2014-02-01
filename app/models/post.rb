@@ -13,6 +13,8 @@ class Post < ActiveRecord::Base
   validates_length_of :title, :maximum => 255
   validates_length_of :author, :maximum => 255
 
+  has_many :post_tags
+  has_many :tags, :through => :post_tags
   has_many :likedislikes, :dependent => :destroy
   has_many :likes, -> {where liked: true}, :class_name => "Likedislike"
   has_many :dislikes, -> {where liked: false},:class_name => "Likedislike"
