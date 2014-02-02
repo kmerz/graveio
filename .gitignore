@@ -17,3 +17,6 @@
 
 # Ignore Vagrant Metadata
 /.vagrant
+
+# Ignore node modules
+node_modules/
