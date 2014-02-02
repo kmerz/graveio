@@ -1,5 +1,16 @@
 class PostsController < ApplicationController
-  # GET /posts
+  protect_from_forgery
+
+  before_filter :verify_api_key, only: [:create]
+  skip_before_filter :verify_authenticity_token, if: :json_request?
+  skip_before_filter :verify_api_key, unless: :json_request?
+
+  def handle_unverified_request
+    respond_to do |format|
+      format.json { render json: "Can't verify CSRF token authenticity" }
+    end
+  end
+    # GET /posts
   # GET /posts.json
   def index
     @post = Post.new
@@ -233,5 +244,26 @@ class PostsController < ApplicationController
       format.html {render action: "new" }
       format.json {render json: @post.errors, status: :unprocessable_entity}
     end
+  end
+
+  def verify_api_key
+    message = ""
+    api_key = Apikey.where(key: post_params[:api_key]).first
+    if api_key.present?
+      post_params.delete :api_key
+      post_params[:author] = User.find(api_key.user_id).email
+      return
+    else
+      message = 'Wrong or no api_key'
+    end
+    respond_to do |format|
+      format.json { render json: { :message => message } }
+    end
+  end
+
+  protected
+
+  def json_request?
+    request.format.json?
   end
 end
