@@ -88,3 +88,4 @@ Thanks to the contributors:
 -  [vitorbal](https://github.com/vitorbal)
 -  [darinkes](https://github.com/darinkes)
 -  [h5b](https://github.com/h5b)
+-  [mafigit](https://github.com/mafigit)
