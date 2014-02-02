@@ -1,5 +1,8 @@
 class PostsController < ApplicationController
-  # GET /posts
+  protect_from_forgery
+  before_action :verify_api_key, if: :json_request?
+
+    # GET /posts
   # GET /posts.json
   def index
     @post = Post.new
@@ -43,6 +46,7 @@ class PostsController < ApplicationController
   # POST /posts
   # POST /posts.json
   def create
+
     if post_params[:author].blank? && user_signed_in?
       post_params[:author] = current_user.email
     end
@@ -233,5 +237,24 @@ class PostsController < ApplicationController
       format.html {render action: "new" }
       format.json {render json: @post.errors, status: :unprocessable_entity}
     end
+  end
+
+  def verify_api_key
+    message = ""
+    if post_params[:api_key]
+      post_params.delete :api_key
+      return
+    else
+      message = 'No api_key present'
+    end
+    respond_to do |format|
+      format.json { render json: { :message => message } }
+    end
+  end
+
+  protected
+
+  def json_request?
+    request.format.json?
   end
 end
