@@ -6,3 +6,8 @@
 #
 kmerz:
   email: kmerz@github.com
+
+apikeyuser1:
+  id: 2
+  email: apitest@test.com
+  apikey_id: 1

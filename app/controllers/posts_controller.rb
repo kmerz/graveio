@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
   protect_from_forgery
 
-  before_filter :verify_api_key
+  before_filter :verify_api_key, only: [:create]
   skip_before_filter :verify_authenticity_token, if: :json_request?
   skip_before_filter :verify_api_key, unless: :json_request?
 

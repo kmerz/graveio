@@ -91,6 +91,16 @@ class PostsControllerTest < ActionController::TestCase
     assert_equal true, assigns(:post).newest
   end
 
+  test "should create post json" do
+    assert_difference('Post.count') do
+      post :create, post: { content: @post.content,
+        api_key: users(:apikeyuser1).apikey.key },
+        :format => :json
+    end
+
+    assert_response :success
+  end
+
   test "should destroy post json" do
     assert_difference('Post.count', -1) do
       delete :destroy, id: @post, :format => :json
