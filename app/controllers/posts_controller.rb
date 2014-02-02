@@ -157,7 +157,12 @@ class PostsController < ApplicationController
 
   # GET /search
   def search
-    @posts = Post.search(params[:query])
+    tag = Tag.find_by_id(params[:tag_id])
+    if tag.present?
+      @posts = tag.posts
+    else
+      @posts = Post.search(params[:query])
+    end
     respond_to do |format|
       format.html { render :search }
     end

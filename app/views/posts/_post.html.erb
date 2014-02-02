@@ -19,7 +19,11 @@
 
 <% if @post.tags.present? %>
   <% @post.tags.each do |tag| %>
-    <div class="tags pull-right"><%= tag.name %></div>
+    <%= link_to tag.name, {
+      :controller => :posts,
+      :action => :search,
+      :tag_id => tag.id
+    }, :class => "tags pull-right" %>
   <% end %>
 <% end %>
 
