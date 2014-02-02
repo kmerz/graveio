@@ -1,7 +1,15 @@
 class PostsController < ApplicationController
   protect_from_forgery
-  before_action :verify_api_key, if: :json_request?
 
+  before_filter :verify_api_key
+  skip_before_filter :verify_authenticity_token, if: :json_request?
+  skip_before_filter :verify_api_key, unless: :json_request?
+
+  def handle_unverified_request
+    respond_to do |format|
+      format.json { render json: "Can't verify CSRF token authenticity" }
+    end
+  end
     # GET /posts
   # GET /posts.json
   def index
@@ -46,7 +54,6 @@ class PostsController < ApplicationController
   # POST /posts
   # POST /posts.json
   def create
-
     if post_params[:author].blank? && user_signed_in?
       post_params[:author] = current_user.email
     end
@@ -241,11 +248,13 @@ class PostsController < ApplicationController
 
   def verify_api_key
     message = ""
-    if post_params[:api_key]
+    api_key = Apikey.where(key: post_params[:api_key]).first
+    if api_key.present?
       post_params.delete :api_key
+      post_params[:author] = User.find(api_key.user_id).email
       return
     else
-      message = 'No api_key present'
+      message = 'Wrong or no api_key'
     end
     respond_to do |format|
       format.json { render json: { :message => message } }
