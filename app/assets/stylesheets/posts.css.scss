@@ -1,6 +1,7 @@
 // Place all the styles related to the Posts controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+@import 'bootstrap';
 
 .none {
     display:none;
@@ -43,6 +44,7 @@
 .tags:hover {
   background-color: rgb(51, 51, 51);
   color: rgb(238, 238, 238);
+  text-decoration: none;
 }
 
 .btn-group {
