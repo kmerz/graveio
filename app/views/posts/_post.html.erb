@@ -1,9 +1,4 @@
 <% @post = post %>
-<% if @post.tags.present? %>
-  <% @post.tags.each do |tag| %>
-    <div class="tags pull-right"><%= tag.name %></div>
-  <% end %>
-<% end %>
 <div class="preview_area">
 <% if @post.title.present? %>
   <legend><%= @post.title %></legend>
@@ -19,7 +14,14 @@
   <small class="author">- Anonymous</small>
 <% end %>
 <small class="content_type"> (<%= @post.content_type %>)</small>
+
 <%= render 'options' %>
+
+<% if @post.tags.present? %>
+  <% @post.tags.each do |tag| %>
+    <div class="tags pull-right"><%= tag.name %></div>
+  <% end %>
+<% end %>
 
 <br />
 <br />
