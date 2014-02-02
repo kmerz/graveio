@@ -69,4 +69,12 @@ $(document).ready(function() {
           }
         }
       });
+
+  $('#post_url').focus(function(event) {
+    var target = $(event.target);
+    setTimeout(function() {
+      target.select();
+    }, 100);
+  });
+
 });
