@@ -41,6 +41,11 @@
   font-size: 0.8em;
 }
 
+.tags:hover {
+  background-color: rgb(51, 51, 51);
+  color: rgb(238, 238, 238);
+}
+
 .diff{
   overflow:auto;
   background: #EEE;
