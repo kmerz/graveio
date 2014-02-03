@@ -3,7 +3,7 @@ class AddApikeyIdToUsers < ActiveRecord::Migration
     add_column :users, :apikey_id, :integer
 
     User.all.each do |user|
-      unless user.api_key.present?
+      unless user.apikey.present?
         user.add_new_api_key
       end
     end
