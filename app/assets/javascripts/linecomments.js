@@ -9,7 +9,7 @@ $(document).ready(function() {
       "<i class=\"icon-plus pull-right uncollapse-table uncollapse-table" +
         id + "\" data-line=\"" + id + "\">" +
       "</i></div>"
-    )
+    );
   });
 
   $(document).on("click", "i.uncollapse-table", function() {
@@ -21,7 +21,7 @@ $(document).ready(function() {
       "<i class=\"icon-minus pull-right collapse-table collapse-table" +
         id + "\" data-line=\"" + id + "\">" +
       "</i></div>"
-    )
+    );
   });
 
   $(document).on("click", "a.show-comments", function() {
