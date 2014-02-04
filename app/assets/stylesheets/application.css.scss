@@ -10,6 +10,7 @@
  *
  *= require_self
  *= require_tree .
+ *= require token-input-facebook
  */
 
 /* compensate the overlap caused by bootstrap top navigation, min. 40px at the top! */
@@ -26,3 +27,4 @@ $iconWhiteSpritePath: asset-path("glyphicons-halflings-white.png");
 
 @import "bootstrap";
 @import "bootstrap-responsive";
+

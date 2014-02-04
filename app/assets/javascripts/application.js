@@ -17,3 +17,7 @@
 // Loads all Bootstrap javascripts
 //= require bootstrap
 //
+
+// Load tokeninput jquery plugin
+//= require jquery.tokeninput
+//
