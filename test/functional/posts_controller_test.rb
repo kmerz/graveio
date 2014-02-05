@@ -57,6 +57,22 @@ class PostsControllerTest < ActionController::TestCase
     assert_redirected_to post_path(assigns(:post))
   end
 
+  test "should create post with tags" do
+    assert_difference('Post.count') do
+      assert_difference('Tag.count', 2) do
+        assert_difference('PostTag.count', 3) do
+          post :create, post: {
+            content: @post.content,
+            title: @post.title,
+            input_tags: "new-tag-2,new-tag,#{tags(:two).name}"
+          }
+        end
+      end
+    end
+
+    assert_redirected_to post_path(assigns(:post))
+  end
+
   test "should show post" do
     get :show, id: @post
     assert_response :success
