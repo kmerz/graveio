@@ -72,8 +72,10 @@ class PostsController < ApplicationController
 
     respond_to do |format|
       if @post.save
-        @post.inputtags.split(',').each do |t|
-          @post.link_tag(t)
+        if @post.inputtags.present?
+          @post.inputtags.split(',').each do |t|
+            @post.link_tag(t)
+          end
         end
         format.html {
           redirect_to @post, notice: 'Post was successfully created.'
@@ -105,7 +107,11 @@ class PostsController < ApplicationController
     respond_to do |format|
       if save_success
         old_tags = old_post.tags.pluck(:name)
-        new_tags = @post.inputtags.split(',')
+        if @post.inputtags.present?
+          new_tags = @post.inputtags.split(',')
+        else
+          new_tags = []
+        end
 
         # look for tags to be deleted
         tag_diff = old_tags - new_tags
