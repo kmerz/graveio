@@ -14,9 +14,9 @@ class TagsControllerTest < ActionController::TestCase
   test "should search for tags" do
     get :index, :q => "r", :format => :json
 
-    assert_equal "ruby-on-rails", json_response[0]["name"]
+    assert_equal "ruby", json_response[0]["name"]
     assert_equal "rails", json_response[1]["name"]
-    assert_equal "ruby", json_response[2]["name"]
+    assert_equal "ruby-on-rails", json_response[2]["name"]
     assert_response :success
   end
 end
