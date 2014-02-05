@@ -11,15 +11,21 @@ class PostTest < ActiveSupport::TestCase
   end
 
   test "should create new tag if not existant" do
-    assert_difference('Tag.count','PostTag.count',@post.tags.count) do
-      @post.link_tag("new_tag")
+    assert_difference('Tag.count', 1) do
+      assert_difference('PostTag.count', 1) do
+        assert_difference(@post.tags.count, 1) do
+          @post.link_tag("very_new_tag")
+        end
+      end
     end
   end
 
   test "should use existant tag" do
-    assert_difference('PostTag.count', @post.tags.count) do
-      assert_no_difference('Tag.count') do
-        @post.link_tag(tags(:two).name)
+    assert_difference('PostTag.count', 1) do
+      assert_difference(@post.tags.count, 1) do
+        assert_difference('Tag.count', 0) do
+          @post.link_tag(tags(:two).name)
+        end
       end
     end
   end
