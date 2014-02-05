@@ -164,6 +164,13 @@ class PostsControllerTest < ActionController::TestCase
     assert_template(:search)
   end
 
+  test "should search for tagged posts" do
+    get :search, :tag_id => 1
+    assert_response :success
+    assert_not_nil assigns(:posts)
+    assert_template(:search)
+  end
+
   test "should show diff for post with parent" do
     get :diff, :id => 106
     assert_response :success
