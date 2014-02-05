@@ -6,7 +6,7 @@ class TagsController < ApplicationController
     if query[-1,1] == " "
       query = query.gsub(" ", "")
       params[:q] = query
-      Tag.find_or_create_by_name(query)
+      Tag.find_or_create_by(:name => query)
     end
     @tags = Tag.where("name like ?", "%#{params[:q]}%")
 
