@@ -162,6 +162,7 @@ class PostsControllerTest < ActionController::TestCase
     assert_response :success
     assert_not_nil assigns(:posts)
     assert_template(:search)
+    assert_select "h3", /Search results.*/
   end
 
   test "should search for tagged posts" do
@@ -169,6 +170,7 @@ class PostsControllerTest < ActionController::TestCase
     assert_response :success
     assert_not_nil assigns(:posts)
     assert_template(:search)
+    assert_select "h3", /Search results.*/
   end
 
   test "should show diff for post with parent" do

@@ -166,8 +166,10 @@ class PostsController < ApplicationController
     tag = Tag.find_by_id(params[:tag_id])
     if tag.present?
       @posts = tag.posts
+      @query_text = "Search results for Tag \"#{tag.name}\""
     else
       @posts = Post.search(params[:query])
+      @query_text = "Search results for \"#{params[:query]}\""
     end
     respond_to do |format|
       format.html { render :search }
