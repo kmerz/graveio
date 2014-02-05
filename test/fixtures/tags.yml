@@ -1,10 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
+  id: 1
   name: ruby
 
 two:
+  id: 2
   name: rails
 
 three:
+  id: 3
   name: ruby-on-rails

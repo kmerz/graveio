@@ -117,6 +117,22 @@ class PostsControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+  test "should update tags" do
+    # replace tag "ruby" through "rails". Both tags already exist.
+    assert_difference('Tag.count', 0) do
+      # "ruby" was already mapped to @post, so replace with "rails"
+      assert_difference('PostTag.count', 0) do
+        put :update, id: @post, post: {
+          content: @post.content,
+          title: @post.title,
+          input_tags: "rails"
+        }
+      end
+    end
+
+    assert_redirected_to post_path(assigns(:post))
+  end
+
   test "should destroy post json" do
     assert_difference('Post.count', -1) do
       delete :destroy, id: @post, :format => :json
