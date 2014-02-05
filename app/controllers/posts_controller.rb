@@ -49,7 +49,7 @@ class PostsController < ApplicationController
   # GET /posts/1/edit
   def edit
     @post = Post.find(params[:id])
-    @post.inputtags = @post.tags.pluck(:name).join(' ')
+    @post.input_tags = @post.tags.pluck(:name).join(' ')
   end
 
   # POST /posts
@@ -72,8 +72,8 @@ class PostsController < ApplicationController
 
     respond_to do |format|
       if @post.save
-        if @post.inputtags.present?
-          @post.inputtags.split(',').each do |t|
+        if @post.input_tags.present?
+          @post.input_tags.split(',').each do |t|
             @post.link_tag(t)
           end
         end
@@ -107,8 +107,8 @@ class PostsController < ApplicationController
     respond_to do |format|
       if save_success
         old_tags = old_post.tags.pluck(:name)
-        if @post.inputtags.present?
-          new_tags = @post.inputtags.split(',')
+        if @post.input_tags.present?
+          new_tags = @post.input_tags.split(',')
         else
           new_tags = []
         end
