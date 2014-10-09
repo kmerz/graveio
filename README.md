@@ -6,8 +6,6 @@ intended for inhouse Use.
 
 ![Screenshot](https://raw.github.com/kmerz/graveio/master/screenshot.png)
 
-It was developed with *ruby 1.9.3p0* and *rails 3.2*.
-
 Installing:
 -  clone this repository
 -  install 'ruby 1.9', 'nodejs' and a database of your choice (e.g. postgresql, sqlite3)
@@ -24,8 +22,6 @@ This will run Rails in development mode on port 3000.
 
 For easier posting of content to graveio, you can use bury, a Ruby command line
 tool which also integrates with Vim. You can find it in `public/bin/bury.rb`.
-
-At this state of development take a look for a help at Rails Guides site.
 
 ## Virtual Test and Development Environment
 
