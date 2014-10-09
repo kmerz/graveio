@@ -73,7 +73,7 @@ rails s
 
 Then, open your favorite browser and point it to http://192.168.10.10:3000
 
-## Contributing to graveio
+## How To Contribute
 
 If you would like to contribute to graveio clone it from
 [https://github.com/kmerz/graveio](https://github.com/kmerz/graveio.git).
@@ -81,14 +81,8 @@ If you would like to contribute to graveio clone it from
 Please add tests along with new code. If you want to contribute new
 code please accept the maximum width of 80 characters per line in source files.
 
-We are now running all of our tests on
-[Travis-CI](https://travis-ci.org/kmerz/graveio).
+## License
+Graveio is released under the [BSD 2-Clause License](LICENSE).
 
-Thanks to the contributors:
--  [flowm](https://github.com/flowm)
--  [dloss](https://github.com/dloss)
--  [vitorbal](https://github.com/vitorbal)
--  [darinkes](https://github.com/darinkes)
--  [h5b](https://github.com/h5b)
--  [basti1508](https://github.com/basti1508/)
--  [mafigit](https://github.com/mafigit)
+## Contributors
+[contributors](https://github.com/kmerz/graveio/graphs/contributors).
