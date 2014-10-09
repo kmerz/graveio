@@ -84,5 +84,4 @@ code please accept the maximum width of 80 characters per line in source files.
 ## License
 Graveio is released under the [BSD 2-Clause License](LICENSE).
 
-## Contributors
-[contributors](https://github.com/kmerz/graveio/graphs/contributors).
+## [Contributors](https://github.com/kmerz/graveio/graphs/contributors)
