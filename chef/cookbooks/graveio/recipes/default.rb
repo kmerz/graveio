@@ -9,6 +9,7 @@ Chef::Log.info("[Installing: graveio package dependencies]")
   'python-software-properties',
   'sqlite3',
   'vim',
+  'tmux',
 ].each do |p|
   package p
 end
