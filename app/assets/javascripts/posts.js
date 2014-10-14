@@ -77,4 +77,13 @@ $(document).ready(function() {
     }, 100);
   });
 
+  $("#inputTags").tokenInput("/tags.json", {
+    prePopulate: $("#inputTags").data("pre"),
+    noResultsText: 'No result, hit space to create a new tag',
+    crossDomain: false,
+    theme: "facebook",
+    resultsLimit: 10,
+    preventDuplicates: true,
+    tokenValue: 'name'
+  });
 });

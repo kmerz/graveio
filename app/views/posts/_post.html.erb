@@ -14,7 +14,18 @@
   <small class="author">- Anonymous</small>
 <% end %>
 <small class="content_type"> (<%= @post.content_type %>)</small>
+
 <%= render 'options' %>
+
+<% if @post.tags.present? %>
+  <% @post.tags.each do |tag| %>
+    <%= link_to tag.name, {
+      :controller => :posts,
+      :action => :search,
+      :tag_id => tag.id
+    }, :class => "tags pull-right" %>
+  <% end %>
+<% end %>
 
 <br />
 <br />

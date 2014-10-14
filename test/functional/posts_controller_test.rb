@@ -57,6 +57,22 @@ class PostsControllerTest < ActionController::TestCase
     assert_redirected_to post_path(assigns(:post))
   end
 
+  test "should create post with tags" do
+    assert_difference('Post.count') do
+      assert_difference('Tag.count', 2) do
+        assert_difference('PostTag.count', 3) do
+          post :create, post: {
+            content: @post.content,
+            title: @post.title,
+            input_tags: "new-tag-2,new-tag,#{tags(:two).name}"
+          }
+        end
+      end
+    end
+
+    assert_redirected_to post_path(assigns(:post))
+  end
+
   test "should show post" do
     get :show, id: @post
     assert_response :success
@@ -101,6 +117,22 @@ class PostsControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+  test "should update tags" do
+    # replace tag "ruby" through "rails". Both tags already exist.
+    assert_difference('Tag.count', 0) do
+      # "ruby" was already mapped to @post, so replace with "rails"
+      assert_difference('PostTag.count', 0) do
+        put :update, id: @post, post: {
+          content: @post.content,
+          title: @post.title,
+          input_tags: "rails"
+        }
+      end
+    end
+
+    assert_redirected_to post_path(assigns(:post))
+  end
+
   test "should destroy post json" do
     assert_difference('Post.count', -1) do
       delete :destroy, id: @post, :format => :json
@@ -130,6 +162,15 @@ class PostsControllerTest < ActionController::TestCase
     assert_response :success
     assert_not_nil assigns(:posts)
     assert_template(:search)
+    assert_select "h3", /Search results.*/
+  end
+
+  test "should search for tagged posts" do
+    get :search, :tag_id => 1
+    assert_response :success
+    assert_not_nil assigns(:posts)
+    assert_template(:search)
+    assert_select "h3", /Search results.*/
   end
 
   test "should show diff for post with parent" do

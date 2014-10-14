@@ -13,6 +13,8 @@ class Post < ActiveRecord::Base
   validates_length_of :title, :maximum => 255
   validates_length_of :author, :maximum => 255
 
+  has_many :post_tags
+  has_many :tags, :through => :post_tags
   has_many :likedislikes, :dependent => :destroy
   has_many :likes, -> {where liked: true}, :class_name => "Likedislike"
   has_many :dislikes, -> {where liked: false},:class_name => "Likedislike"
@@ -22,7 +24,7 @@ class Post < ActiveRecord::Base
     :foreign_key => :parent_id, :dependent => :destroy
   belongs_to :parent, :class_name => "Post"
 
-  attr_accessor :uploaded_file
+  attr_accessor :uploaded_file, :input_tags
 
   def self.file_extensions
     { '' => 'Text',
@@ -60,6 +62,13 @@ class Post < ActiveRecord::Base
 
   def all_comments
     Comment.where(:post_id => self.collect_parent_ids).order('created_at desc')
+  end
+
+  def link_tag(name)
+    tag = Tag.find_or_create_by(:name => name)
+    post_tag = self.post_tags.find_or_create_by(
+      :post_id => self.id,
+      :tag_id => tag.id)
   end
 
   def create_version(params)

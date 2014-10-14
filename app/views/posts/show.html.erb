@@ -11,6 +11,16 @@
 
   <%= render 'options' %>
 
+  <% if @post.tags.present? %>
+    <% @post.tags.each do |tag| %>
+      <%= link_to tag.name, {
+        :controller => :posts,
+        :action => :search,
+        :tag_id => tag.id
+      }, :class => "tags pull-right" %>
+    <% end %>
+  <% end %>
+
   <input id="post_url" class="input-xlarge uneditable-input" type="text"
     value="<%= post_url(@post) %>"></input>
 

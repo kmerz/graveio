@@ -49,6 +49,7 @@ class PostsController < ApplicationController
   # GET /posts/1/edit
   def edit
     @post = Post.find(params[:id])
+    @post.input_tags = @post.tags.pluck(:name).join(' ')
   end
 
   # POST /posts
@@ -71,6 +72,11 @@ class PostsController < ApplicationController
 
     respond_to do |format|
       if @post.save
+        if @post.input_tags.present?
+          @post.input_tags.split(',').each do |t|
+            @post.link_tag(t)
+          end
+        end
         format.html {
           redirect_to @post, notice: 'Post was successfully created.'
         }
@@ -100,6 +106,27 @@ class PostsController < ApplicationController
 
     respond_to do |format|
       if save_success
+        old_tags = old_post.tags.pluck(:name)
+        if @post.input_tags.present?
+          new_tags = @post.input_tags.split(',')
+        else
+          new_tags = []
+        end
+
+        # look for tags to be deleted
+        tag_diff = old_tags - new_tags
+	tag_diff.each do |tag|
+          PostTag.find_by(
+            :post_id => old_post.id,
+            :tag_id => Tag.find_by_name(tag).id
+          ).destroy
+        end
+
+        # create new tags
+        new_tags.each do |tag|
+          @post.link_tag(tag)
+        end
+
         format.html {
           redirect_to @post, notice: 'New version of snippet was created.'
         }
@@ -136,7 +163,14 @@ class PostsController < ApplicationController
 
   # GET /search
   def search
-    @posts = Post.search(params[:query])
+    tag = Tag.find_by_id(params[:tag_id])
+    if tag.present?
+      @posts = tag.posts
+      @query_text = "Search results for Tag \"#{tag.name}\""
+    else
+      @posts = Post.search(params[:query])
+      @query_text = "Search results for \"#{params[:query]}\""
+    end
     respond_to do |format|
       format.html { render :search }
     end
