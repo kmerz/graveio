@@ -86,6 +86,13 @@ class PostsController < ApplicationController
   # PUT /posts/1.json
   def update
     old_post = Post.find(params[:id])
+
+    if post_params[:upload_file]
+      data = post_params.delete(:upload_file)
+      file_content = data.read.force_encoding("UTF-8");
+      post_params[:content] << file_content
+    end
+
     if old_post.content == post_params[:content]
       save_success = old_post.update_attributes(post_params)
       @post = old_post

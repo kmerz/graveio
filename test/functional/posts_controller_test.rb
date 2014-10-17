@@ -91,6 +91,24 @@ class PostsControllerTest < ActionController::TestCase
     assert_equal true, assigns(:post).newest
   end
 
+  test "should update post with a new post from file and old post as parent" do
+    test_image = "test/fixtures/test.txt"
+    file = Rack::Test::UploadedFile.new(test_image, "text/plain")
+
+    put :update, id: @post, post: {
+      content: @post.content,
+      title: @post.title,
+      author: @post.author,
+      upload_file: file
+    }
+    assert_redirected_to post_path(assigns(:post))
+    assert_not_equal assigns(:post).id, @post.id
+    assert_equal assigns(:post).parent_id, @post.id
+    @post.reload
+    assert_equal false, @post.newest
+    assert_equal true, assigns(:post).newest
+  end
+
   test "should create post json" do
     assert_difference('Post.count') do
       post :create, post: { content: @post.content,
@@ -151,7 +169,6 @@ class PostsControllerTest < ActionController::TestCase
         upload_file: file
       }
     end
-
   end
 
 end
