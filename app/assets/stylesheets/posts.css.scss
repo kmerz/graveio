@@ -2,13 +2,39 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.container {
+  margin-left: 40px;
+  margin-right: 40px;
+  width: auto;
+}
+
+.navbar .navbar-fixed-top {
+  box-shadow: none;
+  background-image: none;
+  background-color: #fff;
+}
+
+.navbar-inner {
+  box-shadow: none;
+  background-image: none;
+  background-color: #fff;
+}
+
+.navbar-fixed-top .container {
+  width: auto;
+}
+
+.navbar .nav a {
+  font-family: monospace;
+}
+
 .none {
-    display:none;
+  display:none;
 }
 
 .help {
     margin-top:9px;
-    margin-bot:9px;
+    margin-bottom:9px;
 }
 
 .comments_count {
@@ -26,6 +52,10 @@
 }
 
 .content_type {
+  color: #727272;
+}
+
+.date {
   color: #727272;
 }
 
@@ -71,12 +101,15 @@ td.line-number {
   border-right: 1px solid rgb(221, 221, 221);
   text-align: right;
   cursor: pointer;
-  width: 5%;
+  width: 10px;
 }
 
 td.line-pre {
-  width: 95%;
   background: white;
+}
+
+pre.line-pre {
+  color: #000000;
 }
 
 td.line-pre:hover {
