@@ -6,7 +6,9 @@
   <span>&nbsp;</span>
 <% end %>
 
-<%= preview_content(@post).html_safe %>
+<div class="post-content" data-href="<%= post_path(@post)%>">
+  <%= preview_content(@post).html_safe %>
+</div>
 
 <% if @post.author.present? %>
   <small class="author">- <%= @post.author %></small>
@@ -14,6 +16,9 @@
   <small class="author">- Anonymous</small>
 <% end %>
 <small class="content_type"> (<%= @post.content_type %>)</small>
+<small class="date"> - <%= @post.updated_at.strftime('%a, %d %b %Y %H:%M:%S') %>
+</small>
+
 <%= render 'options' %>
 
 <br />

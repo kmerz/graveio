@@ -1,5 +1,10 @@
 $(document).ready(function() {
 
+  $(".post-content").click(function(evnt) {
+    var href = $(this).data("href");
+    window.location = href;
+  });
+
   $(document).endlessScroll({
     fireOnce: true,
     fireDelay: 500,
