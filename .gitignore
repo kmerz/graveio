@@ -20,3 +20,6 @@
 
 # Ignore node modules
 node_modules/
+
+# Ignore Desktop Services Store
+.DS_Store
