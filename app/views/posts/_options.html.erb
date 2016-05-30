@@ -30,6 +30,12 @@
       <i class="icon-download"></i>
     <% end %>
 
+    <%= link_to markdown_post_path(@post), :class => "btn btn-mini",
+      :title => "Markdown" do %>
+      <i class="icon-flag"></i>
+    <% end %>
+
+
     <% unless current_page?(root_url) || current_page?(posts_path) %>
       <%= link_to posts_path, :class => "btn btn-mini", :title => "Posts" do %>
         <i class="icon-align-justify"></i>

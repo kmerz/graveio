@@ -6,7 +6,7 @@ gem 'rails', '~>4.0.1'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'sqlite3'
-
+gem 'redcarpet'
 gem 'sass-rails'
 gem 'railties'
 gem 'coffee-rails'
