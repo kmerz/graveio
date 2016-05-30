@@ -157,6 +157,13 @@ class PostsControllerTest < ActionController::TestCase
     assert_template(:diff)
   end
 
+  test "should show markdown for post" do
+    get :markdown, :id => 106
+    assert_response :success
+    assert_not_nil(:post)
+    assert_template(:markdown)
+  end
+
   test "should upload file from form" do
     test_image = "test/fixtures/test.txt"
     file = Rack::Test::UploadedFile.new(test_image, "text/plain")

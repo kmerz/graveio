@@ -238,6 +238,13 @@ class PostsController < ApplicationController
     end
   end
 
+  def markdown
+    @post = Post.find(params[:id])
+    respond_to do |format|
+      format.html {render :markdown}
+    end
+  end
+
   private
 
   def post_params

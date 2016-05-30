@@ -10,6 +10,7 @@ Fox::Application.routes.draw do
       get :diff
       get :like
       get :dislike
+      get :markdown
     end
   end
   resources :posts, :as => :p

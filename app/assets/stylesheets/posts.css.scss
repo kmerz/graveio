@@ -81,6 +81,11 @@
 .diff li.diff-comment { display: none; }
 .diff li.diff-block-info { background: none repeat scroll 0 0 gray; }
 
+.markdown {
+  border-bottom: 1px solid darkgrey;
+  padding-bottom: 20px;
+}
+
 pre.line-pre {
   margin: 0;
   padding: 0;

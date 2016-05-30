@@ -1,0 +1,18 @@
+<div class="row">
+  <div class="markdown">
+     <%= markdown(@post) %>
+  </div>
+
+  <% if @post.author.present? %>
+    <p class="author">- <%= @post.author %></p>
+  <% end %>
+
+  <%= render 'options' %>
+
+  <input id="post_url" class="input-xlarge uneditable-input" type="text"
+    value="<%= post_url(@post) %>"></input>
+
+  <br/><br/>
+  <%= render 'like_dislike' %>
+  <%= render 'comments/comment' %>
+</div>
