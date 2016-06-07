@@ -1,38 +1,54 @@
 <div class="pull-right">
-  <div class="btn-group">
+  <div class="input-append">
+    <%= form_tag(diff_post_path(@post), :method => "get") do %>
 
-    <% unless current_page?(post_path(@post)) %>
-      <%= link_to post_path(@post), :class => "btn btn-mini",
-        :title => "View" do %>
-        <i class="icon-eye-open"></i>
+      <% unless current_page?(post_path(@post)) %>
+        <%= link_to post_path(@post), :class => "btn btn-mini",
+          :title => "View" do %>
+          <i class="icon-eye-open"></i>
+        <% end %>
       <% end %>
-    <% end %>
 
-    <% unless current_page?(edit_post_path(@post)) %>
-      <%= link_to edit_post_path(@post), :class => "btn btn-mini",
-        :title => "Edit" do %>
-        <i class="icon-edit"></i>
+      <% unless current_page?(edit_post_path(@post)) %>
+        <%= link_to edit_post_path(@post), :class => "btn btn-mini",
+          :title => "Edit" do %>
+          <i class="icon-edit"></i>
+        <% end %>
       <% end %>
+    
+      <% if @post.parent.present? &&
+        !current_page?(root_url) && !current_page?(posts_path) %>
+          <%= text_field_tag(:diff_id, nil, :class => "input-sm", 
+            :placeholder => @post.parent.id.to_s) %>
+          <%= button_tag(:type => "submit", :class => "btn btn-mini", 
+            :title => "Diff") do %>
+              <i class="icon-plus"></i>
+              <i class="icon-minus"></i>
+          <% end %>
+        <div class="btn-group">
+          <button class="btn dropdown-toggle btn-mini" data-toggle="dropdown">
+            <span class="caret"></span>
+          </button>
+            <ul class="dropdown-menu">
+              <li><%= link_to(parentlist_post_path(@post)){"Parentlist"} %></li>
+              <li class="divider"></li>
+              <% parents = @post.parents %>
+              <% parents.reverse.take(5).each.with_index(0) do |parent, id| %>
+                <li><%= link_to(diff_post_path(@post, :diff_id => parent.id))
+                  {"Version: #{parents.size - id}"} %></li>
+              <% end %>
+            </ul>
+        </div>
     <% end %>
-
-    <% if @post.parent.present? &&
-      !current_page?(diff_post_path(@post)) &&
-      !current_page?(root_url) && !current_page?(posts_path) %>
-      <%= link_to diff_post_path(@post), :class => "btn btn-mini",
-        :title => "Diff" do %>
-        <i class="icon-plus"></i>
-        <i class="icon-minus"></i>
-      <% end %>
-    <% end %>
-
-    <%= link_to post_path(@post, :format => :text),
-      :class => "btn btn-mini", :title => "Text" do %>
-      <i class="icon-download"></i>
+    
+    <%= link_to post_path(@post, :format => :text), :class => "btn btn-mini", 
+      :title => "Text" do %>
+        <i class="icon-download"></i>
     <% end %>
 
     <%= link_to markdown_post_path(@post), :class => "btn btn-mini",
       :title => "Markdown" do %>
-      <i class="icon-flag"></i>
+        <i class="icon-flag"></i>
     <% end %>
 
 
@@ -43,37 +59,38 @@
     <% end %>
 
     <%= link_to post_path(@post, :format => :json),
-        :method => :delete, :remote => true,
-        data: { confirm: 'Are you sure?' }, :class => "btn btn-mini",
-        :id => "delete_trigger", :title => "Delete" do %>
-      <i class="icon-trash"></i>
+      :method => :delete, :remote => true,
+      data: { confirm: 'Are you sure?' }, :class => "btn btn-mini",
+      :id => "delete_trigger", :title => "Delete" do %>
+        <i class="icon-trash"></i>
     <% end %>
 
     <% if current_page?(post_path(@post)) %>
       <%= link_to "#", :class => "show-comments btn btn-mini",
         :title => "Show/Hide Comments" do %>
-        <i class="icon-comment"></i>
+          <i class="icon-comment"></i>
       <% end %>
     <% end %>
 
     <%= link_to like_post_path(@post), :class => "btn btn-mini like",
-        :remote => true, "data-type" => :json, :id => "like_trigger",
-        :title => "Like" do %>
-      <div id="likesize<%=@post.id%>">
-        <i class="icon-thumbs-up"></i>
-        <%= @post.likes.size %>
-      </div>
+      :remote => true, "data-type" => :json, :id => "like_trigger",
+      :title => "Like" do %>
+        <div id="likesize<%=@post.id%>">
+          <i class="icon-thumbs-up"></i>
+          <%= @post.likes.size %>
+        </div>
     <% end %>
 
     <%= link_to dislike_post_path(@post), :class => "btn btn-mini like",
-        :remote => true, "data-type" => :json, :id => "like_trigger",
-        :title => "Dislike" do %>
-      <div id="dislikesize<%=@post.id%>">
-        <i class="icon-thumbs-down"></i>
-        <%= @post.dislikes.size %>
-      </div>
+      :remote => true, "data-type" => :json, :id => "like_trigger",
+      :title => "Dislike" do %>
+        <div id="dislikesize<%=@post.id%>">
+          <i class="icon-thumbs-down"></i>
+          <%= @post.dislikes.size %>
+        </div>
     <% end %>
 
+    <% end %>
   </div>
 </div>
 

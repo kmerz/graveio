@@ -1,0 +1,6 @@
+<div class="parentlist">
+  <% @post.parents.each.with_index(1) do |parent, id| %>
+    <li><%= link_to(diff_post_path(@post, :diff_id => parent.id)){"Version: #{id}"} %></li>
+  <% end %>
+</div>
+

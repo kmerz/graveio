@@ -1,6 +1,6 @@
 <div class="row">
   <h3><%= @post.title %></h3>
-  <%= @post.diff_to_parent.html_safe %>
+  <%= @post.diff_to_parent(params[:diff_id]).html_safe %>
   <% if @post.author.present? %>
     <p class="author">- <%= @post.author %></p>
   <% end %>
