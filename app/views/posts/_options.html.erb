@@ -34,8 +34,8 @@
               <li class="divider"></li>
               <% parents = @post.parents %>
               <% parents.reverse.take(5).each.with_index(0) do |parent, id| %>
-                <li><%= link_to(diff_post_path(@post, :diff_id => parent.id))
-                  {"Version: #{parents.size - id}"} %></li>
+                <li><%= link_to(diff_post_path(@post, 
+                  :diff_id => parent.id)){"Version: #{parents.size - id}"} %></li>
               <% end %>
             </ul>
         </div>
