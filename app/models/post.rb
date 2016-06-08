@@ -126,13 +126,18 @@ class Post < ActiveRecord::Base
         :comments).references(:content)
   end
 
-  def diff_to_parent(parent_id = nil)
-    post_to_diff = Post.find_by_id(parent_id) || self.parent
+  def diff_to_parent(post_id = nil)
+    post_to_diff = Post.find_by_id(post_id) || self.parent
     if post_to_diff
       Diffy::Diff.new(post_to_diff.content, self.content,
         :include_plus_and_minus_in_html => true).to_s(:html)
     else
       ""
     end
+  end
+
+  def parents
+    return [] if parent_id.nil?
+    return parent.parents + [parent]
   end
 end

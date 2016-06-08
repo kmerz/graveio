@@ -245,6 +245,13 @@ class PostsController < ApplicationController
     end
   end
 
+  def parentlist
+    @post = Post.find(params[:id])
+    respond_to do |format|
+      format.html {render :parentlist}
+    end
+  end
+
   private
 
   def post_params

@@ -11,6 +11,7 @@ Fox::Application.routes.draw do
       get :like
       get :dislike
       get :markdown
+      get :parentlist
     end
   end
   resources :posts, :as => :p
