@@ -64,15 +64,16 @@ class PostTest < ActiveSupport::TestCase
     assert_equal parent, child.parent
   end
 
-  test "should make new version of post" do
-    assert_not_nil parent = Post.find(1)
-    assert_not_nil child = parent.create_version({
+  test "should stay the same post after creating new version" do
+    assert_not_nil old_post = Post.find(1)
+    content_before = old_post.content
+    old_post.content = old_post.content + "new"
+    assert_not_nil new_post = old_post.create_version({
       :content => "far out"})
-    assert_not_equal child, parent
-    assert child.save
-    assert_equal parent.id, child.parent_id
-    assert_not_equal true, parent.newest
-    assert_equal true, child.newest
+    assert_equal new_post, old_post
+    assert_not_equal old_post.content, content_before
+    assert_not_equal new_post.content, content_before
+    assert_not_equal new_post.content, new_post.parent.content
   end
 
   test "collect all parent ids" do

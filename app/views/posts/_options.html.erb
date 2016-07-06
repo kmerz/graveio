@@ -16,10 +16,11 @@
         <% end %>
       <% end %>
     
-      <% if @post.parent.present? &&
-        !current_page?(root_url) && !current_page?(posts_path) %>
+      <% if !current_page?(root_url) && !current_page?(posts_path) %>
+          <%= !@post.parent.nil? ? parent_placeholder = 
+            @post.parent.id.to_s : parent_placeholder = "" %>
           <%= text_field_tag(:diff_id, nil, :class => "input-sm", 
-            :placeholder => @post.parent.id.to_s) %>
+            :placeholder => parent_placeholder) %>
           <%= button_tag(:type => "submit", :class => "btn btn-mini", 
             :title => "Diff") do %>
               <i class="icon-plus"></i>
@@ -30,13 +31,20 @@
             <span class="caret"></span>
           </button>
             <ul class="dropdown-menu">
-              <li><%= link_to(parentlist_post_path(@post)){"Parentlist"} %></li>
+              <li><%= link_to(parentlist_post_path(@post)){"all Versions"} %></li>
               <li class="divider"></li>
+              <% children = @post.children %>
               <% parents = @post.parents %>
-              <% parents.reverse.take(5).each.with_index(0) do |parent, id| %>
+              <% children.each.with_index(0) do |child, id| %>
+                <li><%= link_to(diff_post_path(@post, 
+                  :diff_id => child.id)){"Version: #{parents.size + 1 + children.size - id}"} %></li>
+              <% end %>
+              <li><%= link_to(diff_post_path(@post, :diff_id => @post.id)) { "Version: #{parents.size + 1} (self)"} %> </li>
+              <% parents.each.with_index(0) do |parent, id| %>
                 <li><%= link_to(diff_post_path(@post, 
                   :diff_id => parent.id)){"Version: #{parents.size - id}"} %></li>
               <% end %>
+                  
             </ul>
         </div>
     <% end %>
