@@ -1,5 +1,6 @@
 class Post < ActiveRecord::Base
   require 'tempfile'
+  #require 'acts-as-taggable-on'
 
   def self.MaxUploadSize
     102400 # 100kb
@@ -21,6 +22,11 @@ class Post < ActiveRecord::Base
   has_one :child, :class_name => "Post",
     :foreign_key => :parent_id, :dependent => :destroy
   belongs_to :parent, :class_name => "Post"
+
+  acts_as_taggable
+
+  attr_reader :tag_list_tokens
+  attr_accessible :name, :tag_list_tokens, :title, :author, :content
 
   attr_accessor :uploaded_file
 
@@ -162,5 +168,9 @@ class Post < ActiveRecord::Base
   def parents
     return [] if parent_id.nil?
     return [parent] + parent.parents
+  end
+
+  def tag_list_tokens=(tokens)
+	self.tag_list = tokens.gsub("'", "")
   end
 end

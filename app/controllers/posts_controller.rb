@@ -2,6 +2,7 @@ class PostsController < ApplicationController
   protect_from_forgery
 
   before_filter :verify_api_key, only: [:create]
+  before_filter :find_tags, only: [:new, :create, :edit, :update]
   skip_before_filter :verify_authenticity_token, if: :json_request?
   skip_before_filter :verify_api_key, unless: :json_request?
 
@@ -280,6 +281,10 @@ class PostsController < ApplicationController
     respond_to do |format|
       format.json { render json: { :message => message } }
     end
+  end
+
+  def find_tags
+	@post_tags = params[:id].present? ? Post.find(params[:id]).tags.token_input_tags : []
   end
 
   protected

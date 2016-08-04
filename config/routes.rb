@@ -6,6 +6,9 @@ Fox::Application.routes.draw do
   resources :posts, :path => :p do
     resources :comments
     resources :linecomments
+#	collection do
+#	  get :tags, as: :tags
+#	end
     member do
       get :diff
       get :like
@@ -14,8 +17,11 @@ Fox::Application.routes.draw do
       get :parentlist
     end
   end
+ 
   resources :posts, :as => :p
+  resources :tags, only: [:index, :show]
 
+  #get "posts/tags" => "posts#tags", :as => :tags
   get '/help' => 'posts#help', :as => :help
   get '/search' => 'posts#search', :as => :search
   root :to => 'posts#index'

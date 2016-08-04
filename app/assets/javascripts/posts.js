@@ -81,5 +81,24 @@ $(document).ready(function() {
       target.select();
     }, 100);
   });
+  
+  function callUrl() {
+	return "/tags.json" /*+ ???.filter($("tester").text())*/;
+  }
 
+  $('#post_tag_list_tokens').tokenInput(callUrl, {
+    minChars: 2,
+	allowFreeTagging: true,
+    preventDuplicates: true,
+    prePopulate: $('#post_tag_list_tokens').data('load')
+//	onResult: function (tag) {
+//	  if ($.isEmptyObject(tag)) {
+//		return [{ id: '0', name: $("tester").text() }];
+//	  }
+//	  else {
+//		return tag;
+//	  }
+//	  }
+  });
 });
+

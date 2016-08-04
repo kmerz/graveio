@@ -9,6 +9,9 @@
     <p class="author">- <%= @post.author %></p>
   <% end %>
 
+  <%-# render @post.tags -%>
+  <%= raw @post.tag_list.join(', ') %>
+
   <%= render 'options' %>
 
   <input id="post_url" class="input-xlarge uneditable-input" type="text"
