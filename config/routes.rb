@@ -20,7 +20,6 @@ Fox::Application.routes.draw do
  
   resources :posts, :as => :p
 
-  #get '/search_by_tag' => 'posts#search_by_tag', :as => :search_by_tag
   get '/help' => 'posts#help', :as => :help
   get '/search' => 'posts#search', :as => :search
   root :to => 'posts#index'

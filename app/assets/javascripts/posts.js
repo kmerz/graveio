@@ -81,12 +81,12 @@ $(document).ready(function() {
       target.select();
     }, 100);
   });
-  
+
   $('#post_tags').tokenInput("/posts/tags.json", {
 	tokenValue: "name",
 	allowFreeTagging: true,
-    preventDuplicates: true,
-    prePopulate: $("#post_tags").data("pre")
+	preventDuplicates: true,
+	prePopulate: $("#post_tags").data("pre")
   });
 });
 
