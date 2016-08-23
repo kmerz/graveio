@@ -82,4 +82,11 @@ $(document).ready(function() {
     }, 100);
   });
 
+  $('#post_tags').tokenInput("/posts/tags.json", {
+	tokenValue: "name",
+	allowFreeTagging: true,
+	preventDuplicates: true,
+	prePopulate: $("#post_tags").data("pre")
+  });
 });
+

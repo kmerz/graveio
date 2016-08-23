@@ -9,7 +9,9 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
+ *= require token-input 
  *= require_tree .
+ *= require chosen
  */
 
 /* compensate the overlap caused by bootstrap top navigation, min. 40px at the top! */

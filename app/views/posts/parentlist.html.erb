@@ -1,6 +1,15 @@
 <div class="parentlist">
-  <% @post.parents.each.with_index(1) do |parent, id| %>
-    <li><%= link_to(diff_post_path(@post, :diff_id => parent.id)){"Version: #{id}"} %></li>
+  <% children = @post.children %>
+  <% parents = @post.parents %>
+  <% children.each.with_index(0) do |child, id| %>
+  <li><%= link_to(diff_post_path(@post,
+    :diff_id => child.id)){"Version: #{parents.size + 1 + children.size - id}"} %></li>
+  <% end %>
+  <li><%= link_to(diff_post_path(@post, 
+    :diff_id => @post.id)) { "Version: #{parents.size + 1} (self)"} %> </li>
+  <% parents.each.with_index(0) do |parent, id| %>
+    <li><%= link_to(diff_post_path(@post,
+      :diff_id => parent.id)){"Version: #{parents.size - id}"} %></li>
   <% end %>
 </div>
 

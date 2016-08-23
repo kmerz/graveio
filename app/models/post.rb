@@ -1,5 +1,6 @@
 class Post < ActiveRecord::Base
   require 'tempfile'
+  #require 'acts-as-taggable-on'
 
   def self.MaxUploadSize
     102400 # 100kb
@@ -21,6 +22,10 @@ class Post < ActiveRecord::Base
   has_one :child, :class_name => "Post",
     :foreign_key => :parent_id, :dependent => :destroy
   belongs_to :parent, :class_name => "Post"
+
+  acts_as_taggable
+
+  attr_accessible :tag_list, :title, :author, :content_type, :content
 
   attr_accessor :uploaded_file
 
@@ -63,11 +68,28 @@ class Post < ActiveRecord::Base
   end
 
   def create_version(params)
-    child = self.class.new(params)
-    child.parent_id = self.id
-    self.newest = false
-    self.save
-    return child
+    if self.newest != true
+      children_ids = self.children.map{|x| x.id}
+      newest_post = Post.where(:id => children_ids, "newest" => true).first
+      former_newest_params =  newest_post.serializable_hash
+      former_newest_params.delete("id")
+      former_newest_params["newest"] = false
+      former_newest = self.class.new(former_newest_params)
+      former_newest.save
+      newest_post.update_attributes(params)
+      newest_post.parent_id = former_newest.id
+      return newest_post
+    else
+      old_params = self.serializable_hash
+      old_params.delete("id")
+      parent = self.class.new(old_params)
+      parent.newest = false
+      self.newest = true
+      parent.save
+      self.parent_id = parent.id
+      self.update_attributes(params)
+      return self
+    end
   end
 
   def self.new_from_file(params, data)
@@ -136,8 +158,18 @@ class Post < ActiveRecord::Base
     end
   end
 
+  def children
+    child = Post.where(:parent_id => self.id).first
+    return [] if child.nil?
+    return child.children + [child]
+  end 
+
   def parents
     return [] if parent_id.nil?
-    return parent.parents + [parent]
+    return [parent] + parent.parents
+  end
+
+  def tag_list_tokens=(tokens)
+	self.tag_list = tokens.gsub("'", "")
   end
 end

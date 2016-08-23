@@ -30,9 +30,9 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
 
     respond_to do |format|
-      format.html # show.html.erb
-      format.text { render :text => @post.content }
-    end
+	  format.html # show.html.erb
+	  format.text { render :text => @post.content }
+	end
   end
 
   # GET /posts/new
@@ -250,6 +250,17 @@ class PostsController < ApplicationController
     respond_to do |format|
       format.html {render :parentlist}
     end
+  end
+
+  def tags
+	@tags = ActsAsTaggableOn::Tag.where("tags.name LIKE ?", "%#{params[:q]}%")
+	respond_to do |format|
+	  format.json {render :json => @tags.map{|t| {:id => t.name, :name => t.name }}}
+	end
+  end
+
+  def search_by_tag
+	@posts = Post.tagged_with(params[:tag_name])
   end
 
   private

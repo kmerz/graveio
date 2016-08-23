@@ -12,8 +12,13 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery.tokeninput
 //= require_tree .
 
 // Loads all Bootstrap javascripts
 //= require bootstrap
+//
+
+//Needed for tag auto completition
+//= require chosen
 //
