@@ -1,7 +1,0 @@
-<h2><%= @tag.name %></h2>
-  <% unless @posts.blank?%>
-    <div class="row">
-      <%=render :partial => "posts/post", :collection => @posts%>
-    </div>
-  <% end %>
-

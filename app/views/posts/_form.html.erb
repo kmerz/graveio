@@ -45,17 +45,6 @@
             :id => "inputContentType")%>
         </div>
       </div>
-
-	  <div class="span3">
-		<label class="control-label" for "inputTokens">
-		  <%= f.label :tag_list_tokens, "Tags" %>
-		</label>
-	    <div class="controls">	
-		  <%= f.text_field :tag_list_tokens, data: {load: @post_tags} %>
-	    </div>
-	  </div>
-
-	 	
 	</div>
 
 
@@ -72,7 +61,7 @@
     </div>
 
     <div class="row">
-      <div class="span9">
+      <div class="span6">
         <label class="control-label" for="inputContent">
           <%= f.label "And/Or Upload a File (Max-Size: " +
             "#{Post.MaxUploadSize / 1024}kb)" %>
@@ -81,10 +70,20 @@
           <%= f.file_field :upload_file, { :id => "inputUploadFile",
            :class => "input-xxlarge" } %>
         </div>
-      </div>
+	  </div>
 
       <div class="span3">
-        <%= f.submit :class => "btn pull-right" %>
+		<label class="control-label" for "inputTokens">
+		  <%= f.label :tag_list_tokens, "Tags" %>
+		</label>
+	    <div class="controls">	
+		  <%= f.text_field :tag_list, :id => "post_tags", 
+			"data-pre" => @post.tags.map(&:attributes).to_json %>
+	    </div>
+	  </div>
+	  
+      <div class="span3 set-lower-25">
+		<%= f.submit :class => "btn pull-right" %>
       </div>
     </div>
   </div>

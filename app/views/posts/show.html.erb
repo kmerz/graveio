@@ -9,13 +9,16 @@
     <p class="author">- <%= @post.author %></p>
   <% end %>
 
-  <%-# render @post.tags -%>
-  <%= raw @post.tag_list.join(', ') %>
-
   <%= render 'options' %>
 
   <input id="post_url" class="input-xlarge uneditable-input" type="text"
     value="<%= post_url(@post) %>"></input>
+
+  <br/>
+  <% @post.tag_counts_on(:tags).map(&:name).each do |tag| %>
+	<%= link_to tag, {:action => 'search_by_tag', :tag_name => tag},
+		:class => "btn btn-mini" %>
+  <% end %>
 
   <br/><br/>
   <%= render 'like_dislike' %>

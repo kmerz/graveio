@@ -2,7 +2,7 @@ class PostsController < ApplicationController
   protect_from_forgery
 
   before_filter :verify_api_key, only: [:create]
-  before_filter :find_tags, only: [:new, :create, :edit, :update]
+##before_filter :find_tags, only: [:new, :create, :edit, :update]
   skip_before_filter :verify_authenticity_token, if: :json_request?
   skip_before_filter :verify_api_key, unless: :json_request?
 
@@ -31,9 +31,9 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
 
     respond_to do |format|
-      format.html # show.html.erb
-      format.text { render :text => @post.content }
-    end
+	  format.html # show.html.erb
+	  format.text { render :text => @post.content }
+	end
   end
 
   # GET /posts/new
@@ -253,6 +253,17 @@ class PostsController < ApplicationController
     end
   end
 
+  def tags
+	@tags = ActsAsTaggableOn::Tag.where("tags.name LIKE ?", "%#{params[:q]}%")
+	respond_to do |format|
+	  format.json {render :json => @tags.map{|t| {:id => t.name, :name => t.name }}}
+	end
+  end
+
+  def search_by_tag
+	@posts = Post.tagged_with(params[:tag_name])
+  end
+
   private
 
   def post_params
@@ -281,10 +292,6 @@ class PostsController < ApplicationController
     respond_to do |format|
       format.json { render json: { :message => message } }
     end
-  end
-
-  def find_tags
-	@post_tags = params[:id].present? ? Post.find(params[:id]).tags.token_input_tags : []
   end
 
   protected

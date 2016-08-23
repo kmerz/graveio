@@ -25,8 +25,7 @@ class Post < ActiveRecord::Base
 
   acts_as_taggable
 
-  attr_reader :tag_list_tokens
-  attr_accessible :name, :tag_list_tokens, :title, :author, :content
+  attr_accessible :tag_list, :title, :author, :content_type, :content
 
   attr_accessor :uploaded_file
 

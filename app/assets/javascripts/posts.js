@@ -82,23 +82,11 @@ $(document).ready(function() {
     }, 100);
   });
   
-  function callUrl() {
-	return "/tags.json" /*+ ???.filter($("tester").text())*/;
-  }
-
-  $('#post_tag_list_tokens').tokenInput(callUrl, {
-    minChars: 2,
+  $('#post_tags').tokenInput("/posts/tags.json", {
+	tokenValue: "name",
 	allowFreeTagging: true,
     preventDuplicates: true,
-    prePopulate: $('#post_tag_list_tokens').data('load')
-//	onResult: function (tag) {
-//	  if ($.isEmptyObject(tag)) {
-//		return [{ id: '0', name: $("tester").text() }];
-//	  }
-//	  else {
-//		return tag;
-//	  }
-//	  }
+    prePopulate: $("#post_tags").data("pre")
   });
 });
 
